@@ -1,0 +1,23 @@
+{
+  "name": "themoviedb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel ./src/pages/*.html --open",
+    "build": "parcel build src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.7.0",
+    "parcel": "^2.7.0"
+  },
+  "dependencies": {
+    "@morbidick/bootstrap": "^0.4.2",
+    "axios": "^1.1.3",
+    "bootstrap": "^5.2.2",
+    "moment": "^2.29.4"
+  }
+}
