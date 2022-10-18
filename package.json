@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel ./src/pages/*.html --open",
-    "build": "parcel build src/index.html"
+    "build": "parcel build ./src/pages/*.html"
   },
   "keywords": [],
   "author": "",
