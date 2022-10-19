@@ -1,3 +1,141 @@
-body {
-  background: red;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&family=Source+Sans+Pro:wght@600&display=swap');
+// @import "../node_modules/bootstrap/scss/functions";
+// @import "../node_modules/bootstrap/scss/variables";
+// @import "../node_modules/bootstrap/scss/bootstrap";
+$white-color: #FFFFFF;
+$blue-color: #032541;
+$font-stack:'Source Sans Pro', sans-serif;
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-stack;
 }
+.container{
+  max-width: 1300px;
+  margin: 0 auto;
+}
+header{
+  background-color: $blue-color;
+  color: $white-color;
+  padding: 24px 0;
+}
+.header_links{
+  display: flex;
+  align-items: center;
+}
+.header_links a{
+  padding-left: 30px;
+  
+}
+.header_links img{
+  padding-left: 30px;
+  
+}
+.header_icons{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.header_icons i{
+  font-size: 22px;
+}
+.header_icons a,i{
+  padding-right: 30px;
+}
+a{
+  text-decoration: none;
+  color: #FFFFFF;
+}
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* //////// */
+.hero{
+  background-image: linear-gradient(to right, rgba(3,37,65, 0.8) 0%, rgba(3,37,65, 0) 100%), url('../img/6LfVuZBiOOCtqch5Ukspjb9y0EB.jpg');
+  background-position: center ;
+  background-size: cover;
+  padding: 70px 30px;
+}
+.hero_title{
+  font-size: 48px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+.general_title{
+  color: #FFFFFF;
+  font-size: 32px;
+}
+
+/* Style the search field */
+
+form.example input[type=text] {
+  position: relative;
+  padding: 15px 30px;
+  font-size: 17px;
+  border: none;
+  /* float: left; */
+  width: 100%;
+  background: #f1f1f1;
+  border-radius: 30px;
+}
+/* Style the submit button */
+.example{
+  position: relative;
+  box-sizing: border-box;
+  margin-top: 50px;
+}
+form.example button {
+  position: absolute;
+  right: 0;
+  padding: 15px 25px;
+  background:linear-gradient(to right, rgba(30,213,169, 1) 0%, rgba(1,180,228, 1) 100%);;
+  color: white;
+  font-size: 17px;
+  border: none;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+/* \\\\\\\\\\ */
+
+  /* /////// */
+  .movies{
+    padding: 30px;
+  }
+  .card {
+    position: relative;
+    width: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+  }
+.card_img{
+  border-radius: 10px;
+}
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  /* Add some padding inside the card container */
+  .card_text {
+    padding: 2px 16px;
+
+  }
+ 
