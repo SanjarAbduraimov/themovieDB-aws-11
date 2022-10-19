@@ -1,3 +1,91 @@
-body {
-  background: red;
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+html {
+  font-size: 10px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+// header 
+.nav__menu {
+  display: flex;
+  font-size: 2rem;
+  align-items: center;
+}
+.btn {
+  margin-left: auto;
+}
+
+.nav__menu_link {
+  display: flex;
+  justify-content: start;
+  margin-left: 4rem;
+  .nav__item {
+    margin: 0 2rem;
+  }
+}
+
+.section__title {
+  font-size: 2rem;
+}
+
+.card {
+  width: 20rem;
+  border: 1px solid;
+  padding: 2rem;
+  border-radius: 1rem;
+  .card__img {
+    border: 1px solid;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .card__title , .card__date {
+    font-size: 1.5rem;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
