@@ -8,7 +8,7 @@ function filmNode(film) {
     const displayFilm = document.querySelector(".films .container");
     film.forEach((films) => {
         result += `
-        <div class="film">
+        <div data-id="${films.id}" class="film">
         <img src="../img/film.jpg" alt="Film Image">
         <h4>${films.title}</h4>
         <h5>${films.release_date}</h5>
