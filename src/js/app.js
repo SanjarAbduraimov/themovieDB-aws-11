@@ -1,4 +1,8 @@
 import "./style";
-// import moment from "moment";
-// import "./config";
-import "@morbidick/bootstrap";
+import movieType from "../constants";
+import { fetchMovie } from "../api";
+fetchMovie(movieType.topRated)
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => console.log(err));

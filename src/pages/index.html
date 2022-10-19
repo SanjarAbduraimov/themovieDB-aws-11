@@ -6,13 +6,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../sass/main.scss">
 </head>
 
 <body>
-    <div class="bg-danger">salom</div>
-    <h1>salom</h1>
-    <bs-button href="#link">Click Me</bs-button>
-    <bs-badge href="#link">Click Me</bs-badge>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="navbar">
+                    <ul class="nav_menu">
+                        <a href="#"><img src="../assets/img/logo.svg" alt="Logo" /></a>
+                        <li><a href="#">Фильмы</a></li>
+                        <li><a href="#">Сериалы</a></li>
+                        <li><a href="#">Люди</a></li>
+                        <li><a href="#">Ещё</a></li>
+                    </ul>
+                    <ul class="join_menu">
+                        <li><a href="#">+</a></li>
+                        <li><a href="#">Ru</a></li>
+                        <li><a href="#">Войти</a></li>
+                        <li><a href="#">Присоединиться к TMDB</a></li>
+                        <li>
+                            <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="inner_content">
+        <div class="container">
+            <div class="inner_title">
+                <h2>Добро пожаловать.</h2>
+                <h3>Миллионы фильмов, сериалов и людей. Исследуйте сейчас.</h3>
+            </div>
+            <div class="search">
+                <form id="inner_search_form">
+                    <label>
+                        <input name="query" type="text" placeholder="Найти фильм, сериал, персону......" value=""
+                            class="search_input" />
+                    </label>
+                    <input type="submit" value="Search" class="search_submit" />
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="films">
+        <div class="container">
+            <h3>Что популярно</h3>
+        </div>
+    </section>
     <script type="module" src="../js/app.js"></script>
 </body>
 
