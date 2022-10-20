@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel ./src/pages/*.html --open",
+    "dev": "parcel ./src/*.html --open",
     "build": "parcel build ./src/pages/*.html"
   },
   "keywords": [],
@@ -12,7 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "2.7.0",
-    "parcel": "^2.7.0"
+    "parcel": "^2.7.0",
+    "parcel-bundler": "^1.12.5"
   },
   "dependencies": {
     "@morbidick/bootstrap": "^0.4.2",

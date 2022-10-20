@@ -3,27 +3,33 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html {
   font-size: 10px;
-
 }
+
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
 header {
- background-color: rgb(5, 5, 56);
+  background-color: rgb(5, 5, 56);
 }
+
 .photo {
-   width: 18rem;
-   padding-top: 2rem;
+  width: 18rem;
+  padding-top: 2rem;
 }
+
 .navbar {
   display: flex;
 }
+
 ul {
   padding: 20px;
   gap: 15px;
 }
+
 li {
   list-style: none;
 }
@@ -33,29 +39,33 @@ a {
   font-size: 20px;
   color: #fff;
 }
+
 .container {
   width: 90%;
   margin: 0 auto;
 }
+
 .nav__menu {
   display: flex;
 }
-
 
 .search {
   height: 350px;
   background-image: url(../assets/imgs/photo_2022-10-19_15-32-47.jpg);
 }
+
 h1 {
   padding-top: 55px;
   font-size: 45px;
   color: #fff;
 }
+
 h5 {
   color: #fff;
   padding-top: 10px;
   font-size: 25px;
 }
+
 .searchs {
   padding: 15px 530px;
   border-radius: 50px;
@@ -63,19 +73,22 @@ h5 {
   outline: none;
   margin-top: 60px;
 }
+
 .get__movie {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
+
 .get__tv {
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
   gap: 10px;
 }
+
 .card {
   border: 1px solid;
   width: 80px;
   height: 80px;
-}
+}/*# sourceMappingURL=main.css.map */
