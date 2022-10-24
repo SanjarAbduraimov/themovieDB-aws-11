@@ -1,1 +1,3 @@
-// import "../sass/custom.scss"
+import "../sass/main.scss";
+import "../sass/moviesdetails.scss";
+
