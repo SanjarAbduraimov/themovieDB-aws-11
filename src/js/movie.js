@@ -1,4 +1,4 @@
-import { fetchMovie } from "../api";
+import { fetch } from "../api";
 import { fetchImg } from "../api";
 import config from "../configs";
 const {  baseImgUrl } = config;

@@ -1,85 +1,35 @@
 import "./style";
-import movieType from "../constants";
-import { fetchMovie } from "../api";
-import { fetchMovieDetails } from "../api";
-import { disMoviesDetails } from "../js/moviedetails";
+import Type, { status } from "../constants";
+import { fetch } from "../api";
+import { fetchDetails } from "../api";
+import { disMoviesDetails } from "./movie";
 import { fetchMovieSearch } from "../api";
-
+import { displayPeople } from "./people";
+import { displayMovies, initializeMoveEvent } from "./home";
 document.addEventListener("DOMContentLoaded", (e) => {
   const page = location.pathname;
-  console.log(page);
-  if (page === "/index.html" ||  page === "/") {
-    fetchMovie(movieType.popular)
-    .then((data) => {
-      console.log(data);
-      displayMovies(data.data.results)
-      initializeMoveEvent();
-    })
-    .catch((err) => console.log(err));
-  
+  if (page === "/index.html" || page === "/") {
+    fetch(Type.movie, status.popular)
+      .then((data) => {
+        displayMovies(data.data.results);
+        initializeMoveEvent();
+      })
+      .catch((err) => console.log(err));
   }
-  if (page === "/moveidetailes.html" || page === "/moveidetailes") {
-
-    fetchMovieDetails(history.state.id)
-    .then((data) => {
-      console.log(data.data);
+  if (page === "/movie.html" || page === "/movie") {
+    fetchDetails(Type.movie, history.state.id).then((data) => {
       disMoviesDetails(data.data);
-      
-      
-      
-
-    })
+    });
+  }
+  if (page === "/people.html" || page === "/people") {
+    fetch(Type.person, status.popular).then(({ data }) => {
+      displayPeople(data?.results);
+    });
   }
   if (page === "/search.html" || page === "/search") {
-    const query = new URLSearchParams(location.search);
-    fetchMovieSearch()
-   
-  }
-
-})
-
-
-
-// searchBooksRequest(title).then((data) => {
-//   console.log(data, "data from search");
-//   displayBoo(data.payload);
-// });
-// const title = query.get("title");
-
-
-
-
-function displayMovies(data) {
-    let result = "";
-    const authorMenuNode = document.querySelector(".get__movie");
-    data.forEach((movies) => {
-       result += `
-           <div class="col details__cols">
-                  <div class="card" data-id="${movies.id}">
-                      <div class="card__img">
-                          <img src="../assets/img/moviess.jpg" alt="img">
-                      </div>
-                      <div class="card__body">
-                          <div class="card__title">
-                              <p> ${movies.title}</p>
-                          </div>
-                          <div class="card__date">${movies.release_date}</div>
-                          <button>dewd</button>
-                      </div>
-                  </div>
-          </div>
-          `;
+    // const query = new URLSearchParams(location.search);
+    fetchMovieSearch(history.state.title).then(({ data }) => {
+      displayMovies(data.results);
     });
-    authorMenuNode.innerHTML = result;
-}
-function initializeMoveEvent() {
-  const moviesssMenuNode = document.querySelector(".get__movie");
-  
-  moviesssMenuNode.addEventListener("click", (event) => {
-    const id = event.target.closest(".card")?.dataset?.id;
-    console.log(id, "bosilgan");
-    if (!id) return;
-    history.pushState({ id }, null, "/moveidetailes.html");
-    location.reload();
-  });
-}
+  }
+});

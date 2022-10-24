@@ -1,14 +1,12 @@
-.movies__detailes{
-    .row {
-        display: flex;
-        .col{
-            padding: 2rem;
-        }
+.movies__detailes {
+  .row {
+    display: flex;
+    .col {
+      padding: 2rem;
     }
-
+  }
 }
-.details__cols{
-   border: 1px solid;
-   padding: 2rem;
-   margin: 1rem;
+.details__cols {
+  border: 1px solid;
+  margin: 1rem;
 }
