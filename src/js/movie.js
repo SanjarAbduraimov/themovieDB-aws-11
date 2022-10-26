@@ -1,7 +1,7 @@
 import { fetch } from "../api";
 import { fetchImg } from "../api";
-import config from "../configs";
-const {  baseImgUrl } = config;
+import configs from "../configs";
+const {  baseImgUrl } = configs;
 import { fetchMovieImg } from "../api";
 
 
@@ -9,21 +9,22 @@ import { fetchMovieImg } from "../api";
 
 export function disMoviesDetails(data) {
     let result = "";
-    const path = data.backdrop_path;
-    const imguaas = "baseImgUrl" + "path";
-    // const imgssss = fetchMovieImg(path);
     const authorMenuNode = document.querySelector(".movies__detailes");
-    
+    const { id, poster_path, title ,release_date, popularity, tagline , overview} = data;
+    const img = poster_path
+      ? configs.baseImgURL + poster_path
+      : configs.defaultImg + "500";
+    configs.baseImgURL;
       result += `
       <div class="row">
       <div class="col">
           <div class="details__img">
-          <img scr="${imguaas}">
+          <img width="100%" scr="${img}" alt="img">
           </div>
       </div>
       <div class="col">
           <div class="details__title">
-              <h1>${data.title} ${data.release_date}</h1> 
+              <h1>${title} ${release_date}</h1> 
               <div class="films__details">
                   <p class="date__details"></p>
                   <p class="films__title_details"></p>
@@ -31,7 +32,7 @@ export function disMoviesDetails(data) {
               </div>
           </div>
           <div class="row">
-              <div class="col">${data.popularity}</div>
+              <div class="col">${popularity}</div>
               <div class="col">User Score</div>
               <div class="col">==</div>
               <div class="col">love</div>
@@ -42,11 +43,11 @@ export function disMoviesDetails(data) {
   
           <div class="details__text">
               <p class="tagline">
-                  ${data.tagline}
+                  ${tagline}
               </p>
               <p class="overvave">Overvave</p>
               <p class="details__description">
-                 ${data.overview}
+                 ${overview}
               </p>
               <div class="creaters">
                   <p class="creter">Creator</p>
@@ -61,4 +62,79 @@ export function disMoviesDetails(data) {
     authorMenuNode.innerHTML = result;
     
 
+}
+
+export function displayCast(cast) {
+  let result = "";
+  const authorMenuNode = document.querySelector(".cast__people");
+  cast.forEach((person) => {
+    const { id, profile_path, name, character} = person;
+    const img = profile_path
+      ? configs.baseImgURL + profile_path
+      : configs.defaultImg + "500";
+    configs.baseImgURL;
+    const cardImg = configs.cardImg;
+    result += `
+    
+    
+    <div class="col details__cols">
+     <div class="card">
+      <div class="card__head">
+        <div class="card__img_top" data-id="${id}">
+          <img width="100%" src="${img}" alt="Movies__Pecture">
+        </div>
+      </div>
+        
+      <div class="card__body">
+        <div class="card__title">
+          <p> ${name}</p>
+        </div>
+        <div class="card__date">
+          <p>${character}</p>
+        </div>
+        </div>
+      </div>
+      
+    </div>
+    `;
+  });
+  authorMenuNode.innerHTML = result;
+    
+}
+
+export function displayCrew(crew) {
+  let result = "";
+  const authorMenuNode = document.querySelector(".crew__people");
+  crew.forEach((person) => {
+    const { id, profile_path, name, character} = person;
+    const img = profile_path
+      ? configs.baseImgURL + profile_path
+      : configs.defaultImg + "500";
+    configs.baseImgURL;
+    const cardImg = configs.cardImg;
+    result += `
+    
+    <div class="col details__cols">
+     <div class="card">
+      <div class="card__head">
+        <div class="card__img_top" data-id="${id}">
+          <img width="100%" src="${img}" alt="Movies__Pecture">
+        </div>
+      </div>
+        
+      <div class="card__body">
+        <div class="card__title">
+          <p> ${name}</p>
+        </div>
+        <div class="card__date">
+          <p>${character}</p>
+        </div>
+        </div>
+      </div>
+      
+    </div>
+    `;
+  });
+  authorMenuNode.innerHTML = result;
+    
 }

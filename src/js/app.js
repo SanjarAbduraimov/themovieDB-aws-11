@@ -1,18 +1,19 @@
 import "./style";
-import Type, { status } from "../constants";
+import Type, { status,credits } from "../constants";
 import { fetch } from "../api";
-import { fetchDetails } from "../api";
-import { disMoviesDetails } from "./movie";
+import { fetchDetails , fetchMovieCredits } from "../api";
+import { disMoviesDetails , displayCast, displayCrew} from "./movie";
 import { fetchMovieSearch } from "../api";
 import { displayPeople } from "./people";
-import { displayMovies, initializeMoveEvent } from "./home";
+import { displayMovies, initializeMoveEvent, cardClick} from "./home";
 document.addEventListener("DOMContentLoaded", (e) => {
   const page = location.pathname;
   if (page === "/index.html" || page === "/") {
     fetch(Type.movie, status.popular)
-      .then((data) => {
-        displayMovies(data.data.results);
+      .then(({ data }) => {
+        displayMovies(data.results);
         initializeMoveEvent();
+        cardClick();
       })
       .catch((err) => console.log(err));
   }
@@ -20,6 +21,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
     fetchDetails(Type.movie, history.state.id).then((data) => {
       disMoviesDetails(data.data);
     });
+    fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits ).then((data)=>{
+      console.log(data);
+      displayCast(data.data.cast)
+      displayCrew(data.data.crew)
+    })
   }
   if (page === "/people.html" || page === "/people") {
     fetch(Type.person, status.popular).then(({ data }) => {

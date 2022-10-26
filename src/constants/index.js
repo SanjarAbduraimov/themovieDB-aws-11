@@ -9,4 +9,8 @@ const status = {
   now: "now",
   upcoming: "upcoming",
 };
-export { status, type as default };
+const credits = {
+  movieCredits: "credits",
+  personCredits: "top_rated",
+}
+export {credits, status, type as default };
