@@ -2,11 +2,16 @@
   .row {
     display: flex;
     .col {
-      padding: 2rem;
+      margin: 2rem;
+      
     }
   }
 }
-.details__cols {
-  border: 1px solid;
-  margin: 1rem;
+.cast__people {
+  display: flex;
+  flex-wrap: wrap;
 }
+.crew__people {
+  display: flex;
+}
+

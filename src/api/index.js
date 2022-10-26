@@ -22,6 +22,18 @@ export function fetchDetails(type, id) {
   );
 }
 
+export function fetchMovieCredits(type, id, credits) {
+  if (!id) {
+    throw "Please insert id parametr";
+  }
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  return axios.get(
+    `${type}/${id}/${credits}?api_key=${apiKey}&language=${navigator.languages[0]}`
+  );
+}
+
 export function fetchMovieSearch(
   title,
   query = {
