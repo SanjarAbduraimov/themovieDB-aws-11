@@ -1,25 +1,18 @@
-import { fetch } from "../api";
-import { fetchImg } from "../api";
 import configs from "../configs";
-const {  baseImgUrl } = configs;
-import { fetchMovieImg } from "../api";
-
-
-
 
 export function disMoviesDetails(data) {
-    let result = "";
-    const authorMenuNode = document.querySelector(".movies__detailes");
-    const { id, poster_path, title ,release_date, popularity, tagline , overview} = data;
-    const img = poster_path
-      ? configs.baseImgURL + poster_path
-      : configs.defaultImg + "500";
-    configs.baseImgURL;
-      result += `
+  let result = "";
+  const authorMenuNode = document.querySelector(".movies__detailes");
+  const { poster_path, title, release_date, popularity, tagline, overview } =
+    data;
+  const img = poster_path
+    ? configs.baseImgURL + poster_path
+    : configs.defaultImg + "500";
+  result += `
       <div class="row">
       <div class="col">
           <div class="details__img">
-          <img width="100%" scr="${img}" alt="img">
+          <img width="100%" src="${img}" alt="img">
           </div>
       </div>
       <div class="col">
@@ -59,16 +52,14 @@ export function disMoviesDetails(data) {
       </div>
        </div>
           `;
-    authorMenuNode.innerHTML = result;
-    
-
+  authorMenuNode.innerHTML = result;
 }
 
 export function displayCast(cast) {
   let result = "";
   const authorMenuNode = document.querySelector(".cast__people");
   cast.forEach((person) => {
-    const { id, profile_path, name, character} = person;
+    const { id, profile_path, name, character } = person;
     const img = profile_path
       ? configs.baseImgURL + profile_path
       : configs.defaultImg + "500";
@@ -99,19 +90,16 @@ export function displayCast(cast) {
     `;
   });
   authorMenuNode.innerHTML = result;
-    
 }
 
 export function displayCrew(crew) {
   let result = "";
   const authorMenuNode = document.querySelector(".crew__people");
   crew.forEach((person) => {
-    const { id, profile_path, name, character} = person;
+    const { id, profile_path, name, character } = person;
     const img = profile_path
       ? configs.baseImgURL + profile_path
       : configs.defaultImg + "500";
-    configs.baseImgURL;
-    const cardImg = configs.cardImg;
     result += `
     
     <div class="col details__cols">
@@ -136,5 +124,4 @@ export function displayCrew(crew) {
     `;
   });
   authorMenuNode.innerHTML = result;
-    
 }

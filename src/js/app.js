@@ -1,11 +1,11 @@
 import "./style";
-import Type, { status,credits } from "../constants";
+import Type, { status, credits } from "../constants";
 import { fetch } from "../api";
-import { fetchDetails , fetchMovieCredits } from "../api";
-import { disMoviesDetails , displayCast, displayCrew} from "./movie";
+import { fetchDetails, fetchMovieCredits } from "../api";
+import { disMoviesDetails, displayCast, displayCrew } from "./movie";
 import { fetchMovieSearch } from "../api";
 import { displayPeople } from "./people";
-import { displayMovies, initializeMoveEvent, cardClick} from "./home";
+import { displayMovies, initializeMoveEvent } from "./home";
 import { displayActor, initializeActorEvent } from "./actor";
 
 document.addEventListener("DOMContentLoaded", (e) => {
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       .then(({ data }) => {
         displayMovies(data.results);
         initializeMoveEvent();
-        cardClick();
+        // cardClick();
       })
       .catch((err) => console.log(err));
   }
@@ -23,11 +23,13 @@ document.addEventListener("DOMContentLoaded", (e) => {
     fetchDetails(Type.movie, history.state.id).then((data) => {
       disMoviesDetails(data.data);
     });
-    fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits ).then((data)=>{
-      console.log(data);
-      displayCast(data.data.cast)
-      displayCrew(data.data.crew)
-    })
+    fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then(
+      (data) => {
+        console.log(data);
+        displayCast(data.data.cast);
+        displayCrew(data.data.crew);
+      }
+    );
   }
   if (page === "/people.html" || page === "/people") {
     fetch(Type.person, status.popular).then(({ data }) => {
@@ -45,7 +47,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
     fetchDetails(Type.person, history.state.id).then((data) => {
       displayActor(data.data);
       console.log(data.data);
-
-    })
+    });
   }
 });
