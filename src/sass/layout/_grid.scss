@@ -1,3 +1,4 @@
+@use "sass:math";
 .container {
   width: 100%;
   padding: 2rem;
@@ -37,7 +38,7 @@ $breakpoints: (
   .row .col-#{$i} {
     flex-grow: 0;
     flex-shrink: 0;
-    flex-basis: #{100% / $gridColumns * $i};
+    flex-basis: math.div(100%, $gridColumns * $i);
     padding: 10px;
   }
 }
@@ -53,7 +54,7 @@ $breakpoints: (
       .row .col-#{$mq}-#{$i} {
         flex-grow: 0;
         flex-shrink: 0;
-        flex-basis: #{100% / $gridColumns * $i};
+        flex-basis: math.div(100%, $gridColumns * $i);
         padding: 10px;
       }
     }
