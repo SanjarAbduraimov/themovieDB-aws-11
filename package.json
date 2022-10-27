@@ -2,7 +2,7 @@
   "name": "themoviedb",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/js/app.js",
+  "source": "src/js/app.js",
   "scripts": {
     "dev": "parcel ./src/pages/*.html --open",
     "build": "parcel build ./src/pages/*.html"
