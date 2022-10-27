@@ -1,0 +1,16 @@
+@import "./actor";
+@import "./custom";
+@import "./home";
+@import "./moviesdetails";
+@import "./people";
+
+
+
+.get__movie {
+  display: flex;
+  flex-wrap: wrap;
+}
+.link__people a {
+  color: #000;
+  text-transform: uppercase;
+}
