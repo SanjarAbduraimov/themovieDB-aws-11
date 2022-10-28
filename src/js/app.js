@@ -6,7 +6,8 @@ import { disMoviesDetails, displayCast, displayCrew } from "./movie";
 import { fetchMovieSearch } from "../api";
 import { displayPeople } from "./people";
 import { displayMovies, initializeMoveEvent } from "./home";
-import { displayActor, initializeActorEvent } from "./actor";
+import { displayActor, initializeActorEvent, displayCastActor, displayCrewActor } from "./actor";
+
 
 document.addEventListener("DOMContentLoaded", (e) => {
   const page = location.pathname;
@@ -48,5 +49,14 @@ document.addEventListener("DOMContentLoaded", (e) => {
       displayActor(data.data);
       console.log(data.data);
     });
+    fetchMovieCredits(Type.person, history.state.id, credits.movieCredits) .then((data) => {
+      console.log(data);
+      displayCastActor(data.data.cast);
+      displayCrewActor(data.data.crew);
+    })
+
   }
 });
+
+
+// https://api.themoviedb.org/3/person/{person_id}/movie_credits?api_key=<<api_key>>&language=en-US

@@ -1,0 +1,13 @@
+.actor__cards {
+   display: flex;
+   flex-wrap: nowrap;
+   margin-right: 600px;
+}
+.actors__cols {
+    display: flex;
+    flex-wrap: wrap;
+}
+.crew__films {
+    display: flex;
+    overflow: scroll;
+}

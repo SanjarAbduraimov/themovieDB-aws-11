@@ -8,10 +8,10 @@ export function displayActor(actor = []) {
       : configs.defaultImg + "500";
     configs.baseImgURL;
       result += `
-      <div class="row">
+      <div class="row actor__cards">
       <div class="col">
           <div class="actor__img">
-          <img scr="${img}">
+          <img src="${img}">
           </div>
       </div>
       <div class="col">
@@ -47,12 +47,85 @@ export function displayActor(actor = []) {
                   <p class="creter">Creator</p>
               </div>
           </div>
+          <div class="crew__films"></div>
   
       </div>
        </div>
           `;
     actorDetails.innerHTML = result;
 }
+
+export function displayCastActor(cast) {
+    let result = "";
+    const authorMenuNode = document.querySelector(".cast__films");
+    cast.forEach((person) => {
+      const { id, poster_path, title, character } = person;
+      const img = poster_path
+        ? configs.baseImgURL + poster_path
+        : configs.defaultImg + "500";
+      configs.baseImgURL;
+      const cardImg = configs.cardImg;
+      result += `
+      
+      
+      <div class="col actors__cols">
+       <div class="card">
+        <div class="card__head">
+          <div class="card__img_top" data-id="${id}">
+            <img width="100%" src="${img}" alt="Movies__Pecture">
+          </div>
+        </div>
+          
+        <div class="card__body">
+          <div class="card__title">
+            <p> ${title}</p>
+          </div>
+          <div class="card__date">
+            <p>${character}</p>
+          </div>
+          </div>
+        </div>
+        
+      </div>
+      `;
+    });
+    authorMenuNode.innerHTML = result;
+  }
+
+  export function displayCrewActor(crew) {
+    let result = "";
+    const authorMenuNode = document.querySelector(".crew__films");
+    crew.forEach((person) => {
+      const { id, poster_path, title } = person;
+      const img = poster_path
+        ? configs.baseImgURL + poster_path
+        : configs.defaultImg + "500";
+      result += `
+      
+      <div class="col details__cols">
+       <div class="card">
+        <div class="card__head">
+          <div class="card__img_top" data-id="${id}">
+            <img width="100%" src="${img}" alt="Movies__Pecture">
+          </div>
+        </div>
+          
+        <div class="card__body">
+          <div class="card__title">
+            <p> ${title}</p>
+          </div>
+          <div class="card__date">
+          
+          </div>
+          </div>
+        </div>
+        
+      </div>
+      `;
+    });
+    authorMenuNode.innerHTML = result;
+  }
+
 export function initializeActorEvent() {
     const moviesssMenuNode = document.querySelector(".people .container");
     moviesssMenuNode.addEventListener("click", (event) => {
