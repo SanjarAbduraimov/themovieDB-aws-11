@@ -3,13 +3,13 @@
 @import "./home";
 @import "./moviesdetails";
 @import "./people";
+@import "./searchall";
 
 
-
-.get__movie {
-  display: flex;
-  flex-wrap: wrap;
-}
+// .get__movie {
+//   display: flex;
+//   flex-wrap: wrap;
+// }
 .link__people a {
   color: #000;
   text-transform: uppercase;

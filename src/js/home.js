@@ -9,7 +9,7 @@ export function displayMovies(data = []) {
       ? configs.baseImgURL + backdrop_path
       : configs.defaultImg + "500";
     result += `
-    <div class="col details__cols">
+    <div class=" col details__cols">
      <div class="card">
       <div class="card__head">
         <div class="card__img_top" data-id="${id}">
@@ -67,8 +67,11 @@ export function initializeMoveEvent() {
       }
       if (isMenuBtn) {
         let cardOpacity = card.querySelector(".card__content");
-        cardOpacity.classList.toggle("card__opasity");
+        cardOpacity.classList.add("card__opasity"); 
       }
+      
+
     });
   });
+  
 }

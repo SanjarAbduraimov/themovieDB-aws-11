@@ -15,16 +15,51 @@
                 <div class="navbar">
                     <ul class="nav_menu">
                         <a href="#"><img src="../assets/img/logo.svg" alt="Logo" /></a>
-                        <li><a href="#">Фильмы</a></li>
-                        <li><a href="#">Сериалы</a></li>
-                        <li><a href="#">Люди</a></li>
-                        <li><a href="#">Ещё</a></li>
+                        <div class="dropdown">
+                            <button class="dropbtn"><li><a >Movies</a></li> 
+                            </button>
+                            <div class="dropdown-content">
+                              <a href="./searchess.html">Popular</a>
+                              <a href="#">Now Playing</a>
+                              <a href="#">Upcoming</a>
+                              <a href="#">Top Rated</a>
+                            </div>
+                          </div> 
+                          <div class="dropdown">
+                            <button class="dropbtn"> <li><a href="#">TV Shows</a></li>
+                            </button>
+                            <div class="dropdown-content">
+                              <a href="./searchess.html">Popular</a>
+                              <a href="#">Airing Today</a>
+                              <a href="#">On TV</a>
+                              <a href="#">Top Rated</a>
+                            </div>
+                          </div> 
+                          <div class="dropdown">
+                            <button class="dropbtn">  <li><a href="#">People</a></li>
+                            </button>
+                            <div class="dropdown-content">
+                              <a href="./people.html">Popular People</a>
+                            </div>
+                          </div> 
+                          <div class="dropdown">
+                            <button class="dropbtn"> <li><a href="#">More</a></li>
+                            </button>
+                            <div class="dropdown-content">
+                              <a href="#">Discussions</a>
+                              <a href="#">Leaderboard</a>
+                              <a href="#">Support</a>
+                              <a href="#">API</a>
+                            </div>
+                          </div> 
+                       
+                       
                     </ul>
                     <ul class="join_menu">
-                        <li><a href="#">+</a></li>
-                        <li><a href="#">Ru</a></li>
-                        <li><a href="#">Войти</a></li>
-                        <li><a href="#">Присоединиться к TMDB</a></li>
+                        <li><a href="#"><b>+</b></a></li>
+                        <li><a href="#">EN</a></li>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Join TMDB</a></li>
                         <li>
                             <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                         </li>
@@ -36,8 +71,8 @@
     <section class="inner_content">
         <div class="container">
             <div class="inner_title">
-                <h2>Добро пожаловать.</h2>
-                <h3>Миллионы фильмов, сериалов и людей. Исследуйте сейчас.</h3>
+                <h2>Welcome.</h2>
+                <h3>Millions of movies, TV shows and people to discover. Explore now.</h3>
             </div>
             <div class="search">
                 <form class="inner_search_form">
@@ -50,17 +85,12 @@
             </div>
         </div>
     </section>
-    <section class="films">
-        <div class="container">
-            <h3>Что популярно</h3>
-            <a class="link__people" href="./people.html">👉🏻people.html👈🏻</a>
-        </div>
-    </section>
+    
 
 
     <section>
         <div class="container">
-            <div class="get__movie">
+            <div class="get__movie ">
 
             </div>
         </div>

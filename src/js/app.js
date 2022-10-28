@@ -6,6 +6,7 @@ import { disMoviesDetails, displayCast, displayCrew } from "./movie";
 import { fetchMovieSearch } from "../api";
 import { displayPeople } from "./people";
 import { displayMovies, initializeMoveEvent } from "./home";
+import { searchMoviess } from "../js/searchess";
 import { displayActor, initializeActorEvent, displayCastActor, displayCrewActor } from "./actor";
 
 
@@ -56,7 +57,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
     })
 
   }
+  
+  if (page === "/searchess.html" || page === "/searchess") {
+    
+    console.log("salom");
+    const formSearchAll = document.forms[0];
+    formSearchAll.addEventListener("click" , searchMoviess) 
+  }
 });
-
-
-// https://api.themoviedb.org/3/person/{person_id}/movie_credits?api_key=<<api_key>>&language=en-US
