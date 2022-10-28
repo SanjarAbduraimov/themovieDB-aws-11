@@ -3,7 +3,6 @@
     display: flex;
     .col {
       margin: 2rem;
-      
     }
   }
 }
@@ -15,10 +14,11 @@
   display: flex;
 }
 .get__movie {
-   display: flex;
-   overflow:auto;
-   height: 380px;
+  display: flex;
+  overflow: auto;
+  height: 380px;
 }
 
-
-
+::-webkit-scrollbar {
+  display: none;
+}
