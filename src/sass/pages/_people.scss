@@ -1,4 +1,14 @@
-.people .people_card{
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.people {
     display: flex;
-    border: 40px;
+    flex-wrap: wrap;
+}
+.people__card{
+    margin-right: 4rem;
+    width: 235px;
+    height: 285px;
 }

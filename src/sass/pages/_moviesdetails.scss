@@ -3,7 +3,6 @@
     display: flex;
     .col {
       margin: 2rem;
-      
     }
   }
 }
@@ -14,4 +13,12 @@
 .crew__people {
   display: flex;
 }
+.get__movie {
+  display: flex;
+  overflow: auto;
+  height: 380px;
+}
 
+::-webkit-scrollbar {
+  display: none;
+}

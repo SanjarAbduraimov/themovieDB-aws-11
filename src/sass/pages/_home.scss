@@ -2,3 +2,44 @@
 .details__cols {
     margin: 10px;
 }
+
+
+.hide {
+    display: none;
+}
+.bady__card {
+    word-wrap: break-word;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 5px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid rgba(99, 99, 99, 0.527);
+    border-radius: .5rem;
+    // width: 15rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: .8rem;
+  }
+  .dropdown .dropbtn {
+    font-size: 16px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 1rem 0;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
