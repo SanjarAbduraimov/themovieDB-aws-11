@@ -7,6 +7,7 @@ import { fetchMovieSearch } from "../api";
 import { displayPeople } from "./people";
 import { displayMovies, initializeMoveEvent } from "./home";
 import { displayActor, initializeActorEvent } from "./actor";
+import { searchMoviess } from "../js/searchess";
 
 document.addEventListener("DOMContentLoaded", (e) => {
   const page = location.pathname;
@@ -49,4 +50,25 @@ document.addEventListener("DOMContentLoaded", (e) => {
       console.log(data.data);
     });
   }
+  
+  if (page === "/searchess.html" || page === "/searchess") {
+    
+    console.log("salom");
+    const formSearchAll = document.forms[0];
+    formSearchAll.addEventListener("click" , searchMoviess) 
+  }
 });
+
+
+
+// document.body.addEventListener("click", ()=>{
+//   const clickMenu = document.querySelectorAll(".card__content");
+//   clickMenu.forEach((clicks)=>{
+//     if (clicks) {
+//       console.log("salom");
+//       if(clicks === click)
+//       clicks.classList.remove("card__opasity");
+//     }
+//   })
+  
+// })
