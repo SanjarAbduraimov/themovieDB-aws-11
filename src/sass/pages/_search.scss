@@ -1,0 +1,26 @@
+.movie__wrapper {
+    display: flex;
+}
+
+.main {
+    width: 32rem;
+    border-radius: 1rem;
+    border: 1px solid rgb(238, 230, 230);
+}
+.result {
+    color: #fff;
+    background-color: rgb(44, 186, 241);
+    height: 7rem;
+    border-radius: 1rem;
+}
+h3 {
+    margin-left: 2rem;
+}
+.just {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.8rem;
+}
+.just:hover {
+    background-color: blanchedalmond;
+}
