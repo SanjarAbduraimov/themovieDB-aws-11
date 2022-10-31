@@ -1,45 +1,74 @@
-
 .details__cols {
-    margin: 10px;
+  margin: 10px;
 }
-
 
 .hide {
-    display: none;
+  display: none;
 }
 .bady__card {
-    word-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.card__date p {
+  margin-top: 1rem;
+  font-size: 1em;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .dropdown-content a {
-    float: none;
-    color: black;
-    padding: 5px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    border: 1px solid rgba(99, 99, 99, 0.527);
-    border-radius: .5rem;
-    // width: 15rem;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    padding: .8rem;
-  }
-  .dropdown .dropbtn {
-    font-size: 16px;  
-    border: none;
-    outline: none;
-    color: white;
-    padding: 1rem 0;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-  }
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
+  float: none;
+  color: black;
+  padding: 5px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  border: 1px solid rgba(99, 99, 99, 0.527);
+  border-radius: 0.5rem;
+  // width: 15rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 0.8rem;
+}
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 1rem 0;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+// Progress Bar
+
+// svg {
+//   height: 300px;
+//   transform: rotate(-90deg);
+//   width: 300px;
+// }
+
+// .progress-bar__background {
+//   fill: none;
+//   stroke: #000;
+//   stroke-width: 1.8;
+// }
+
+// .progress-bar__progress {
+//   fill: none;
+//   stroke: #000;
+//   stroke: #78bec7;
+//   stroke-dasharray: 100 100;
+//   stroke-dashoffset: 100;
+//   stroke-linecap: round;
+//   stroke-width: 1.8;
+//   transition: stroke-dashoffset 1s ease-in-out;
+// }
