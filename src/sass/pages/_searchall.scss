@@ -1,13 +1,25 @@
 .form__searchAll a {
-    color: black;
-
+  color: black;
 }
 .no_click {
-    background-color: aqua;
-    margin: 1rem;
-    cursor: pointer;
+  background-color: aqua;
+  margin: 1rem;
+  cursor: pointer;
 }
 // .active {
 //     background-color: #666;
 //     color: white;
 //   }
+
+#with_genres {
+  input {
+    display: none;
+    &:checked + label {
+      color: red;
+    }
+  }
+  li {
+    padding: 10px;
+    border: 5px;
+  }
+}

@@ -34,7 +34,6 @@ export function fetchMovieCredits(type, id, credits) {
   );
 }
 
-
 export function fetchMovieSearch(
   title,
   query = {
@@ -82,7 +81,14 @@ export function fetchSearchGenres(type, with_genres, page = 1) {
     `discover/${type}?api_key=${apiKey}&language=${navigator.languages[0]}&page=${page}&with_genres=${with_genres}`
   );
 }
-
+export function fetchGenres(type) {
+  return axios.get(
+    `genre/${type}/list?api_key=${apiKey}&language=${navigator.languages[0]}`
+  );
+}
+export function fetchLanguages() {
+  return axios.get(`configuration/languages?api_key=${apiKey}`);
+}
 export function fetchSearchKeywords(type, title, page = 1) {
   if (!type) {
     throw "Please insert type parametr";
@@ -95,4 +101,3 @@ export function fetchSearchKeywords(type, title, page = 1) {
     `discover/${type}?api_key=${apiKey}&language=${navigator.languages[0]}&page=${page}&without_keywords=${title}`
   );
 }
-

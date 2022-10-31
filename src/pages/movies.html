@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TMDB Clone</title>
+    <title>Document</title>
   </head>
-
   <body>
     <header>
       <nav>
         <div class="container">
           <div class="navbar">
             <ul class="nav_menu">
-              <a href="#"><img src="../assets/img/logo.svg" alt="Logo" /></a>
+              <a href="./index.html"
+                ><img src="../assets/img/logo.svg" alt="Logo"
+              /></a>
               <div class="dropdown">
                 <button class="dropbtn">
                   <li><a>Movies</a></li>
@@ -52,9 +53,7 @@
                   <a href="#">Discussions</a>
                   <a href="#">Leaderboard</a>
                   <a href="#">Support</a>
-                  <a href="https://developers.themoviedb.org/3" target="_blank"
-                    >API</a
-                  >
+                  <a href="#">API</a>
                 </div>
               </div>
             </ul>
@@ -73,36 +72,35 @@
         </div>
       </nav>
     </header>
-    <section class="inner_content">
+    <section>
       <div class="container">
-        <div class="inner_title">
-          <h2>Welcome.</h2>
-          <h3>
-            Millions of movies, TV shows and people to discover. Explore now.
-          </h3>
-        </div>
-        <div class="search">
-          <form class="inner_search_form">
-            <label>
-              <input
-                name="title"
-                type="text"
-                placeholder="Найти фильм, сериал, персону......"
-                value=""
-                class="search_input"
-              />
-            </label>
-            <input type="submit" value="Search" class="search_submit" />
-          </form>
-        </div>
+        <form>
+          <h3>Sort by</h3>
+          <select
+            id="activitySelector"
+            placeholder="String"
+            name="sort_by"
+          ></select>
+
+          <ul
+            id="with_genres"
+            class="multi_select text"
+            name="with_genres"
+          ></ul>
+          <div>
+            <input type="date" name="release_date.gte" id="release_date.gte" />
+            <input type="date" name="release_date.lte" id="release_date.lte" />
+          </div>
+          <button class="searchsort">Search</button>
+        </form>
       </div>
     </section>
     <section>
       <div class="container">
         <div class="get__movie"></div>
       </div>
-
     </section>
-    <script type="module" src="../js/app.js"></script>card
+
+    <script type="module" src="../js/app.js"></script>
   </body>
 </html>
