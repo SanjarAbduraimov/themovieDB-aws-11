@@ -13,15 +13,13 @@
 .crew__people {
   display: flex;
 }
-.get__movie {
-  display: flex;
-  overflow: auto;
-  height: 380px;
+#index__hero {
+  .get__movie {
+    display: flex;
+    overflow: auto;
+    height: 380px;
+  }
 }
-
-// Scrollbars
-
-// Main (body) Scrollbar
 
 body::-webkit-scrollbar {
   width: 8px;
