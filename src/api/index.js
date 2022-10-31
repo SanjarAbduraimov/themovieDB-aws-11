@@ -33,17 +33,6 @@ export function fetchMovieCredits(type, id, credits) {
     `${type}/${id}/${credits}?api_key=${apiKey}&language=${navigator.languages[0]}`
   );
 }
-export function fetchMovieImg(type, id) {
-  if (!id) {
-    throw "Please insert id parametr";
-  }
-  if (!type) {
-    throw "Please insert type parametr";
-  }
-  return axios.get(
-    `${type}/${id}/images?api_key=${apiKey}&language=${navigator.languages[0]}`
-  );
-}
 
 export function fetchMovieSearch(
   title,
