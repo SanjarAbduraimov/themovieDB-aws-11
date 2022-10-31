@@ -33,9 +33,9 @@ export function displayMovies(data = []) {
         </div>
         <div class="card__content">
         <div class="card__content__menu">
-        <div class="card__content__menus"> Add to list</div>
+        <div class="card__content__menus">Add to list</div>
         <div class="card__content__menus">Favourite</div>
-        <div class="card__content__menus"> Watchlist</div>
+        <div class="card__content__menus">Watchlist</div>
         <div class="card__content__menus">Your rating</div>
       </div>
         </div>
@@ -76,8 +76,8 @@ export function initializeMoveEvent() {
         let cardOpacity = card.querySelector(".card__content");
         cardOpacity.classList.add("card__opasity");
       }
-      let nav = document.querySelector("nav");
-      nav.addEventListener("click", (e) => {
+      let header = document.querySelector("header");
+      header.addEventListener("click", (e) => {
         let cardOpacity = card.querySelector(".card__content");
         cardOpacity.classList.remove("card__opasity");
       });
