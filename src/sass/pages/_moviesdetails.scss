@@ -13,12 +13,32 @@
 .crew__people {
   display: flex;
 }
-.get__movie {
-  display: flex;
-  overflow: auto;
-  height: 380px;
+#index__hero {
+  .get__movie {
+    display: flex;
+    overflow: auto;
+    height: 380px;
+  }
 }
 
-::-webkit-scrollbar {
-  display: none;
+body::-webkit-scrollbar {
+  width: 8px;
+  background-color: #fff;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #dbdbdb;
+  border-radius: 15px;
+}
+
+.get__movie::-webkit-scrollbar {
+  height: 8px;
+  border-radius: 15px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.get__movie::-webkit-scrollbar-thumb {
+  background-color: #dbdbdb;
+  border-radius: 15px;
 }

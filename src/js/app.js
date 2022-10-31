@@ -9,8 +9,6 @@ import { displayMovies, initializeMoveEvent } from "./home";
 import { searchMoviess } from "../js/searchess";
 import { displayActor, initializeActorEvent, displayCastActor, displayCrewActor } from "./actor";
 
-
-
 document.addEventListener("DOMContentLoaded", (e) => {
   const page = location.pathname;
   if (page === "/index.html" || page === "/") {
@@ -18,7 +16,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
       .then(({ data }) => {
         displayMovies(data.results);
         initializeMoveEvent();
-        // cardClick();
+        // cardClick()
+        console.log(data.results);
       })
       .catch((err) => console.log(err));
   }
@@ -51,17 +50,17 @@ document.addEventListener("DOMContentLoaded", (e) => {
       displayActor(data.data);
       console.log(data.data);
     });
-    fetchMovieCredits(Type.person, history.state.id, credits.movieCredits) .then((data) => {
+    fetchMovieCredits(Type.person, history.state.id, credits.movieCredits).then((data) => {
       console.log(data);
       displayCastActor(data.data.cast);
       displayCrewActor(data.data.crew);
     })
   }
-  
+
   if (page === "/searchess.html" || page === "/searchess") {
-    
+
     console.log("salom");
     const formSearchAll = document.forms[0];
-    formSearchAll.addEventListener("click" , searchMoviess) 
+    formSearchAll.addEventListener("click", searchMoviess)
   }
 });
