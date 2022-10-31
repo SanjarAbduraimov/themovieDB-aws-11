@@ -3,7 +3,7 @@ import Type, { status, credits } from "../constants";
 import  { genresType } from "../constants";
 import { fetch } from "../api";
 import { fetchDetails, fetchMovieCredits , fetchMovieImg, fetchSearchKeywords} from "../api";
-import { disMoviesDetails, displayCast, displayCrew } from "./movie";
+import { disMoviesDetails, displayCast, displayCrew, initializeCastEvent } from "./movie";
 import { fetchMovieSearch, fetchSearchSort, fetchSearchGenres } from "../api";
 import { displayPeople } from "./people";
 import { displayMovies, initializeMoveEvent } from "./home";
@@ -14,7 +14,7 @@ import { displayActor, initializeActorEvent, displayCastActor, displayCrewActor 
 document.addEventListener("DOMContentLoaded", (e) => {
   const page = location.pathname;
   if (page === "/index.html" || page === "/") {
-    fetch(Type.movie, status.popular)
+    fetch(Type.tv, status.popular)
       .then(({ data }) => {
         displayMovies(data.results);
         initializeMoveEvent();
@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         displayCrew(data.data.crew);
       }
     );
+    initializeCastEvent();
   }
   if (page === "/people.html" || page === "/people") {
     fetch(Type.person, status.popular).then(({ data }) => {

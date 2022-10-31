@@ -125,3 +125,13 @@ export function displayCrew(crew) {
   });
   authorMenuNode.innerHTML = result;
 }
+export function initializeCastEvent() {
+  const moviesssMenuNode = document.querySelector(".cast__people");
+  moviesssMenuNode.addEventListener("click", (event) => {
+    const id = event.target.closest(".card__img_top")?.dataset?.id;
+    console.log(id, "bosilgan");
+    if (!id) return;
+    history.pushState({ id }, null, "/actor.html");
+    location.reload();
+  });
+}
