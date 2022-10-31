@@ -30,7 +30,7 @@ $breakpoints: (
 @each $mq in (sm, md, lg, xl, xxl) {
   @media screen and (min-width: map-get($breakpoints, $mq)) {
     .container {
-      max-width: map-get($breakpoints, $mq) - 4.8 * 10px;
+      max-width: map-get($breakpoints, $mq) - 0 * 10px;
     }
   }
 }
