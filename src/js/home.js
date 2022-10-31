@@ -14,6 +14,7 @@ export function displayMovies(data = []) {
       <div class="card__head">
         <div class="card__img_top" data-id="${id}">
           <img width="100%" src="${img}" alt="Movies__Pecture">
+
         </div>
         <div class="card__menu">
         <svg id="glyphicons-basic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
@@ -21,7 +22,7 @@ export function displayMovies(data = []) {
         </svg>
         </div>
       </div>
-        
+
       <div class="card__body">
         <div class="card__title">
           <p> ${title}</p>
@@ -30,9 +31,15 @@ export function displayMovies(data = []) {
           <p>${release_date}</p>
         </div>
         </div>
-        <div class="card__content">John Doe</div>
+        <div class="card__content">
+        <div class="card__content__menu">
+        <div class="card__content__menus"> Add to list</div>
+        <div class="card__content__menus">Favourite</div>
+        <div class="card__content__menus"> Watchlist</div>
+        <div class="card__content__menus">Your rating</div>
       </div>
-      
+        </div>
+      </div>
     </div>
     `;
   });
@@ -67,11 +74,14 @@ export function initializeMoveEvent() {
       }
       if (isMenuBtn) {
         let cardOpacity = card.querySelector(".card__content");
-        cardOpacity.classList.add("card__opasity"); 
+        cardOpacity.classList.add("card__opasity");
       }
-      
-
+      let nav = document.querySelector("nav");
+      nav.addEventListener("click", (e) => {
+        let cardOpacity = card.querySelector(".card__content");
+        cardOpacity.classList.remove("card__opasity");
+      });
     });
   });
-  
-}
+
+};
