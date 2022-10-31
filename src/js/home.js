@@ -33,10 +33,10 @@ export function displayMovies(data = []) {
         </div>
         <div class="card__content">
         <div class="card__content__menu">
-        <div class="card__content__menus">Add to list</div>
-        <div class="card__content__menus">Favourite</div>
-        <div class="card__content__menus">Watchlist</div>
-        <div class="card__content__menus">Your rating</div>
+        <div class="card__content__menu_wrapper"><a href="#">Add to list</a></div>
+        <div class="card__content__menu_wrapper"><a href="#">Favourite</a></div>
+        <div class="card__content__menu_wrapper"><a href="#">Watchlist</a></div>
+        <div class="card__content__menu_wrapper"><a href="#">Your rating</a></div>        
       </div>
         </div>
       </div>
@@ -76,12 +76,12 @@ export function initializeMoveEvent() {
         let cardOpacity = card.querySelector(".card__content");
         cardOpacity.classList.add("card__opasity");
       }
-      let header = document.querySelector("header");
+      let header = document.querySelector(".inner_content");
       header.addEventListener("click", (e) => {
-        let cardOpacity = card.querySelector(".card__content");
-        cardOpacity.classList.remove("card__opasity");
+        if ((cardOpacity = card.querySelector(".card__content"))) {
+          cardOpacity.classList.remove("card__opasity");
+        }
       });
     });
   });
-
-};
+}
