@@ -1,5 +1,5 @@
 import "./style";
-import Type, { status, credits } from "../constants";
+import Type, { status, credits, list } from "../constants";
 import { fetch } from "../api";
 import { fetchDetails, fetchMovieCredits } from "../api";
 import { disMoviesDetails, displayCast, displayCrew } from "./movie";
@@ -8,6 +8,7 @@ import { displayPeople } from "./people";
 import { displayMovies, initializeMoveEvent } from "./home";
 import { searchMoviess } from "../js/searchess";
 import { displayActor, initializeActorEvent, displayCastActor, displayCrewActor } from "./actor";
+
 
 
 document.addEventListener("DOMContentLoaded", (e) => {
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   if (page === "/people.html" || page === "/people") {
     fetch(Type.person, status.popular).then(({ data }) => {
       displayPeople(data?.results);
-      initializeActorEvent();
+      initializeActorEvent()
     });
   }
   if (page === "/search.html" || page === "/search") {
@@ -55,7 +56,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
       displayCastActor(data.data.cast);
       displayCrewActor(data.data.crew);
     })
-
   }
   
   if (page === "/searchess.html" || page === "/searchess") {

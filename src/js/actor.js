@@ -8,13 +8,13 @@ export function displayActor(actor = []) {
       : configs.defaultImg + "500";
     configs.baseImgURL;
       result += `
-      <div class="row actor__cards">
-      <div class="col">
-          <div class="actor__img">
-          <img src="${img}">
+      <div class=" actor__cards">
+      <div class=" actor__img__wrapper">
+          <div class="actor__imgs">
+          <img width:"100%" src="${img}">
           </div>
       </div>
-      <div class="col">
+      <div class="actor__img__wrapper">
           <div class="actor__title">
               <h1>${name} </h1> 
               <div class="actor__details">
@@ -22,15 +22,6 @@ export function displayActor(actor = []) {
                   <p class="actor__title_details"></p>
                   <p class="hour__formovie"></p>
               </div>
-          </div>
-          <div class="row">
-              <div class="col"></div>
-              <div class="col">User Score</div>
-              <div class="col">==</div>
-              <div class="col">love</div>
-              <div class="col">page</div>
-              <div class="col">sevimli</div>
-              <div class="col">pley triller</div>
           </div>
   
           <div class="actor__text">
@@ -41,13 +32,9 @@ export function displayActor(actor = []) {
               <p class="details__description">
                  ${biography}
               </p>
-              <div class="creaters">
-                  <p class="creter">Creator</p>
-                  <p class="creter">Creator</p>
-                  <p class="creter">Creator</p>
-              </div>
           </div>
           <div class="crew__films"></div>
+         
   
       </div>
        </div>
@@ -127,9 +114,9 @@ export function displayCastActor(cast) {
   }
 
 export function initializeActorEvent() {
-    const moviesssMenuNode = document.querySelector(".people .container");
+    const moviesssMenuNode = document.querySelector(".people");
     moviesssMenuNode.addEventListener("click", (event) => {
-      const id = event.target.closest(".people_card")?.dataset?.id;
+      const id = event.target.closest("#people__card__top")?.dataset?.id;
       console.log(id, "bosilgan");
       if (!id) return;
       history.pushState({ id }, null, "/actor.html");

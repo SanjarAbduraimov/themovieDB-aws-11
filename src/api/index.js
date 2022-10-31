@@ -34,6 +34,7 @@ export function fetchMovieCredits(type, id, credits) {
   );
 }
 
+
 export function fetchMovieSearch(
   title,
   query = {
