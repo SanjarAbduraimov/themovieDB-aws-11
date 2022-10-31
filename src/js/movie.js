@@ -9,29 +9,29 @@ export function disMoviesDetails(data) {
     ? configs.baseImgURL + poster_path
     : configs.defaultImg + "500";
   result += `
-      <div class="row">
-      <div class="col">
+      <div class="moviestyle">
+      <div class="details__moviess">
           <div class="details__img">
           <img width="100%" src="${img}" alt="img">
           </div>
       </div>
-      <div class="col">
+      <div class="details__moviess_col">
           <div class="details__title">
-              <h1>${title} ${release_date}</h1> 
+              <h1>${title}</h1> 
               <div class="films__details">
                   <p class="date__details"></p>
                   <p class="films__title_details"></p>
                   <p class="time__formovie"></p>
               </div>
           </div>
-          <div class="row">
-              <div class="col">${popularity}</div>
-              <div class="col">User Score</div>
-              <div class="col">==</div>
-              <div class="col">love</div>
-              <div class="col">page</div>
-              <div class="col">sevimli</div>
-              <div class="col">pley triller</div>
+          <div class="movie__row">
+              <div class="moviecol">${popularity}</div>
+              <div class="moviecol">User Score</div>
+              <div class="moviecol">==</div>
+              <div class="moviecol">love</div>
+              <div class="moviecol">page</div>
+              <div class="moviecol">sevimli</div>
+              <div class="moviecol">pley triller</div>
           </div>
   
           <div class="details__text">
@@ -43,7 +43,7 @@ export function disMoviesDetails(data) {
                  ${overview}
               </p>
               <div class="creaters">
-                  <p class="creter">Creator</p>
+                  <p class="creter"> ${release_date}</p>
                   <p class="creter">Creator</p>
                   <p class="creter">Creator</p>
               </div>
@@ -124,4 +124,14 @@ export function displayCrew(crew) {
     `;
   });
   authorMenuNode.innerHTML = result;
+}
+export function initializeCastEvent() {
+  const moviesssMenuNode = document.querySelector(".cast__people");
+  moviesssMenuNode.addEventListener("click", (event) => {
+    const id = event.target.closest(".card__img_top")?.dataset?.id;
+    console.log(id, "bosilgan");
+    if (!id) return;
+    history.pushState({ id }, null, "/actor.html");
+    location.reload();
+  });
 }

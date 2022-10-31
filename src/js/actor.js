@@ -122,5 +122,5 @@ export function initializeActorEvent() {
       history.pushState({ id }, null, "/actor.html");
       location.reload();
     });
-  }
+}
   
