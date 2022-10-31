@@ -33,7 +33,7 @@ export function displayActor(actor = []) {
                  ${biography}
               </p>
           </div>
-          <div class="crew__films"></div>
+          <div class="cast__films"></div>
          
   
       </div>
