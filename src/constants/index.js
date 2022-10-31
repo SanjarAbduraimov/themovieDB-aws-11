@@ -2,6 +2,7 @@ const type = {
   person: "person",
   movie: "movie",
   tv: "tv",
+  list: "list"
 };
 const status = {
   popular: "popular",
