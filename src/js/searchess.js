@@ -1,45 +1,88 @@
 import { fetch } from "../api";
 import Type, { status, credits } from "../constants";
+import { fetchSearchSort } from "../api";
+import { sortBy } from "../constants";
+import { displayMovies } from "./home";
 
-export function searchMoviess(e) {
-    e.preventDefault();
-    const action = document.querySelector(".action");
-    const adventure = document.querySelector(".adventure");
-    const animation = document.querySelector(".animation");
-    const btn = document.querySelector("button");
+
+export function addActivityItem() {
+    const activities = document.getElementById("activitySelector");
+    console.log("salom");
+    const btnsort = document.querySelector(".searchsort");
+    btnsort.addEventListener("click", (e)=>{
+     e.preventDefault();
+     if(activities.value == "popularityAsc"){
+       console.log("mana");
+       fetchSearchSort(Type.movie, sortBy.TitleZA).then((data)=>{
+         console.log(data);
+         displayMovies(data.data.results)
+       })
+     }
+     if(activities.value == "popularitydesc"){
+       console.log("mana");
+       fetchSearchSort(Type.movie, sortBy.popularityDescending).then((data)=>{
+         console.log(data);
+         displayMovies(data.data.results)
+       })
+     }
+     if(activities.value == "release_datedesc"){
+       console.log("mana");
+       fetchSearchSort(Type.movie, sortBy.releaseDateDescending).then((data)=>{
+         console.log(data);
+         displayMovies(data.data.results)
+       })
+     }
+     if(activities.value == "release_date.asc"){
+       console.log("mana");
+       fetchSearchSort(Type.movie, sortBy.releaseDateAscending).then((data)=>{
+         console.log(data);
+         displayMovies(data.data.results)
+       })
+     }
+     if(activities.value == "revenue.desc"){
+       console.log("mana");
+       fetchSearchSort(Type.movie, sortBy.releaseDateDescending).then((data)=>{
+         console.log(data);
+         displayMovies(data.data.results)
+       })
+     }
+     if(activities.value == "revenue.asc"){
+       console.log("mana");
+       fetchSearchSort(Type.movie, sortBy.releaseDateAscending).then((data)=>{
+         console.log(data);
+         displayMovies(data.data.results)
+       })
+     }
+     if(activities.value == "original_title.desc"){
+       console.log("mana");
+       fetchSearchSort(Type.movie, sortBy.TitleZA).then((data)=>{
+         console.log(data);
+         displayMovies(data.data.results)
+       })
+     }
+     if(activities.value == "original_title.asc"){
+       console.log("mana");
+       fetchSearchSort(Type.movie, sortBy.titleAZ).then((data)=>{
+         console.log(data);
+         displayMovies(data.data.results)
+       })
+     }
+
+     
+
+     
+    })
     
-        if (action && adventure){
-            let i;
-             action.addEventListener("click", ()=>{
-                console.log("click");
+     
     
-                btn.onclick = (e) => {
-                    fetch(Type.movie, status.popular)
-                    .then(({ data }) => {
-                      console.log(data);
-                      // cardClick();
-                    })
-                    .catch((err) => console.log(err));
-                }
-              
-            })
-             adventure.addEventListener("click", ()=>{
-                console.log("clicked");
-    
-                btn.onclick = (e) => {
-                    fetch(Type.person, status.popular)
-                    .then(({ data }) => {
-                      console.log(data ,"sa");
-                      // cardClick();
-                    })
-                    .catch((err) => console.log(err));
-                }
-              
-            })
-        }
-            
-            
-        
-    
+}
+
+export function eventSearchMoviess(e) {
+  const searchKeyword = document.querySelector(".inner_search_formKeyword");
+    searchKeyword.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const title = searchKeyword.title.value;
+      history.pushState( { title });
+    })
    
 }

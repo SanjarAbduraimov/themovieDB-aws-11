@@ -1,11 +1,53 @@
-.movies__detailes {
-  .row {
+.movie__section{
+  background-image: url(/src/assets/img/bg__movie.jpg);
+  object-fit: cover;
+  background-position-x: right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: inset 3000px 3000px 8000px $bgColor;
+  .movies__detailes {
     display: flex;
-    .col {
-      margin: 2rem;
+    .moviestyle {
+      color: $mainWhite;
+     
+      display: flex;
+      .details__moviess{
+        width: 30%;
+        
+        .details__img {
+          width: 30rem;
+          height: 45rem;
+          margin: 1rem;
+          object-fit: cover;
+          img {
+          border-radius: 1rem;
+
+          }
+        }
+      }
+      .details__moviess_col {
+        width: 70%;
+        padding: 10rem 0;
+        .movie__row {
+          display: flex;
+        }
+        .creaters {
+          display: flex;
+          padding-top: 2rem;
+          .creter {
+          padding-right: 2rem;
+
+          }
+        }
+        .details__title h1 {
+          font-size: 3.5rem;
+        }
+      }
     }
   }
 }
+
+
 .cast__people {
   display: flex;
   flex-wrap: wrap;
@@ -21,4 +63,18 @@
 
 ::-webkit-scrollbar {
   display: none;
+}
+.nav__part a {
+  color: $mainBlack;
+
+}
+
+.nav__part {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  li {
+    padding: .3rem 1.3rem;
+  }
+  
 }

@@ -13,4 +13,30 @@ const credits = {
   movieCredits: "credits",
   personCredits: "top_rated",
 }
-export {credits, status, type as default };
+const sortBy = {
+  popularityDescending: "popularity.asc",
+  popularityAscending:"popularity.desc",
+  ratingDescending: "release_date.asc",
+  ratingAscending: "release_date.desc",
+  releaseDateDescending:"revenue.asc",
+  releaseDateAscending: "revenue.desc",
+  titleAZ: "original_title.asc",
+  TitleZA:"original_title.desc",
+};
+const genresType = {
+  action: "action",
+  adventure: "adventure",
+  animation: "animation",
+  comedy: "comedy",
+  crime: "crime",
+  documentary: "documentary",
+  drama: "drama",
+  family: "family",
+  fantasy: "fantasy",
+  histry: "history",
+  horror: "horror",
+  music: "music",
+  thriller: "thriller",
+};
+
+export {genresType, sortBy , credits, status, type as default };

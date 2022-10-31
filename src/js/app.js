@@ -1,12 +1,13 @@
 import "./style";
 import Type, { status, credits } from "../constants";
+import  { genresType } from "../constants";
 import { fetch } from "../api";
-import { fetchDetails, fetchMovieCredits } from "../api";
+import { fetchDetails, fetchMovieCredits , fetchMovieImg, fetchSearchKeywords} from "../api";
 import { disMoviesDetails, displayCast, displayCrew } from "./movie";
-import { fetchMovieSearch } from "../api";
+import { fetchMovieSearch, fetchSearchSort, fetchSearchGenres } from "../api";
 import { displayPeople } from "./people";
 import { displayMovies, initializeMoveEvent } from "./home";
-import { searchMoviess } from "../js/searchess";
+import { eventSearchMoviess, addActivityItem, addActivity } from "../js/searchess";
 import { displayActor, initializeActorEvent, displayCastActor, displayCrewActor } from "./actor";
 
 
@@ -25,6 +26,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
     fetchDetails(Type.movie, history.state.id).then((data) => {
       disMoviesDetails(data.data);
     });
+    fetchMovieImg(Type.movie,  history.state.id).then((data)=>{
+      console.log(data);
+    })
     fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then(
       (data) => {
         console.log(data);
@@ -60,8 +64,88 @@ document.addEventListener("DOMContentLoaded", (e) => {
   
   if (page === "/searchess.html" || page === "/searchess") {
     
-    console.log("salom");
-    const formSearchAll = document.forms[0];
-    formSearchAll.addEventListener("click" , searchMoviess) 
+
+    const activities = document.getElementById("activitySelector");
+
+    activities.addEventListener("click", function() {
+    let options = activities.querySelectorAll("option");
+    let count = options.length;
+    if(typeof(count) === "undefined" || count < 1)
+    {
+      addActivityItem();
+    }
+    });
+
+    activities.addEventListener("change", function() {
+    if(activities.value == "popularityAsc"){
+        addActivityItem();
+    }
+    else if(activities.value == "popularitydesc"){
+      addActivityItem();
+    }
+    else if(activities.value == "release_datedesc"){
+      addActivityItem();
+    }
+    else if(activities.value == "release_date.asc"){
+      addActivityItem();
+    }
+    else if(activities.value == "revenue.desc"){
+      addActivityItem();
+    }
+    else if(activities.value == "revenue.asc"){
+      addActivityItem();
+    }
+    else if(activities.value == "original_title.desc"){
+      addActivityItem();
+    }
+    else if(activities.value == "original_title.asc"){
+      addActivityItem();
+    }
+    else{
+      console.log("tugadi");
+    }
+    });
+    
+    //   let genres = document.querySelector(".selec");
+    //   let adventure = document.querySelector(".adventure");
+    //   let animation = document.querySelector(".Animation");
+    //   let comedy = document.querySelector(".Comedy");
+    //   let crime = document.querySelector(".Crime");
+    //   let cocumentary = document.querySelector(".Documentary");
+    //   const btnfiltr = document.querySelector(".searchsort");
+    //   const activitis = document.getElementById("with_genres");
+
+    //   let opti = activitis.querySelectorAll("label");
+    //   let coun = opti.length;
+    //   if(typeof(coun) === "undefined" || coun < 1)
+    // {
+    //   addActivityItem();
+    // };
+    // activitis.addEventListener("change", function() {
+    //   if (activitis.tagName == "Action") {
+    //     console.log("ssa");
+    //     btnfiltr.addEventListener("click", (e)=>{
+    //     fetchSearchGenres(Type.movie, genresType.action).then((data)=>{
+    //       console.log(data);
+    //   })
+    //   })
+      
+    // }
+    // });
+   
+  
+    // eventSearchMoviess();
+    //   fetchSearchKeywords(Type.movie, history.state.title).then((data)=>{
+    //     console.log(data);
+    //     console.log(history.state.title);
+    //   });
+    
+     
+    
+   
+
+    
+    
+   
   }
 });
