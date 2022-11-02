@@ -7,6 +7,7 @@ import {
   fetchDetails,
   fetchMovieCredits,
   fetchLanguages,
+  fetchSearch
 } from "../api";
 import {
   disMoviesDetails,
@@ -22,11 +23,12 @@ import {
   displayCastActor,
   displayCrewActor,
 } from "./actor";
+const _ = require(`lodash`);
 
 document.addEventListener("DOMContentLoaded", async (e) => {
   const page = location.pathname;
   if (page === "/index.html" || page === "/") {
-    fetch(Type.tv, status.popular)
+    fetch(Type.movie, status.popular)
       .then(({ data }) => {
         displayMovies(data.results);
         initializeMoveEvent();
@@ -77,6 +79,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   if (page === "/movies.html" || page === "/movies") {
     let genreWrapper = document.querySelector("#with_genres");
     let sortSelect = document.querySelector("#activitySelector");
+    let languageSelect = document.querySelector("#languageSelector");
     let sortTemplate = "";
     Object.entries(sortBy).forEach((option) => {
       sortTemplate += `<option value="${option[1]}">${option[0]}</option>`;
@@ -91,6 +94,14 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     });
     genreWrapper.innerHTML = genresTemplate;
 
+    let languageTemplate = "";
+    promise[1].data.forEach((language) => {
+      languageTemplate += `<option value="${language.english_name}">${language.english_name}</option>`;
+    });
+    languageSelect.innerHTML = languageTemplate;
+
+    
+
     const formSearchAll = document.forms[0];
     formSearchAll.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -104,6 +115,11 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         }
       }
       console.log(queryStringObj);
+
+      fetchSearch(Type.movie, queryStringObj)
+      
+
+      // })
       formSearchAll.reset();
     });
   }

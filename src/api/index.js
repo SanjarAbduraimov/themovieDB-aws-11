@@ -69,6 +69,22 @@ export function fetchSearchSort(type, sortBy, page = 1) {
   );
 }
 
+
+export function fetchSearch(type, formdata, page = 1) {
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  if (!formdata) {
+    throw "Please insert formdata parametr";
+  }
+
+  return axios.get(
+    `discover/${type}?api_key=${apiKey}&language=${navigator.languages[0]}&page=${page}&${formdata}`
+  );
+}
+
+
+
 export function fetchSearchGenres(type, with_genres, page = 1) {
   if (!type) {
     throw "Please insert type parametr";
