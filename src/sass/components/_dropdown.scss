@@ -1,0 +1,24 @@
+.dropdown {
+  position: relative;
+  .show.dropdown__content {
+    display: flex;
+    flex-direction: column;
+  }
+  .dropdown__btn {
+    padding: 5px;
+    cursor: pointer;
+  }
+  .dropdown__content {
+    position: absolute;
+    top: 30px;
+    display: none;
+    padding: 2px 0;
+    border: 1px solid;
+    border-radius: 5px;
+    .dropdown__item {
+      &:hover {
+        background: #032541;
+      }
+    }
+  }
+}

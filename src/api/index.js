@@ -69,21 +69,18 @@ export function fetchSearchSort(type, sortBy, page = 1) {
   );
 }
 
-
-export function fetchSearch(type, formdata, page = 1) {
+export function fetchSearch(type, query) {
   if (!type) {
     throw "Please insert type parametr";
   }
-  if (!formdata) {
-    throw "Please insert formdata parametr";
+  let url = `discover/${type}?api_key=${apiKey}`;
+  for (const key in query) {
+    if (query[key]) {
+      url += `&${key}=${query[key]}`;
+    }
   }
-
-  return axios.get(
-    `discover/${type}?api_key=${apiKey}&language=${navigator.languages[0]}&page=${page}&${formdata}`
-  );
+  return axios.get(url);
 }
-
-
 
 export function fetchSearchGenres(type, with_genres, page = 1) {
   if (!type) {

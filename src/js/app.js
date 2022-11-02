@@ -7,7 +7,7 @@ import {
   fetchDetails,
   fetchMovieCredits,
   fetchLanguages,
-  fetchSearch
+  fetchSearch,
 } from "../api";
 import {
   disMoviesDetails,
@@ -32,8 +32,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       .then(({ data }) => {
         displayMovies(data.results);
         initializeMoveEvent();
-        // cardClick()
-        console.log(data.results);
       })
       .catch((err) => console.log(err));
   }
@@ -43,7 +41,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     });
     fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then(
       (data) => {
-        console.log(data);
         displayCast(data.data.cast);
         displayCrew(data.data.crew);
       }
@@ -65,11 +62,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   if (page === "/actor.html" || page === "/actor") {
     fetchDetails(Type.person, history.state.id).then((data) => {
       displayActor(data.data);
-      console.log(data.data);
     });
     fetchMovieCredits(Type.person, history.state.id, credits.movieCredits).then(
       (data) => {
-        console.log(data);
         displayCastActor(data.data.cast);
         displayCrewActor(data.data.crew);
       }
@@ -79,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   if (page === "/movies.html" || page === "/movies") {
     let genreWrapper = document.querySelector("#with_genres");
     let sortSelect = document.querySelector("#activitySelector");
-    let languageSelect = document.querySelector("#languageSelector");
+    // let languageSelect = document.querySelector("#languageSelector");
     let sortTemplate = "";
     Object.entries(sortBy).forEach((option) => {
       sortTemplate += `<option value="${option[1]}">${option[0]}</option>`;
@@ -94,16 +89,14 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     });
     genreWrapper.innerHTML = genresTemplate;
 
-    let languageTemplate = "";
-    promise[1].data.forEach((language) => {
-      languageTemplate += `<option value="${language.english_name}">${language.english_name}</option>`;
-    });
-    languageSelect.innerHTML = languageTemplate;
-
-    
+    // let languageTemplate = "";
+    // promise[1].data.forEach((language) => {
+    //   languageTemplate += `<option value="${language.english_name}">${language.english_name}</option>`;
+    // });
+    // languageSelect.innerHTML = languageTemplate;
 
     const formSearchAll = document.forms[0];
-    formSearchAll.addEventListener("submit", (e) => {
+    formSearchAll.addEventListener("submit", async (e) => {
       e.preventDefault();
       const formData = new FormData(formSearchAll);
       const queryStringObj = {};
@@ -114,11 +107,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
           queryStringObj[pair[0]] = pair[1];
         }
       }
-      console.log(queryStringObj);
 
-      fetchSearch(Type.movie, queryStringObj)
-      
-
+      let data = await fetchSearch(Type.movie, queryStringObj);
+      console.log(data, "tamom");
       // })
       formSearchAll.reset();
     });

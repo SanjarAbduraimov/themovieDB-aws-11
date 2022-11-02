@@ -8,14 +8,14 @@
   display: flex;
   flex-wrap: wrap;
 }
-.row > div {
-  flex: 0 0 100%;
-  padding: 10px;
-}
+// .row > div {
+//   flex: 0 0 100%;
+//   padding: 10px;
+// }
 
 .col {
   flex: 1;
-  padding: 10px;
+  // padding: 10px;
 }
 
 $breakpoints: (

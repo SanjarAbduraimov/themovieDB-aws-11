@@ -4,15 +4,15 @@ export function displayPeople(peoples = []) {
   const peopleWrapper = document.querySelector(".people ");
   let result = "";
   peoples.forEach((people) => {
-    const { id, profile_path, name, known_for_department} = people;
+    const { id, profile_path, name, known_for_department } = people;
     const img = profile_path
       ? configs.baseImgURL + profile_path
       : configs.defaultImg + "500";
     configs.baseImgURL;
     const text = profile_path
-    ? configs.baseImgURL + profile_path
-    : configs.defaultImg + "500";
-  configs.baseImgURL;
+      ? configs.baseImgURL + profile_path
+      : configs.defaultImg + "500";
+    configs.baseImgURL;
     result += ` 
        
 

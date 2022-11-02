@@ -55,10 +55,10 @@
 .crew__people {
   display: flex;
 }
-.get__movie {
-  display: flex;
-  overflow: auto;
-  height: 400px;
+.movies__wrapper {
+  // display: flex;
+  // overflow: auto;
+  // height: 400px;
 }
 
 body::-webkit-scrollbar {
@@ -71,14 +71,14 @@ body::-webkit-scrollbar-thumb {
   border-radius: 15px;
 }
 
-.get__movie::-webkit-scrollbar {
+.movies__wrapper::-webkit-scrollbar {
   height: 8px;
   border-radius: 15px;
   overflow-x: scroll;
   overflow-y: hidden;
 }
 
-.get__movie::-webkit-scrollbar-thumb {
+.movies__wrapper::-webkit-scrollbar-thumb {
   background-color: #dbdbdb;
   border-radius: 15px;
 }
