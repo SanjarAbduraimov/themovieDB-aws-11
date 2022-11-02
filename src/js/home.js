@@ -13,6 +13,11 @@ export function displayMovies(data = []) {
      <div class="card">
       <div class="card__head">
         <div class="card__img_top" data-id="${id}">
+        <div class="progress_bar">
+        <div class="circular-progress">
+          <div class="value-container">0<sup>%</sup></div>
+        </div>
+      </div>
           <img width="100%" src="${img}" alt="Movies__Pecture">
 
         </div>
@@ -76,12 +81,31 @@ export function initializeMoveEvent() {
         let cardOpacity = card.querySelector(".card__content");
         cardOpacity.classList.add("card__opasity");
       }
-      let header = document.querySelector(".inner_content");
-      header.addEventListener("click", (e) => {
+      let clickSection = document.querySelector(".inner_content");
+      clickSection.addEventListener("click", (e) => {
         if ((cardOpacity = card.querySelector(".card__content"))) {
           cardOpacity.classList.remove("card__opasity");
         }
       });
     });
+    let progressBar = document.querySelector(".circular-progress");
+    let valueContainer = document.querySelector(".value-container");
+    let progressValue = 0;
+    let progressEndValue = 20;
+    let speed = 15;
+
+    console.log(progressBar, valueContainer);
+
+    let progress = setInterval(() => {
+      progressValue++;
+      valueContainer.textContent = `${progressValue}%`;
+      progressBar.style.background = `conic-gradient(
+      #4d5bf9 ${progressValue * 3.6}deg,
+      #cadcff ${progressValue * 3.6}deg
+  )`;
+      if (progressValue == progressEndValue) {
+        clearInterval(progress);
+      }
+    }, speed);
   });
 }

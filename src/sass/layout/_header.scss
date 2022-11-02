@@ -113,6 +113,7 @@ nav {
   color: #fff;
   font-size: 20px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 
   &:hover {
     background: linear-gradient(
@@ -121,7 +122,6 @@ nav {
       rgba(30, 213, 169, 1) 100%
     );
     color: #000;
-    transition: 0.5s;
   }
 }
 
