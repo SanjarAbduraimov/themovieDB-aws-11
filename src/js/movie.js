@@ -3,11 +3,15 @@ import configs from "../configs";
 export function disMoviesDetails(data) {
   let result = "";
   const authorMenuNode = document.querySelector(".movies__detailes");
-  const { poster_path, title, release_date, popularity, tagline, overview } =
+  const { poster_path, title, release_date, tagline, overview ,vote_average} =
     data;
+  const popularuty = vote_average;
+
+  
   const img = poster_path
     ? configs.baseImgURL + poster_path
     : configs.defaultImg + "500";
+
   result += `
       <div class="moviestyle">
       <div class="details__moviess">
@@ -25,7 +29,8 @@ export function disMoviesDetails(data) {
               </div>
           </div>
           <div class="movie__row">
-              <div class="moviecol">${popularity}</div>
+              <div class="moviecol circles">
+              <span class="circlee">${popularuty}</span></div>
               <div class="moviecol">User Score</div>
               <div class="moviecol">==</div>
               <div class="moviecol">love</div>
@@ -135,3 +140,19 @@ export function initializeCastEvent() {
     location.reload();
   });
 }
+let items = document.querySelectorAll('.progress-item');
+const counters = Array(items.length);
+const intervals = Array(items.length);
+counters.fill(0);
+items.forEach((number,index) => {
+  intervals[index] = setInterval(() => {
+          if(counters[index] == parseInt(number.dataset.num)){
+              clearInterval(intervals[index]);
+          }else{
+              counters[index] += 1;
+              number.style.background = "conic-gradient(red calc(" + counters[index] + "%), gray 0deg)";
+              number.setAttribute('data-value', counters[index] + "%");
+              number.innerHTML = counters[index] + "%";
+          }
+  }, 15);
+ });
