@@ -55,3 +55,49 @@ export function fetchMovieSearch(
   }
   return axios.get(url);
 }
+
+export function fetchSearchSort(type, sortBy, page = 1) {
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  if (!sortBy) {
+    throw "Please insert sort parametr";
+  }
+
+  return axios.get(
+    `discover/${type}?api_key=${apiKey}&language=${navigator.languages[0]}sort_by=${sortBy}&page=${page}`
+  );
+}
+
+export function fetchSearchGenres(type, with_genres, page = 1) {
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  if (!with_genres) {
+    throw "Please insert sort parametr";
+  }
+
+  return axios.get(
+    `discover/${type}?api_key=${apiKey}&language=${navigator.languages[0]}&page=${page}&with_genres=${with_genres}`
+  );
+}
+export function fetchGenres(type) {
+  return axios.get(
+    `genre/${type}/list?api_key=${apiKey}&language=${navigator.languages[0]}`
+  );
+}
+export function fetchLanguages() {
+  return axios.get(`configuration/languages?api_key=${apiKey}`);
+}
+export function fetchSearchKeywords(type, title, page = 1) {
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  if (!title) {
+    throw "Please insert sort parametr";
+  }
+
+  return axios.get(
+    `discover/${type}?api_key=${apiKey}&language=${navigator.languages[0]}&page=${page}&without_keywords=${title}`
+  );
+}

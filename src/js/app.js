@@ -1,18 +1,32 @@
 import "./style";
-import Type, { status, credits } from "../constants";
-import { fetch } from "../api";
-import { fetchDetails, fetchMovieCredits } from "../api";
-import { disMoviesDetails, displayCast, displayCrew } from "./movie";
-import { fetchMovieSearch } from "../api";
+import Type, { status, credits, sortBy } from "../constants";
+import {
+  fetch,
+  fetchGenres,
+  fetchMovieSearch,
+  fetchDetails,
+  fetchMovieCredits,
+  fetchLanguages,
+} from "../api";
+import {
+  disMoviesDetails,
+  displayCast,
+  displayCrew,
+  initializeCastEvent,
+} from "./movie";
 import { displayPeople } from "./people";
 import { displayMovies, initializeMoveEvent } from "./home";
-import { searchMoviess } from "../js/searchess";
-import { displayActor, initializeActorEvent, displayCastActor, displayCrewActor } from "./actor";
+import {
+  displayActor,
+  initializeActorEvent,
+  displayCastActor,
+  displayCrewActor,
+} from "./actor";
 
-document.addEventListener("DOMContentLoaded", (e) => {
+document.addEventListener("DOMContentLoaded", async (e) => {
   const page = location.pathname;
   if (page === "/index.html" || page === "/") {
-    fetch(Type.movie, status.popular)
+    fetch(Type.tv, status.popular)
       .then(({ data }) => {
         displayMovies(data.results);
         initializeMoveEvent();
@@ -32,6 +46,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         displayCrew(data.data.crew);
       }
     );
+    initializeCastEvent();
   }
   if (page === "/people.html" || page === "/people") {
     fetch(Type.person, status.popular).then(({ data }) => {
@@ -59,9 +74,37 @@ document.addEventListener("DOMContentLoaded", (e) => {
     );
   }
 
-  if (page === "/searchess.html" || page === "/searchess") {
-    console.log("salom");
+  if (page === "/movies.html" || page === "/movies") {
+    let genreWrapper = document.querySelector("#with_genres");
+    let sortSelect = document.querySelector("#activitySelector");
+    let sortTemplate = "";
+    Object.entries(sortBy).forEach((option) => {
+      sortTemplate += `<option value="${option[1]}">${option[0]}</option>`;
+    });
+    sortSelect.innerHTML = sortTemplate;
+    const promise = await Promise.all(
+      [fetchGenres, fetchLanguages].map((func) => func(Type.movie))
+    );
+    let genresTemplate = "";
+    promise[0].data.genres.forEach((genre) => {
+      genresTemplate += `<li><input type="checkbox" id=${genre.id} value=${genre.id} name="with_genres" /> <label for="${genre.id}">${genre.name}</label></li>`;
+    });
+    genreWrapper.innerHTML = genresTemplate;
+
     const formSearchAll = document.forms[0];
-    formSearchAll.addEventListener("click", searchMoviess);
+    formSearchAll.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const formData = new FormData(formSearchAll);
+      const queryStringObj = {};
+      for (var pair of formData.entries()) {
+        if (queryStringObj[pair[0]]) {
+          queryStringObj[pair[0]] += `,${pair[1]}`;
+        } else {
+          queryStringObj[pair[0]] = pair[1];
+        }
+      }
+      console.log(queryStringObj);
+      formSearchAll.reset();
+    });
   }
 });

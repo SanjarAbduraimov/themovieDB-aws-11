@@ -9,6 +9,10 @@ export function displayPeople(peoples = []) {
       ? configs.baseImgURL + profile_path
       : configs.defaultImg + "500";
     configs.baseImgURL;
+    const text = profile_path
+    ? configs.baseImgURL + profile_path
+    : configs.defaultImg + "500";
+  configs.baseImgURL;
     result += ` 
        
 
