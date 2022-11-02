@@ -29,7 +29,6 @@
   background-color: #f9f9f9;
   border: 1px solid rgba(99, 99, 99, 0.527);
   border-radius: 0.5rem;
-  // width: 15rem;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   padding: 0.8rem;
@@ -50,25 +49,37 @@
 
 // Progress Bar
 
-// svg {
-//   height: 300px;
-//   transform: rotate(-90deg);
-//   width: 300px;
-// }
-
-// .progress-bar__background {
-//   fill: none;
-//   stroke: #000;
-//   stroke-width: 1.8;
-// }
-
-// .progress-bar__progress {
-//   fill: none;
-//   stroke: #000;
-//   stroke: #78bec7;
-//   stroke-dasharray: 100 100;
-//   stroke-dashoffset: 100;
-//   stroke-linecap: round;
-//   stroke-width: 1.8;
-//   transition: stroke-dashoffset 1s ease-in-out;
-// }
+.progress_bar {
+  height: 47px;
+  width: 47px;
+  background-color: #081b21;
+  position: absolute;
+  border-radius: 50%;
+  top: 67%;
+  left: 10%;
+  display: grid;
+  place-items: center;
+}
+.circular-progress {
+  position: relative;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.circular-progress:before {
+  content: "";
+  position: absolute;
+  height: 90%;
+  width: 90%;
+  background-color: #081b21;
+  border-radius: 50%;
+}
+.value-container {
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+}

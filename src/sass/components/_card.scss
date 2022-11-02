@@ -24,6 +24,7 @@
 }
 
 .card__body {
+  margin-top: 15px;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -80,7 +81,7 @@
   cursor: pointer;
 }
 
-.card__content__menus {
+.card__content__menu_wrapper {
   width: 100%;
   height: 100%;
   display: flex;
@@ -88,21 +89,23 @@
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  cursor: pointer;
   border-bottom: 1px solid #e6e6e6;
+}
+
+.card__content__menu_wrapper:hover {
+  background-color: #032541;
+}
+.card__content__menu_wrapper a {
   font-size: 1.3rem;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.6);
 }
 
-.card__content__menus:hover {
-  background-color: #032541;
+.card__content__menu_wrapper a:hover {
   color: #fff;
 }
-
-
-.card__content__menus img {
-    width: 30px;
-    height: 30px;
-    margin-bottom: 10px;
+.card__content__menu_wrapper img {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
 }
