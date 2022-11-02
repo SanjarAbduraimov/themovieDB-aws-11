@@ -7,12 +7,7 @@ import { fetchMovieSearch } from "../api";
 import { displayPeople } from "./people";
 import { displayMovies, initializeMoveEvent } from "./home";
 import { searchMoviess } from "../js/searchess";
-import {
-  displayActor,
-  initializeActorEvent,
-  displayCastActor,
-  displayCrewActor,
-} from "./actor";
+import { displayActor, initializeActorEvent, displayCastActor, displayCrewActor } from "./actor";
 
 document.addEventListener("DOMContentLoaded", (e) => {
   const page = location.pathname;
