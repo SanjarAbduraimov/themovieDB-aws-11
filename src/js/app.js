@@ -1,4 +1,5 @@
 import "./style";
+import '../assets/modal-video.min.css';
 import Type, { status, credits, sortBy } from "../constants";
 import {
   fetch,
@@ -28,6 +29,10 @@ import { displaySearchMovies } from "./movies";
 const _ = require(`lodash`);
 
 document.addEventListener("DOMContentLoaded", async (e) => {
+  addEventListener("popstate", (event) => {
+    location.reload();
+  });
+
   const page = location.pathname;
   if (page === "/index.html" || page === "/") {
     fetch(Type.movie, status.popular)
@@ -36,13 +41,15 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         initializeMoveEvent();
       })
       .catch((err) => console.log(err));
-    
   }
   if (page === "/movie.html" || page === "/movie") {
-    fetchDetails(Type.movie, history.state.id).then((data) => {
-      disMoviesDetails(data.data);
-    });
-    fetchMovieVedio(Type.movie, history.state.id)
+    const promise = await Promise.all([
+      fetchDetails(Type.movie, history.state.id),
+      fetchMovieVedio(Type.movie, history.state.id),
+    ]);
+    disMoviesDetails({ ...promise[0].data, ...promise[1].data });
+    // fetchDetails(Type.movie, history.state.id).then((data) => {});
+    // fetchMovieVedio(Type.movie, history.state.id).then((data) => {});
     fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then(
       (data) => {
         displayCast(data.data.cast);
@@ -115,7 +122,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       console.log(data, "tamom");
       // })
       formSearchAll.reset();
-      displaySearchMovies(data.data.results)
+      displaySearchMovies(data.data.results);
     });
   }
 });

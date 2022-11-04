@@ -1,10 +1,18 @@
 import configs from "../configs";
-
+import ModalVideo from "modal-video";
 export function disMoviesDetails(data) {
   let result = "";
   const authorMenuNode = document.querySelector(".movies__detailes");
-  const { poster_path, title, release_date, tagline, overview, vote_average } =
-    data;
+  const {
+    poster_path,
+    title,
+    release_date,
+    tagline,
+    overview,
+    vote_average,
+    results,
+  } = data;
+  console.log(data, "data from movie details");
   const popularuty = vote_average;
 
   const img = poster_path
@@ -20,7 +28,7 @@ export function disMoviesDetails(data) {
       </div>
       <div class="details__moviess_col">
           <div class="details__title">
-              <h1>${title}</h1> 
+          <h1>${title}</h1> 
               <div class="films__details">
                   <p class="date__details"></p>
                   <p class="films__title_details"></p>
@@ -38,7 +46,7 @@ export function disMoviesDetails(data) {
               <div class="moviecol movie_icons"><i class="fa-solid fa-bars"></i>
               </div>
               <div class="moviecol movie_icons">
- 
+              
  
               <i class="fa-solid fa-heart"></i></div>
               <div class="moviecol movie_icons">
@@ -46,9 +54,11 @@ export function disMoviesDetails(data) {
               <div class="moviecol movie_icons">
               <i class="fa-solid fa-star"></i></div>
               <div class="moviecol trealler">
-              <i class="fa-solid fa-play"></i> Pley Triller</div>
+              // <i class="fa-solid fa-play"></i> Pley Triller</div>
+              <button class="js-modal-btn" data-video-id="${results[0].key}">Open Video</button>
+
           </div>
-  
+          
           <div class="details__text">
               <p class="tagline">
                   ${tagline}
@@ -56,8 +66,8 @@ export function disMoviesDetails(data) {
               <h4 class="overvave">Overvave</h4>
               <p class="details__description">
                  ${overview}
-              </p>
-              <div class="creaters">
+                 </p>
+                 <div class="creaters">
                   <p class="creter"> ${release_date}</p>
                   <p class="creter">Creator</p>
                   <p class="creter">Creator</p>
@@ -65,9 +75,12 @@ export function disMoviesDetails(data) {
           </div>
   
       </div>
-       </div>
+      </div>
           `;
   authorMenuNode.innerHTML = result;
+  let modal = new ModalVideo(".js-modal-btn", {
+    channel: "youtube",
+  });
 }
 
 export function displayCast(cast) {
