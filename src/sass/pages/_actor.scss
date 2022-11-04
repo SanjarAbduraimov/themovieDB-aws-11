@@ -9,10 +9,7 @@
     display: flex;
     flex-wrap: wrap;
 }
-.crew__films {
-    display: flex;
-    overflow: scroll;
-}
+
 .cast__films {
     display: flex;
     overflow: scroll;
@@ -50,3 +47,19 @@
     }
     
   }
+
+ .acting {
+    display: flex;
+      p {
+        border-bottom: 2px solid;
+        width: 1rem;
+      }
+    span{
+        width: 1rem;
+        height: 1rem;
+        border: 2px solid;
+        border-radius: 2rem;
+        padding:  0.5rem;
+    }
+ }
+ 
