@@ -28,21 +28,32 @@ export function disMoviesDetails(data) {
               </div>
           </div>
           <div class="movie__row">
-              <div class="moviecol circles">
-              <span class="circlee">${popularuty}</span></div>
-              <div class="moviecol">User Score</div>
-              <div class="moviecol">==</div>
-              <div class="moviecol">love</div>
-              <div class="moviecol">page</div>
-              <div class="moviecol">sevimli</div>
-              <div class="moviecol">pley triller</div>
+              <div class="moviecol">
+              <span class="#">${popularuty}</span></div>
+              <div class="moviecol">
+              <h4>User</h4>
+              <h4> Score</h4>
+            
+              </div>
+              <div class="moviecol movie_icons"><i class="fa-solid fa-bars"></i>
+              </div>
+              <div class="moviecol movie_icons">
+ 
+ 
+              <i class="fa-solid fa-heart"></i></div>
+              <div class="moviecol movie_icons">
+              <i class="fa-solid fa-bookmark"></i></div>
+              <div class="moviecol movie_icons">
+              <i class="fa-solid fa-star"></i></div>
+              <div class="moviecol trealler">
+              <i class="fa-solid fa-play"></i> Pley Triller</div>
           </div>
   
           <div class="details__text">
               <p class="tagline">
                   ${tagline}
               </p>
-              <p class="overvave">Overvave</p>
+              <h4 class="overvave">Overvave</h4>
               <p class="details__description">
                  ${overview}
               </p>
@@ -72,25 +83,20 @@ export function displayCast(cast) {
     result += `
     
     
-    <div class="col details__cols">
-     <div class="card">
-      <div class="card__head">
-        <div class="card__img_top" data-id="${id}">
-          <img width="100%" src="${img}" alt="Movies__Pecture">
-        </div>
-      </div>
-        
-      <div class="card__body">
-        <div class="card__title">
-          <p> ${name}</p>
-        </div>
-        <div class="card__date">
-          <p>${character}</p>
-        </div>
-        </div>
-      </div>
-      
-    </div>
+    <div class="col"> <article class="card card__moviess" data-id="${id}">
+  <div class="card__img--wrapper">
+    <img
+      class="card__img card__img_top"
+      data-id="${id}"
+      src="${img}"
+      alt="${name}"
+    />
+  </div>
+  <div class="card__body card__percentage">
+    <div class="percentage">${character}</div>
+    <h4 class="card__title">${name}</h4>
+  </div>
+</article></div>
     `;
   });
   authorMenuNode.innerHTML = result;

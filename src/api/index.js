@@ -2,7 +2,7 @@ import axios from "../utils/axios";
 import configs from "../configs";
 
 const { apiKey } = configs;
-export function fetch(type, status, page) {
+export function fetch(type, status, page = 1) {
   if (!type) {
     throw "Please insert type parametr";
   }
@@ -56,18 +56,7 @@ export function fetchMovieSearch(
   return axios.get(url);
 }
 
-export function fetchSearchSort(type, sortBy, page = 1) {
-  if (!type) {
-    throw "Please insert type parametr";
-  }
-  if (!sortBy) {
-    throw "Please insert sort parametr";
-  }
 
-  return axios.get(
-    `discover/${type}?api_key=${apiKey}&language=${navigator.languages[0]}sort_by=${sortBy}&page=${page}`
-  );
-}
 
 export function fetchSearch(type, query) {
   if (!type) {
@@ -93,6 +82,17 @@ export function fetchSearchGenres(type, with_genres, page = 1) {
   return axios.get(
     `discover/${type}?api_key=${apiKey}&language=${navigator.languages[0]}&page=${page}&with_genres=${with_genres}`
   );
+}
+export function fetchMovieVedio(type,movie_id) {
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  if (!movie_id) {
+    throw "Please insert type parametr";
+  }
+  let url = `${type}/${movie_id}/videos?api_key=${apiKey}&language=${navigator.languages[0]}`
+   
+  return axios.get(url);
 }
 export function fetchGenres(type) {
   return axios.get(
