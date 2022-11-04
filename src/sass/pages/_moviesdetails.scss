@@ -12,7 +12,6 @@
      
       display: flex;
       .details__moviess{
-        width: 30%;
         
         .details__img {
           width: 30rem;
@@ -27,7 +26,7 @@
       }
       .details__moviess_col {
         width: 70%;
-        padding: 10rem 0;
+        padding: 10rem 3rem;
         .movie__row {
           display: flex;
         }
@@ -97,9 +96,95 @@ body::-webkit-scrollbar-thumb {
   
 }
 
-.circles {
-  padding: 3rem;
-  background-color: #dbdbdb;
-  border: 1px solid;
-  border-radius: 50%;
+.movie__row {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  .moviecol {
+    margin-right: 3rem;
+  }
+  .movie_icons {
+    background-color:$mainBlue;
+    padding: 1.5rem 1.6rem;
+    border-radius: 50%;
+  }
+  .trealler {
+    margin-left: 4rem;
+  }
+}
+.overvave {
+  font-size: 1.9rem;
+  padding: 1rem 0;
+}
+
+.nav__part {
+  .dropdow-content a {
+    float: none;
+    color: black;
+    padding: 5px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  .dropdow-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid rgba(99, 99, 99, 0.527);
+    border-radius: 0.5rem;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 0.8rem;
+  }
+  .dropdow .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 1rem 0;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+  .dropdow:hover .dropdow-content {
+    display: block;
+  }
+}
+
+.cast__people.row {
+    gap: 20px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1rem 0;
+  
+}
+.cast__people.row .col {
+  flex: 1 150px;
+}
+.card__moviess {
+  border: 1px solid rgba(53, 52, 52, 0.274);
+  width: 15rem;
+  border-radius: 1rem ;
+  height: 28rem;
+  .card__img--wrapper {
+    height: 20rem;
+      object-fit: cover;
+      overflow: hidden;
+    img {
+      width: 100%;
+      
+    }
+  }
+  
+ 
+}
+
+
+.search__results {
+  gap: 20px;
+}
+.search__results.row .col {
+  flex: 1 250px;
 }

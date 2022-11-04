@@ -8,6 +8,7 @@ import {
   fetchMovieCredits,
   fetchLanguages,
   fetchSearch,
+  fetchMovieVedio,
 } from "../api";
 import {
   disMoviesDetails,
@@ -23,6 +24,7 @@ import {
   displayCastActor,
   displayCrewActor,
 } from "./actor";
+import { displaySearchMovies } from "./movies";
 const _ = require(`lodash`);
 
 document.addEventListener("DOMContentLoaded", async (e) => {
@@ -34,15 +36,16 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         initializeMoveEvent();
       })
       .catch((err) => console.log(err));
+    
   }
   if (page === "/movie.html" || page === "/movie") {
     fetchDetails(Type.movie, history.state.id).then((data) => {
       disMoviesDetails(data.data);
     });
+    fetchMovieVedio(Type.movie, history.state.id)
     fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then(
       (data) => {
         displayCast(data.data.cast);
-        displayCrew(data.data.crew);
       }
     );
     initializeCastEvent();
@@ -112,6 +115,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       console.log(data, "tamom");
       // })
       formSearchAll.reset();
+      displaySearchMovies(data.data.results)
     });
   }
 });
