@@ -10,15 +10,30 @@
   }
   .dropdown__content {
     position: absolute;
-    top: 30px;
+    top: 40px;
     display: none;
-    padding: 2px 0;
-    border: 1px solid;
+    // padding: 2px 0;
+    border: 1px solid $secondaryWhite;
     border-radius: 5px;
     .dropdown__item {
       &:hover {
         background: #032541;
+        a{
+          color: $secondaryWhite;
+        }
+       
       }
     }
+  }
+  .dropdown__content {
+    background-color: $mainWhite;
+    padding: 1rem 0;
+    width: 13rem;
+    // height: 17rem;
+    left: -6rem;
+    .dropdown__item {
+      padding: 0.7rem 1.3rem ;
+    }
+
   }
 }
