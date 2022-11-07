@@ -54,20 +54,53 @@
 .crew__people {
   display: flex;
 }
-.movies__wrapper {
-  // display: flex;
-  // overflow: auto;
-  // height: 400px;
+
+.cast__people::-webkit-scrollbar {
+  height: 8px;
+  border-radius: 15px;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
-body::-webkit-scrollbar {
-  width: 8px;
-  background-color: #fff;
-}
-
-body::-webkit-scrollbar-thumb {
+.cast__people::-webkit-scrollbar-thumb {
   background-color: #dbdbdb;
   border-radius: 15px;
+}
+.cast__row {
+  display: flex;
+}
+.cast__col {
+  width: 75%;
+}
+.casts__col {
+  width: 25%;
+  // display: flex;
+  // justify-content: center;
+  .networks .col {
+    padding:.5rem 2rem;
+    font-size: 2.3rem; 
+  }
+  .keyword__wreap {
+    padding: 0 1rem;
+    margin-top: 2rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  .movie__keyword {
+    padding: 1rem 0;
+      font-size: 1.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      .col__key {
+        // width: 50%;
+        border: 1px solid  #dbdbdb;
+        margin: 1rem .5rem .5rem .5rem;
+        padding: .5rem 1rem;
+        border-radius: 1rem;
+        background-color: rgb(229, 229, 229);
+        cursor: pointer;
+      }
+  }
 }
 
 .movies__wrapper::-webkit-scrollbar {
@@ -187,4 +220,54 @@ body::-webkit-scrollbar-thumb {
 }
 .search__results.row .col {
   flex: 1 250px;
+}
+
+.trealler {
+  button {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    color: $mainWhite;
+    font-size: 1.6rem;
+    cursor: pointer;
+  }
+   
+}
+
+.keyvord__img {
+  position: relative;
+  img {
+    height: 5rem;
+    object-fit: cover;
+  }
+  background-color: rgb(5, 48, 67);
+  .keyword__count {
+    position: absolute;
+    top: 1.8rem;
+    right: 28rem;
+    color: $mainWhite;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  
+}
+
+.card__keySearc {
+  display: flex;
+  border: 1px solid #dbdbdb;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+  box-shadow: 1px 1px 5px 5px #dbdbdb;
+
+  .card__img--wrapper {
+      height: 15rem;
+    
+    img {
+      width: 10rem;
+      object-fit: cover;
+    }
+  }
+  .card__body  {
+    padding: 2rem;
+  }
 }

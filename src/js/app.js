@@ -1,5 +1,5 @@
 import "./style";
-import '../assets/modal-video.min.css';
+import "../assets/modal-video.min.css";
 import Type, { status, credits, sortBy } from "../constants";
 import {
   fetch,
@@ -10,15 +10,30 @@ import {
   fetchLanguages,
   fetchSearch,
   fetchMovieVedio,
+  fetchlistMovie,
+  fetchKeywordMovie,
+  fetchKeyword,
 } from "../api";
 import {
   disMoviesDetails,
   displayCast,
   displayCrew,
   initializeCastEvent,
+  displayNetwork,
+  displayKeyword,
 } from "./movie";
 import { displayPeople } from "./people";
-import { displayMovies, initializeMoveEvent } from "./home";
+import {
+  displayMovies,
+  initializeMoveEvent,
+  displayTv,
+  displayMovie,
+  initializeMEvent,
+  displayMoviesUpcoming,
+  displayVedioTreller,
+  
+} from "./home";
+import {eventKeywords, displayKeywords, displayKeywordResults, initializeKeyEvent} from "./keyword";
 import {
   displayActor,
   initializeActorEvent,
@@ -37,10 +52,36 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   if (page === "/index.html" || page === "/") {
     fetch(Type.movie, status.popular)
       .then(({ data }) => {
+
         displayMovies(data.results);
         initializeMoveEvent();
-      })
-      .catch((err) => console.log(err));
+        let showTv = document.querySelector(".show__tv");
+        showTv.addEventListener("click", () => {
+          fetch(Type.tv, status.popular).then(({ data }) => {
+            console.log(data);
+            displayTv(data.results);
+            initializeMEvent();
+          });
+          let showMovie = document.querySelector(".show__movie");
+          showMovie.style.backgroundColor = "#fff";
+          showTv.style.backgroundColor = "rgb(3, 37, 65)";
+          showMovie.style.color = " rgb(3, 37, 65)";
+          showTv.style.color = "rgb(187, 253, 206)";
+        });
+      }).catch((err) => console.log(err));
+      // fetch(Type.movie, status.topRated).then(({data})=>{
+      //   // console.log(data);
+      //   fetchMovieVedio(Type.movie, data.results[0].id).then((data)=>{
+      //     let vedio = data.data.results
+      //     displayVedioTreller(vedio)
+      //   })
+        
+      // })
+    
+    
+   
+    
+    
   }
   if (page === "/movie.html" || page === "/movie") {
     const promise = await Promise.all([
@@ -55,6 +96,14 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         displayCast(data.data.cast);
       }
     );
+    fetchlistMovie(Type.movie, history.state.id).then(({data})=>{
+      displayNetwork(data);
+    });
+    fetchKeywordMovie(Type.movie, history.state.id).then(({data})=>{
+      console.log(data);
+      displayKeyword(data.keywords);
+    });
+    eventKeywords();
     initializeCastEvent();
   }
   if (page === "/people.html" || page === "/people") {
@@ -66,7 +115,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   if (page === "/search.html" || page === "/search") {
     // const query = new URLSearchParams(location.search);
     fetchMovieSearch(history.state.title).then(({ data }) => {
-      displayMovies(data.results);
+      displayMovie(data.results);
+      initializeMEvent();
     });
   }
   if (page === "/actor.html" || page === "/actor") {
@@ -123,6 +173,18 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       // })
       formSearchAll.reset();
       displaySearchMovies(data.data.results);
+      initializeMEvent();
+
     });
+  }
+
+  if (page === "/keyword.html" || page === "/keyword") {
+    fetchKeyword(Type.keyword, history.state.id).then(({data})=>{
+      console.log(data);
+      displayKeywords(data.results)
+      displayKeywordResults(data.total_results)
+      
+    })
+    initializeKeyEvent();
   }
 });

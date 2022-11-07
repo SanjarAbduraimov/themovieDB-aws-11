@@ -1,7 +1,10 @@
 import moment from "moment/moment";
 import configs from "../configs";
+import { fetch } from "../api"
 import Type, { status, credits, sortBy } from "../constants";
-import {fetch} from "../api"
+import ModalVideo from "modal-video";
+
+
 
 export function cardTemplate(item) {
   const { id, img, title, release_date } = item;
@@ -67,23 +70,40 @@ export function displayMovies(data = []) {
     result += cardTemplate({ ...docs, img });
   });
   authorMenuNode.innerHTML = result;
-  let showTv = document.querySelector(".show__tv");
   
-  showTv.addEventListener("click", ()=>{
-    authorMenuNode.innerHTML = "";
-    fetch(Type.tv, status.popular)
-    .then(({ data })=>{
-      console.log(data);
-      displayTv(data.results)
-    })
-    let showMovie = document.querySelector(".show__movie");
-    showMovie.style.backgroundColor = "#fff";
-    showTv.style.backgroundColor = "rgb(3, 37, 65)";
-    showMovie.style.color = " rgb(3, 37, 65)";
-    showTv.style.color  = "rgb(187, 253, 206)";
-    
-  })
+  
 }
+export function displayMovie(data = []) {
+  let result = "";
+  const authorMenuNode = document.querySelector(".movies__wrappe");
+  data.forEach((movies) => {
+    const { backdrop_path, ...docs } = movies;
+    const img = backdrop_path
+      ? configs.baseImgURL + backdrop_path
+      : configs.defaultImg + "500";
+    result += cardTemplate({ ...docs, img });
+  });
+  authorMenuNode.innerHTML = result;
+  
+  
+}
+export function displayMoviesUpcoming(data = []) {
+  let result = "";
+  const authorMenuNode = document.querySelector(".movies__wrapper__upcoming");
+  data.forEach((movies) => {
+    const { backdrop_path, ...docs } = movies;
+    const img = backdrop_path
+      ? configs.baseImgURL + backdrop_path
+      : configs.defaultImg + "500";
+    result += cardTemplate({ ...docs, img });
+  });
+  authorMenuNode.innerHTML = result;
+  
+  
+}
+
+
+
 export function displayTv(data = []) {
   let result = "";
 
@@ -147,16 +167,71 @@ export function displayTv(data = []) {
   authorMenuNode.innerHTML = result;
   let showMovie = document.querySelector(".show__movie")
   showMovie.addEventListener("click", ()=>{
-    authorMenuNode.innerHTML = "";
-    fetch(Type.movie, status.popular)
-    .then(({ data })=>{
+    fetch(Type.movie, status.popular).then((data)=>{
       console.log(data);
       history.go(0);
     })
+      
   })
 }
 
+export function displayVedioTreller(data = []) {
+  let result = "";
 
+  const authorMenuNode = document.querySelector(".movies__wrapper--vedios");
+  data.forEach((movies) => {
+    const { backdrop_path, id, name, release_date} = movies;
+    const imgs = backdrop_path
+      ? configs.baseImgURL + backdrop_path
+      : configs.defaultImg + "500";
+    result +=    `
+    <div class="col"> <article class="card" data-id="${id}">
+    <div class="card__img--wrapper">
+      <img
+        class="card__img"
+        src="${imgs}"
+        alt="${name}"
+      />
+    </div>
+    <div class="card__body card__percentage">
+      <div class="percentage">${81}</div>
+      <h4 class="card__title">${name}</h4>
+      <p class="card__text">${moment(release_date).format("MMM DD, YYYY")}</p>
+    </div>
+  </article></div>`;
+  });
+  authorMenuNode.innerHTML = result;
+}
+
+
+
+
+export function initializeMEvent() {
+  const cardNodeList = document.querySelectorAll(".card");
+  cardNodeList.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      const element = event.target;
+      const id = card?.dataset?.id;
+      let showMovieDetails =
+        element.closest(".card__img")?.classList.contains("card__img") ||
+        element.closest(".card__title")?.classList.contains("card__title");
+      let isMenuBtn = element
+        .closest(".card__menu__btn")
+        ?.classList.contains("card__menu__btn");
+      if (showMovieDetails) {
+        if (!id) return;
+        history.pushState({ id }, null, "/movie.html");
+        location.reload();
+      }
+      if (isMenuBtn) {
+
+        let cardContent = card.querySelector(".dropdown__content");
+        cardContent.classList.toggle("show");
+        card.classList.toggle("show");
+      }
+    });
+  });
+}
 
 export function initializeMoveEvent() {
   const cardNodeList = document.querySelectorAll(".card");
@@ -196,23 +271,7 @@ export function initializeMoveEvent() {
       }
     });
   });
-  // let progressBar = document.querySelector(".circular-progress");
-  // let valueContainer = document.querySelector(".value-container");
-  // let progressValue = 0;
-  // let progressEndValue = 20;
-  // let speed = 15;
-  // console.log(progressBar, valueContainer);
-  //   let progress = setInterval(() => {
-  //     progressValue++;
-  //     valueContainer.textContent = `${progressValue}%`;
-  //     progressBar.style.background = `conic-gradient(
-  //     #4d5bf9 ${progressValue * 3.6}deg,
-  //     #cadcff ${progressValue * 3.6}deg
-  // )`;
-  //     if (progressValue == progressEndValue) {
-  //       clearInterval(progress);
-  //     }
-  //   }, speed);
+
 }
 
 
