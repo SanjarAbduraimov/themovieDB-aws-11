@@ -3,6 +3,7 @@ const type = {
   movie: "movie",
   tv: "tv",
   list: "list",
+  keyword: "keyword"
 };
 const status = {
   popular: "popular",

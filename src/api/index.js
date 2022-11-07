@@ -22,6 +22,30 @@ export function fetchDetails(type, id) {
   );
 }
 
+export function fetchlistMovie(type, id) {
+  if (!id) {
+    throw "Please insert id parametr";
+  }
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  return axios.get(
+    `${type}/${id}/external_ids?api_key=${apiKey}&language=${navigator.languages[0]}`
+  );
+}
+export function fetchKeywordMovie(type, id) {
+  if (!id) {
+    throw "Please insert id parametr";
+  }
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  return axios.get(
+    `${type}/${id}/keywords?api_key=${apiKey}&language=${navigator.languages[0]}`
+  );
+}
+
+
 export function fetchMovieCredits(type, id, credits) {
   if (!id) {
     throw "Please insert id parametr";
@@ -114,3 +138,16 @@ export function fetchSearchKeywords(type, title, page = 1) {
     `discover/${type}?api_key=${apiKey}&language=${navigator.languages[0]}&page=${page}&without_keywords=${title}`
   );
 }
+
+export function fetchKeyword(type, keyword_id) {
+  if (!keyword_id) {
+    throw "Please insert id parametr";
+  }
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  return axios.get(
+    `${type}/${keyword_id}/movies?api_key=${apiKey}`
+  );
+}
+

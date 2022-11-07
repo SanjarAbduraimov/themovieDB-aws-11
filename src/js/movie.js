@@ -54,8 +54,8 @@ export function disMoviesDetails(data) {
               <div class="moviecol movie_icons">
               <i class="fa-solid fa-star"></i></div>
               <div class="moviecol trealler">
-              // <i class="fa-solid fa-play"></i> Pley Triller</div>
-              <button class="js-modal-btn" data-video-id="${results[0].key}">Open Video</button>
+               
+              <button class="js-modal-btn" data-video-id="${results[0].key}"><i class="fa-solid fa-play"></i> Pley Triller</div></button>
 
           </div>
           
@@ -81,6 +81,44 @@ export function disMoviesDetails(data) {
   let modal = new ModalVideo(".js-modal-btn", {
     channel: "youtube",
   });
+}
+export function displayNetwork(data) {
+  console.log(data);
+  const {facebook_id, instagram_id, twitter_id} = data;
+  console.log(facebook_id);
+
+  let result = "";
+  const authorMenuNode = document.querySelector(".casts__col .row");
+  result += `
+   <div class="col"> 
+   <a href="https://www.facebook.com/${facebook_id}" target="_blank"><i class="fa-brands fa-square-facebook"></i></a>
+   </div>
+   <div class="col"> 
+   <a href="https://twitter.com/${twitter_id}" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+ 
+   </div>
+   <div class="col"> 
+   <a href="https://instagram.com/${instagram_id}" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+ 
+   </div>
+   
+   <div class="col"> 
+   <a href="./index.html"><i class="fa-solid fa-share-from-square"></i></a>
+ 
+   </div>
+    `;
+  authorMenuNode.innerHTML = result;
+}
+export function displayKeyword(data) {
+  let result = "";
+  const authorMenuNode = document.querySelector(".movie__keyword ");
+  data.forEach((person) => {
+    const { id, name  } = person;
+    result += `
+    <p class="col__key" data-id="${id}">  ${name} </p>
+    `;
+  });
+  authorMenuNode.innerHTML = result;
 }
 
 export function displayCast(cast) {
@@ -158,20 +196,4 @@ export function initializeCastEvent() {
     location.reload();
   });
 }
-let items = document.querySelectorAll(".progress-item");
-const counters = Array(items.length);
-const intervals = Array(items.length);
-counters.fill(0);
-items.forEach((number, index) => {
-  intervals[index] = setInterval(() => {
-    if (counters[index] == parseInt(number.dataset.num)) {
-      clearInterval(intervals[index]);
-    } else {
-      counters[index] += 1;
-      number.style.background =
-        "conic-gradient(red calc(" + counters[index] + "%), gray 0deg)";
-      number.setAttribute("data-value", counters[index] + "%");
-      number.innerHTML = counters[index] + "%";
-    }
-  }, 15);
-});
+
