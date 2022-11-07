@@ -1,20 +1,21 @@
 import configs from "../configs";
+import { cardTemplate } from "../js/home";
 export function displayActor(actor = []) {
-    let result = ""; 
-    const actorDetails = document.querySelector(".actor");
-    const { profile_path, name, biography} = actor;
-    const img = profile_path
-      ? configs.baseImgURL + profile_path
-      : configs.defaultImg + "500";
-    configs.baseImgURL;
-      result += `
+  let result = "";
+  const actorDetails = document.querySelector(".actor");
+  const { profile_path, name, biography } = actor;
+  const img = profile_path
+    ? configs.baseImgURL + profile_path
+    : configs.defaultImg + "500";
+  configs.baseImgURL;
+  result += `
       <div class=" actor__cards">
       <div class=" actor__img__wrapper">
           <div class="actor__imgs">
           <img width:"100%" src="${img}">
           </div>
       </div>
-      <div class="actor__img__wrapper">
+      <div class="actor__wrapper">
           <div class="actor__title">
               <h1>${name} </h1> 
               <div class="actor__details">
@@ -28,91 +29,72 @@ export function displayActor(actor = []) {
               <p class="tagline">
                   
               </p>
-              <p class="overvave">Overvave</p>
+              <h4 class="biography__actor">Biography</h4>
               <p class="details__description">
                  ${biography}
               </p>
           </div>
+          <p class="actor__known">Known For</p>
          
-          <div class="cast__films"></div>
+          <div class="row cast__films">
+          </div>
+          <div class="acting__wrepper">
+          <p class="acting__title">Acting</p>
+          <div class="nav__part">
+
+          <div class="dropdow">
+            <button class="dropbtn">  <li><a href="#">All <i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
+            </button>
+            <div class="dropdow-content">
+              <a href="#">Movies</a>
+              <a href="#">TV Shows</a>
+            </div>
+          </div> 
+          <div class="dropdow">
+            <button class="dropbtn"> <li><a href="#">Department <i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
+            </button>
+            <div class="dropdow-content">
+              <a href="#">Acting</a>
+              <a href="#">Production</a>
+              <a href="#">Crew</a>
+            </div>
+          </div> 
+        </div>
+          </div> 
+          
+          <div class="container crew__container">
+          <div class="crew__films">
+            
+          </div>
+    
+        </div>
   
       </div>
        </div>
           `;
-    actorDetails.innerHTML = result;
+  actorDetails.innerHTML = result;
 }
 
 export function displayCastActor(cast) {
-    let result = "";
-    const authorMenuNode = document.querySelector(".cast__films");
-    cast.forEach((person) => {
-      const { id, backdrop_path, title, release_date } = person;
-      const img = backdrop_path
-        ? configs.baseImgURL + backdrop_path
-        : configs.defaultImg + "500";
-      configs.baseImgURL;
-      const cardImg = configs.cardImg;
-      result +=`<div class="col"> <article class="card actor__cards" data-id="${id}">
-      <div class="card__header dropdown">
-        <svg
-          id="glyphicons-basic"
-          class="card__menu__btn dropdown__btn"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 32 32"
-        >
-          <path
-            id="circle-more"
-            d="M16,4A12,12,0,1,0,28,16,12.01312,12.01312,0,0,0,16,4ZM10,18a2,2,0,1,1,2-2A2.00006,2.00006,0,0,1,10,18Zm6,0a2,2,0,1,1,2-2A2.00006,2.00006,0,0,1,16,18Zm6,0a2,2,0,1,1,2-2A2.00006,2.00006,0,0,1,22,18Z"
-            fill="#ffffff80"
-          ></path>
-        </svg>
-        <ul class="card__menu dropdown__content">
-          <li class="dropdown__item">
-            <a href="dropdown__link">
-              <i class="fas fa-heart"></i> favourite
-            </a>
-          </li>
-          <li class="dropdown__item">
-            <a href="dropdown__link">
-              <i class="fas fa-heart"></i> favourite
-            </a>
-          </li>
-          <li class="dropdown__item">
-            <a href="dropdown__link">
-              <i class="fas fa-heart"></i> favourite
-            </a>
-          </li>
-          <li class="dropdown__item">
-            <a href="dropdown__link">
-              <i class="fas fa-heart"></i> favourite
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="card__img--wrapper">
-        <img
-          class="card__img"
-          src="${img}"
-          alt="${title}"
-        />
-      </div>
-      <div class="card__body card__percentage">
-        <div class="percentage">${81}</div>
-        <h4 class="card__title">${title}</h4>
-        <p class="card__text">${release_date}</p>
-      </div>
-    </article></div>`;
-    });
-    authorMenuNode.innerHTML = result;
-  }
+  let result = "";
+  const authorMenuNode = document.querySelector(".cast__films");
+  cast.forEach((movies) => {
+    const { backdrop_path, ...docs } = movies;
+    const img = backdrop_path
+      ? configs.baseImgURL + backdrop_path
+      : configs.defaultImg + "500";
+    result += cardTemplate({ ...docs, img });
+  });
 
-  export function displayCrewActor(crew) {
-    let result = "";
-    const authorMenuNode = document.querySelector(".crew__films");
-    crew.forEach((person) => {
-      const { title } = person;
-      result += `
-      
+  authorMenuNode.innerHTML = result;
+}
+
+export function displayCrewActor(crew) {
+  let result = "";
+  const authorMenuNode = document.querySelector(".crew__films");
+  crew.forEach((person) => {
+    const { title } = person;
+    result += `
    <div class="acting">
      <p></p>
      <span></span>
@@ -121,18 +103,49 @@ export function displayCastActor(cast) {
 
    </div>
       `;
-    });
-    authorMenuNode.innerHTML = result;
-  }
+  });
+  authorMenuNode.innerHTML = result;
+}
 
 export function initializeActorEvent() {
-    const moviesssMenuNode = document.querySelector(".people");
-    moviesssMenuNode.addEventListener("click", (event) => {
-      const id = event.target.closest("#people__card__top")?.dataset?.id;
-      console.log(id, "bosilgan");
-      if (!id) return;
-      history.pushState({ id }, null, "/actor.html");
-      location.reload();
-    });
+  const moviesssMenuNode = document.querySelector(".people");
+  moviesssMenuNode.addEventListener("click", (event) => {
+    const id = event.target.closest("#people__card__top")?.dataset?.id;
+    console.log(id, "bosilgan");
+    if (!id) return;
+    history.pushState({ id }, null, "/actor.html");
+    location.reload();
+  });
 }
-  
+export function initializeActorMenuEvent() {
+  const cardNodeList = document.querySelectorAll(".card");
+  cardNodeList.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      const element = event.target;
+      const id = card?.dataset?.id;
+      let showMovieDetails =
+        element.closest(".card__img")?.classList.contains("card__img") ||
+        element.closest(".card__title")?.classList.contains("card__title");
+      let isMenuBtn = element
+        .closest(".card__menu__btn")
+        ?.classList.contains("card__menu__btn");
+      if (showMovieDetails) {
+        if (!id) return;
+        history.pushState({ id }, null, "/movie.html");
+        location.reload();
+      }
+      if (isMenuBtn) {
+        // let focusedElement = document.querySelectorAll(
+        //   ".card dropdown__content.show"
+        // );
+        // focusedElement.forEach((item) => {
+        //   item.classList.remove("show");
+        //   item.closest(".dropdown__content").classList.remove();
+        // });
+        let cardContent = card.querySelector(".dropdown__content");
+        cardContent.classList.toggle("show");
+        card.classList.toggle("show");
+      }
+    });
+  });
+}
