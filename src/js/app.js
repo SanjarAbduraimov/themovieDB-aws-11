@@ -1,5 +1,4 @@
 import "./style";
-import "../assets/modal-video.min.css";
 import Type, { status, credits, sortBy } from "../constants";
 import {
   fetch,
@@ -9,10 +8,6 @@ import {
   fetchMovieCredits,
   fetchLanguages,
   fetchSearch,
-  fetchMovieVedio,
-  fetchlistMovie,
-  fetchKeywordMovie,
-  fetchKeyword,
 } from "../api";
 import {
   disMoviesDetails,
@@ -39,6 +34,7 @@ import {
   initializeActorEvent,
   displayCastActor,
   displayCrewActor,
+  initializeActorMenuEvent, 
 } from "./actor";
 import { displaySearchMovies } from "./movies";
 const _ = require(`lodash`);
@@ -127,7 +123,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       (data) => {
         displayCastActor(data.data.cast);
         displayCrewActor(data.data.crew);
+        initializeActorMenuEvent()
       }
+
     );
   }
 
@@ -172,9 +170,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       console.log(data, "tamom");
       // })
       formSearchAll.reset();
-      displaySearchMovies(data.data.results);
-      initializeMEvent();
-
     });
   }
 
