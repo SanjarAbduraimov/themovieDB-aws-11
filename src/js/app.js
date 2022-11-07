@@ -29,6 +29,7 @@ import {
 import { displaySearchMovies } from "./movies";
 const _ = require(`lodash`);
 
+
 document.addEventListener("DOMContentLoaded", async (e) => {
   addEventListener("popstate", (event) => {
     location.reload();
