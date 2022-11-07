@@ -1,10 +1,18 @@
 import configs from "../configs";
-
+import ModalVideo from "modal-video";
 export function disMoviesDetails(data) {
   let result = "";
   const authorMenuNode = document.querySelector(".movies__detailes");
-  const { poster_path, title, release_date, tagline, overview, vote_average } =
-    data;
+  const {
+    poster_path,
+    title,
+    release_date,
+    tagline,
+    overview,
+    vote_average,
+    results,
+  } = data;
+  console.log(data, "data from movie details");
   const popularuty = vote_average;
 
   const img = poster_path
@@ -20,7 +28,7 @@ export function disMoviesDetails(data) {
       </div>
       <div class="details__moviess_col">
           <div class="details__title">
-              <h1>${title}</h1> 
+          <h1>${title}</h1> 
               <div class="films__details">
                   <p class="date__details"></p>
                   <p class="films__title_details"></p>
@@ -28,25 +36,38 @@ export function disMoviesDetails(data) {
               </div>
           </div>
           <div class="movie__row">
-              <div class="moviecol circles">
-              <span class="circlee">${popularuty}</span></div>
-              <div class="moviecol">User Score</div>
-              <div class="moviecol">==</div>
-              <div class="moviecol">love</div>
-              <div class="moviecol">page</div>
-              <div class="moviecol">sevimli</div>
-              <div class="moviecol">pley triller</div>
+              <div class="moviecol">
+              <span class="#">${popularuty}</span></div>
+              <div class="moviecol">
+              <h4>User</h4>
+              <h4> Score</h4>
+            
+              </div>
+              <div class="moviecol movie_icons"><i class="fa-solid fa-bars"></i>
+              </div>
+              <div class="moviecol movie_icons">
+              
+ 
+              <i class="fa-solid fa-heart"></i></div>
+              <div class="moviecol movie_icons">
+              <i class="fa-solid fa-bookmark"></i></div>
+              <div class="moviecol movie_icons">
+              <i class="fa-solid fa-star"></i></div>
+              <div class="moviecol trealler">
+               
+              <button class="js-modal-btn" data-video-id="${results[0].key}"><i class="fa-solid fa-play"></i> Pley Triller</div></button>
+
           </div>
-  
+          
           <div class="details__text">
               <p class="tagline">
                   ${tagline}
               </p>
-              <p class="overvave">Overvave</p>
+              <h4 class="overvave">Overvave</h4>
               <p class="details__description">
                  ${overview}
-              </p>
-              <div class="creaters">
+                 </p>
+                 <div class="creaters">
                   <p class="creter"> ${release_date}</p>
                   <p class="creter">Creator</p>
                   <p class="creter">Creator</p>
@@ -54,8 +75,49 @@ export function disMoviesDetails(data) {
           </div>
   
       </div>
-       </div>
+      </div>
           `;
+  authorMenuNode.innerHTML = result;
+  let modal = new ModalVideo(".js-modal-btn", {
+    channel: "youtube",
+  });
+}
+export function displayNetwork(data) {
+  console.log(data);
+  const {facebook_id, instagram_id, twitter_id} = data;
+  console.log(facebook_id);
+
+  let result = "";
+  const authorMenuNode = document.querySelector(".casts__col .row");
+  result += `
+   <div class="col"> 
+   <a href="https://www.facebook.com/${facebook_id}" target="_blank"><i class="fa-brands fa-square-facebook"></i></a>
+   </div>
+   <div class="col"> 
+   <a href="https://twitter.com/${twitter_id}" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+ 
+   </div>
+   <div class="col"> 
+   <a href="https://instagram.com/${instagram_id}" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+ 
+   </div>
+   
+   <div class="col"> 
+   <a href="./index.html"><i class="fa-solid fa-share-from-square"></i></a>
+ 
+   </div>
+    `;
+  authorMenuNode.innerHTML = result;
+}
+export function displayKeyword(data) {
+  let result = "";
+  const authorMenuNode = document.querySelector(".movie__keyword ");
+  data.forEach((person) => {
+    const { id, name  } = person;
+    result += `
+    <p class="col__key" data-id="${id}">  ${name} </p>
+    `;
+  });
   authorMenuNode.innerHTML = result;
 }
 
@@ -72,25 +134,20 @@ export function displayCast(cast) {
     result += `
     
     
-    <div class="col details__cols">
-     <div class="card">
-      <div class="card__head">
-        <div class="card__img_top" data-id="${id}">
-          <img width="100%" src="${img}" alt="Movies__Pecture">
-        </div>
-      </div>
-        
-      <div class="card__body">
-        <div class="card__title">
-          <p> ${name}</p>
-        </div>
-        <div class="card__date">
-          <p>${character}</p>
-        </div>
-        </div>
-      </div>
-      
-    </div>
+    <div class="col"> <article class="card card__moviess" data-id="${id}">
+  <div class="card__img--wrapper">
+    <img
+      class="card__img card__img_top"
+      data-id="${id}"
+      src="${img}"
+      alt="${name}"
+    />
+  </div>
+  <div class="card__body card__percentage">
+    <div class="percentage">${character}</div>
+    <h4 class="card__title">${name}</h4>
+  </div>
+</article></div>
     `;
   });
   authorMenuNode.innerHTML = result;
@@ -139,20 +196,4 @@ export function initializeCastEvent() {
     location.reload();
   });
 }
-let items = document.querySelectorAll(".progress-item");
-const counters = Array(items.length);
-const intervals = Array(items.length);
-counters.fill(0);
-items.forEach((number, index) => {
-  intervals[index] = setInterval(() => {
-    if (counters[index] == parseInt(number.dataset.num)) {
-      clearInterval(intervals[index]);
-    } else {
-      counters[index] += 1;
-      number.style.background =
-        "conic-gradient(red calc(" + counters[index] + "%), gray 0deg)";
-      number.setAttribute("data-value", counters[index] + "%");
-      number.innerHTML = counters[index] + "%";
-    }
-  }, 15);
-});
+
