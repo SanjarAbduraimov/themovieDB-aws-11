@@ -58,7 +58,7 @@ export function disMoviesDetails(data) {
               <button class="js-modal-btn" data-video-id="${results[0].key}"><i class="fa-solid fa-play"></i> Pley Triller</div></button>
 
           </div>
-          
+  
           <div class="details__text">
               <p class="tagline">
                   ${tagline}
