@@ -7,9 +7,51 @@
 .movies__wrapper.row .col {
   flex: 1 250px;
 }
+.tv__wrapper.row {
+  gap: 20px;
+}
+.tv__wrapper.row .col {
+  flex: 1 250px;
+}
+// .movies__wrapper__upcoming.row {
+//   gap: 20px;
+//     padding: 1rem 0;
+//     flex-direction: row;
+//     flex-wrap: nowrap;
+//     overflow-x: auto;
+//     overflow-y: hidden;
+    
+  
 
-nav {
-  .dropdown-content a {
+// }
+
+// .movies__wrapper__upcoming .col {
+//   flex: 1 250px;
+// }
+// .movies__wrapper__upcoming::-webkit-scrollbar {
+//   height: 8px;
+// }
+// .movies__wrapper__upcoming::-webkit-scrollbar-track {
+//   border-radius: 15px;
+//   padding: 1px;
+// }
+// .movies__wrapper__upcoming::-webkit-scrollbar-thumb {
+//   background-color: #dbdbdb;
+//   border-radius: 15px;
+// }
+body::-webkit-scrollbar {
+  overflow-y: auto;
+  width: 10px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #bdbdbd;
+  border-radius: 15px;
+}
+
+
+
+
+  .drop-content a {
     float: none;
     color: black;
     padding: 5px 16px;
@@ -40,7 +82,7 @@ nav {
   .drop:hover .drop-content {
     display: block;
   }
-}
+
 
 // Progress Bar
 
