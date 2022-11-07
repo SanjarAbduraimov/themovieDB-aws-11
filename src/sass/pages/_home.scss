@@ -8,9 +8,8 @@
   flex: 1 250px;
 }
 
-
-
-  .drop-content a {
+nav {
+  .dropdown-content a {
     float: none;
     color: black;
     padding: 5px 16px;
@@ -41,7 +40,7 @@
   .drop:hover .drop-content {
     display: block;
   }
-
+}
 
 // Progress Bar
 

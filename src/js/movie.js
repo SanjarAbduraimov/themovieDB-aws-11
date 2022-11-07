@@ -36,27 +36,14 @@ export function disMoviesDetails(data) {
               </div>
           </div>
           <div class="movie__row">
-              <div class="moviecol">
-              <span class="#">${popularuty}</span></div>
-              <div class="moviecol">
-              <h4>User</h4>
-              <h4> Score</h4>
-            
-              </div>
-              <div class="moviecol movie_icons"><i class="fa-solid fa-bars"></i>
-              </div>
-              <div class="moviecol movie_icons">
-              
- 
-              <i class="fa-solid fa-heart"></i></div>
-              <div class="moviecol movie_icons">
-              <i class="fa-solid fa-bookmark"></i></div>
-              <div class="moviecol movie_icons">
-              <i class="fa-solid fa-star"></i></div>
-              <div class="moviecol trealler">
-              // <i class="fa-solid fa-play"></i> Pley Triller</div>
-              <button class="js-modal-btn" data-video-id="${results[0].key}">Open Video</button>
-
+              <div class="moviecol circles">
+              <span class="circlee">${popularuty}</span></div>
+              <div class="moviecol">User Score</div>
+              <div class="moviecol">==</div>
+              <div class="moviecol">love</div>
+              <div class="moviecol">page</div>
+              <div class="moviecol">sevimli</div>
+              <div class="moviecol">pley triller</div>
           </div>
           
           <div class="details__text">
@@ -78,9 +65,6 @@ export function disMoviesDetails(data) {
       </div>
           `;
   authorMenuNode.innerHTML = result;
-  let modal = new ModalVideo(".js-modal-btn", {
-    channel: "youtube",
-  });
 }
 
 export function displayCast(cast) {
@@ -158,20 +142,4 @@ export function initializeCastEvent() {
     location.reload();
   });
 }
-let items = document.querySelectorAll(".progress-item");
-const counters = Array(items.length);
-const intervals = Array(items.length);
-counters.fill(0);
-items.forEach((number, index) => {
-  intervals[index] = setInterval(() => {
-    if (counters[index] == parseInt(number.dataset.num)) {
-      clearInterval(intervals[index]);
-    } else {
-      counters[index] += 1;
-      number.style.background =
-        "conic-gradient(red calc(" + counters[index] + "%), gray 0deg)";
-      number.setAttribute("data-value", counters[index] + "%");
-      number.innerHTML = counters[index] + "%";
-    }
-  }, 15);
-});
+

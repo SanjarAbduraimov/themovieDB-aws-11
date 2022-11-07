@@ -54,20 +54,53 @@
 .crew__people {
   display: flex;
 }
-.movies__wrapper {
-  // display: flex;
-  // overflow: auto;
-  // height: 400px;
+
+.cast__people::-webkit-scrollbar {
+  height: 8px;
+  border-radius: 15px;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
-body::-webkit-scrollbar {
-  width: 8px;
-  background-color: #fff;
-}
-
-body::-webkit-scrollbar-thumb {
+.cast__people::-webkit-scrollbar-thumb {
   background-color: #dbdbdb;
   border-radius: 15px;
+}
+.cast__row {
+  display: flex;
+}
+.cast__col {
+  width: 75%;
+}
+.casts__col {
+  width: 25%;
+  // display: flex;
+  // justify-content: center;
+  .networks .col {
+    padding:.5rem 2rem;
+    font-size: 2.3rem; 
+  }
+  .keyword__wreap {
+    padding: 0 1rem;
+    margin-top: 2rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  .movie__keyword {
+    padding: 1rem 0;
+      font-size: 1.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      .col__key {
+        // width: 50%;
+        border: 1px solid  #dbdbdb;
+        margin: 1rem .5rem .5rem .5rem;
+        padding: .5rem 1rem;
+        border-radius: 1rem;
+        background-color: rgb(229, 229, 229);
+        cursor: pointer;
+      }
+  }
 }
 
 .movies__wrapper::-webkit-scrollbar {
@@ -96,95 +129,9 @@ body::-webkit-scrollbar-thumb {
   
 }
 
-.movie__row {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  .moviecol {
-    margin-right: 3rem;
-  }
-  .movie_icons {
-    background-color:$mainBlue;
-    padding: 1.5rem 1.6rem;
-    border-radius: 50%;
-  }
-  .trealler {
-    margin-left: 4rem;
-  }
-}
-.overvave {
-  font-size: 1.9rem;
-  padding: 1rem 0;
-}
-
-.nav__part {
-  .dropdow-content a {
-    float: none;
-    color: black;
-    padding: 5px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  .dropdow-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    border: 1px solid rgba(99, 99, 99, 0.527);
-    border-radius: 0.5rem;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    padding: 0.8rem;
-  }
-  .dropdow .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 1rem 0;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-  }
-  .dropdow:hover .dropdow-content {
-    display: block;
-  }
-}
-
-.cast__people.row {
-    gap: 20px;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 1rem 0;
-  
-}
-.cast__people.row .col {
-  flex: 1 150px;
-}
-.card__moviess {
-  border: 1px solid rgba(53, 52, 52, 0.274);
-  width: 15rem;
-  border-radius: 1rem ;
-  height: 28rem;
-  .card__img--wrapper {
-    height: 20rem;
-      object-fit: cover;
-      overflow: hidden;
-    img {
-      width: 100%;
-      
-    }
-  }
-  
- 
-}
-
-
-.search__results {
-  gap: 20px;
-}
-.search__results.row .col {
-  flex: 1 250px;
+.circles {
+  padding: 3rem;
+  background-color: #dbdbdb;
+  border: 1px solid;
+  border-radius: 50%;
 }
