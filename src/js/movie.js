@@ -36,14 +36,27 @@ export function disMoviesDetails(data) {
               </div>
           </div>
           <div class="movie__row">
-              <div class="moviecol circles">
-              <span class="circlee">${popularuty}</span></div>
-              <div class="moviecol">User Score</div>
-              <div class="moviecol">==</div>
-              <div class="moviecol">love</div>
-              <div class="moviecol">page</div>
-              <div class="moviecol">sevimli</div>
-              <div class="moviecol">pley triller</div>
+              <div class="moviecol">
+              <span class="#">${popularuty}</span></div>
+              <div class="moviecol">
+              <h4>User</h4>
+              <h4> Score</h4>
+            
+              </div>
+              <div class="moviecol movie_icons"><i class="fa-solid fa-bars"></i>
+              </div>
+              <div class="moviecol movie_icons">
+              
+ 
+              <i class="fa-solid fa-heart"></i></div>
+              <div class="moviecol movie_icons">
+              <i class="fa-solid fa-bookmark"></i></div>
+              <div class="moviecol movie_icons">
+              <i class="fa-solid fa-star"></i></div>
+              <div class="moviecol trealler">
+               
+              <button class="js-modal-btn" data-video-id="${results[0].key}"><i class="fa-solid fa-play"></i> Pley Triller</div></button>
+
           </div>
           
           <div class="details__text">
@@ -64,6 +77,47 @@ export function disMoviesDetails(data) {
       </div>
       </div>
           `;
+  authorMenuNode.innerHTML = result;
+  let modal = new ModalVideo(".js-modal-btn", {
+    channel: "youtube",
+  });
+}
+export function displayNetwork(data) {
+  console.log(data);
+  const {facebook_id, instagram_id, twitter_id} = data;
+  console.log(facebook_id);
+
+  let result = "";
+  const authorMenuNode = document.querySelector(".casts__col .row");
+  result += `
+   <div class="col"> 
+   <a href="https://www.facebook.com/${facebook_id}" target="_blank"><i class="fa-brands fa-square-facebook"></i></a>
+   </div>
+   <div class="col"> 
+   <a href="https://twitter.com/${twitter_id}" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+ 
+   </div>
+   <div class="col"> 
+   <a href="https://instagram.com/${instagram_id}" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+ 
+   </div>
+   
+   <div class="col"> 
+   <a href="./index.html"><i class="fa-solid fa-share-from-square"></i></a>
+ 
+   </div>
+    `;
+  authorMenuNode.innerHTML = result;
+}
+export function displayKeyword(data) {
+  let result = "";
+  const authorMenuNode = document.querySelector(".movie__keyword ");
+  data.forEach((person) => {
+    const { id, name  } = person;
+    result += `
+    <p class="col__key" data-id="${id}">  ${name} </p>
+    `;
+  });
   authorMenuNode.innerHTML = result;
 }
 
