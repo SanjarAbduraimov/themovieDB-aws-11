@@ -39,11 +39,18 @@ import {
   initializeActorEvent,
   displayCastActor,
   displayCrewActor,
+  initializeActorMenuEvent, 
 } from "./actor";
+import { displaySearchMovies } from "./movies";
 import { displaySearchMovies } from "./movies";
 const _ = require(`lodash`);
 
+
 document.addEventListener("DOMContentLoaded", async (e) => {
+  addEventListener("popstate", (event) => {
+    location.reload();
+  });
+
   addEventListener("popstate", (event) => {
     location.reload();
   });
@@ -127,7 +134,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       (data) => {
         displayCastActor(data.data.cast);
         displayCrewActor(data.data.crew);
+        initializeActorMenuEvent()
       }
+
     );
   }
 
