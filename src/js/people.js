@@ -34,6 +34,7 @@ export function displayPeople(peoples = []) {
         </div>
         <div class="card__content">John Doe</div>
       </div>
+      </div>
       
         `;
   });
