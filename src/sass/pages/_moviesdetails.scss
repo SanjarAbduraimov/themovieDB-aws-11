@@ -316,3 +316,13 @@
   display: flex;
   justify-content: space-between;
 }
+.search__results {
+  display: flex;
+  flex-wrap: wrap;
+}
+.movies__col__wrapper {
+  width: 30%;
+}
+.movies__col__wrap {
+  width: 70%;
+}

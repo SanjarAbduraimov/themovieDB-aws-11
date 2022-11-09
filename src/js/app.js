@@ -102,8 +102,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     // fetchDetails(Type.movie, history.state.id).then((data) => {});
     // fetchMovieVedio(Type.movie, history.state.id).then((data) => {});
     displayMovieStatus(promise[0].data);
-    fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then(
-      (data) => {
+    fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then((data) => {
         displayCast(data.data.cast);
       }
     );
