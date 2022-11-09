@@ -8,7 +8,7 @@ import ModalVideo from "modal-video";
 
 export function cardTemplate(item) {
   const { id, img, title, release_date } = item;
-  return `<div class="col"> <article class="card card__hero card__hero" data-id="${id}">
+  return `<div class="col"> <article class="card card__hero " data-id="${id}">
   <div class="card__header dropdown">
     <svg
       id="glyphicons-basic"
