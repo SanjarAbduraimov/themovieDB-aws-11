@@ -46,6 +46,7 @@ import {
 } from "./actor";
 import { displaySearchMovies } from "./movies";
 import { displaySearchMovies } from "./movies";
+import { displaySearchMovie } from "./movies";
 const _ = require(`lodash`);
 
 
@@ -193,6 +194,10 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       displaySearchMovies(data.data.results);
       initializeMEvent();
 
+    });
+    fetch(Type.movie, status.popular).then(({ data }) => {
+      console.log(data.results);
+      displaySearchMovies(data.results);
     });
   }
 
