@@ -1,5 +1,7 @@
 import configs from "../configs";
 import ModalVideo from "modal-video";
+import moment from "moment/moment";
+
 export function disMoviesDetails(data) {
   let result = "";
   const authorMenuNode = document.querySelector(".movies__detailes");
@@ -14,6 +16,12 @@ export function disMoviesDetails(data) {
   } = data;
   console.log(data, "data from movie details");
   const popularuty = vote_average;
+
+  if (!results) {
+    let vedio = document.querySelector(".trealler");
+    let tempVedio = vedio.innerHTML += "";
+    return tempVedio;
+  }
 
   const img = poster_path
     ? configs.baseImgURL + poster_path
@@ -109,6 +117,57 @@ export function displayNetwork(data) {
     `;
   authorMenuNode.innerHTML = result;
 }
+export function displayMovieStatus(data) {
+  console.log(data);
+  const { budget, revenue, status, original_language} = data;
+
+  let result = "";
+  const authorMenuNode = document.querySelector(".movie__status");
+  result += `
+     <h4>Status</h4>
+     <div class="status">${status}</div>
+     <h4>Original language</h4>
+     <div class="status">${original_language}</div>
+     <h4>Budget</h4>
+     <div class="status">$${budget}</div>
+     <h4>Revenue</h4>
+     <div class="status">$${revenue}</div>
+   
+    `;
+  authorMenuNode.innerHTML = result;
+}
+
+export function displayRecomaditions(data) {
+  console.log(data);
+  let result = "";
+  const authorMenuNode = document.querySelector(".recommendations");
+  data.forEach((movies) => {
+    const { id, title, backdrop_path} = movies;
+    const img = backdrop_path
+  ? configs.baseImgURL + backdrop_path
+  : configs.defaultImg + "500";
+
+    result += `
+    <div class="col"> <article class="card card__recommadation" data-id="${id}">
+    <div class="card__img--wrapper">
+      <img
+        width="100%"
+        class="card__img"
+        src="${img}"
+        alt="${title}"
+      />
+    </div>
+    <div class="card__body card__percentage cart-flex">
+      <h4 class="card__title">${title}</h4>
+      <div class="percentage">${81}</div>
+    </div>
+  </article></div>
+      `;
+  })
+ 
+  authorMenuNode.innerHTML = result;
+}
+  
 export function displayKeyword(data) {
   let result = "";
   const authorMenuNode = document.querySelector(".movie__keyword ");

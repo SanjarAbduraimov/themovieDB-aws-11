@@ -151,3 +151,15 @@ export function fetchKeyword(type, keyword_id) {
   );
 }
 
+export function fetchRecommendation(type, id, page=1) {
+  if (!id) {
+    throw "Please insert id parametr";
+  }
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  return axios.get(
+    `${type}/${id}/recommendations?api_key=${apiKey}&language=${navigator.languages[0]}&page=${page}`
+  );
+}
+

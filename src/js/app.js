@@ -13,6 +13,7 @@ import {
   fetchlistMovie,
   fetchKeywordMovie,
   fetchKeyword,
+  fetchRecommendation,
 } from "../api";
 import {
   disMoviesDetails,
@@ -21,6 +22,8 @@ import {
   initializeCastEvent,
   displayNetwork,
   displayKeyword,
+  displayMovieStatus,
+  displayRecomaditions,
 } from "./movie";
 import { displayPeople } from "./people";
 import {
@@ -98,6 +101,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     disMoviesDetails({ ...promise[0].data, ...promise[1].data });
     // fetchDetails(Type.movie, history.state.id).then((data) => {});
     // fetchMovieVedio(Type.movie, history.state.id).then((data) => {});
+    displayMovieStatus(promise[0].data);
     fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then(
       (data) => {
         displayCast(data.data.cast);
@@ -109,7 +113,13 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     fetchKeywordMovie(Type.movie, history.state.id).then(({data})=>{
       console.log(data);
       displayKeyword(data.keywords);
+    
     });
+    fetchRecommendation(Type.movie, history.state.id).then((data)=>{
+      console.log(data);
+      displayRecomaditions(data.data.results)
+      initializeMEvent()
+    })
     eventKeywords();
     initializeCastEvent();
   }

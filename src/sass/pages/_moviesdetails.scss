@@ -271,3 +271,48 @@
     padding: 2rem;
   }
 }
+.movie__status {
+  padding: 1rem 0;
+  h4 , .status{
+    padding: .5rem;
+  }
+}
+
+
+
+.recommendations.row {
+  gap: 20px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem 0;
+}
+
+.recommendations.row::-webkit-scrollbar {
+  height: 8px;
+  border-radius: 15px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.recommendations::-webkit-scrollbar-thumb {
+  background-color: #dbdbdb;
+  border-radius: 15px;
+}
+.card__recommadation {
+  width: 25rem;
+  height: 20rem;
+  .card__img--wrapper {
+    height: 17rem;
+    object-fit: cover;
+  }
+}
+.recomadition__title {
+  margin-top: 2rem;
+  padding: 1rem 0;
+}
+.cart-flex {
+  display: flex;
+  justify-content: space-between;
+}
