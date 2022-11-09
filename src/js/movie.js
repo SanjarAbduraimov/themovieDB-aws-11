@@ -16,13 +16,9 @@ export function disMoviesDetails(data) {
   } = data;
   console.log(data, "data from movie details");
   const popularuty = vote_average;
-
-  if (!results) {
-    let vedio = document.querySelector(".trealler");
-    let tempVedio = vedio.innerHTML += "";
-    return tempVedio;
-  }
-
+  let btnHtml = results.length
+    ? `<button class="js-modal-btn" data-video-id="${results[0]?.key}"><i class="fa-solid fa-play"></i> Pley Triller</div></button>`
+    : "";
   const img = poster_path
     ? configs.baseImgURL + poster_path
     : configs.defaultImg + "500";
@@ -62,8 +58,7 @@ export function disMoviesDetails(data) {
               <div class="moviecol movie_icons">
               <i class="fa-solid fa-star"></i></div>
               <div class="moviecol trealler">
-               
-              <button class="js-modal-btn" data-video-id="${results[0]?.key}"><i class="fa-solid fa-play"></i> Pley Triller</div></button>
+              ${btnHtml}
 
           </div>
   
@@ -92,7 +87,7 @@ export function disMoviesDetails(data) {
 }
 export function displayNetwork(data) {
   console.log(data);
-  const {facebook_id, instagram_id, twitter_id} = data;
+  const { facebook_id, instagram_id, twitter_id } = data;
   console.log(facebook_id);
 
   let result = "";
@@ -119,7 +114,7 @@ export function displayNetwork(data) {
 }
 export function displayMovieStatus(data) {
   console.log(data);
-  const { budget, revenue, status, original_language} = data;
+  const { budget, revenue, status, original_language } = data;
 
   let result = "";
   const authorMenuNode = document.querySelector(".movie__status");
@@ -142,10 +137,10 @@ export function displayRecomaditions(data) {
   let result = "";
   const authorMenuNode = document.querySelector(".recommendations");
   data.forEach((movies) => {
-    const { id, title, backdrop_path} = movies;
+    const { id, title, backdrop_path } = movies;
     const img = backdrop_path
-  ? configs.baseImgURL + backdrop_path
-  : configs.defaultImg + "500";
+      ? configs.baseImgURL + backdrop_path
+      : configs.defaultImg + "500";
 
     result += `
     <div class="col"> <article class="card card__recommadation" data-id="${id}">
@@ -163,16 +158,16 @@ export function displayRecomaditions(data) {
     </div>
   </article></div>
       `;
-  })
- 
+  });
+
   authorMenuNode.innerHTML = result;
 }
-  
+
 export function displayKeyword(data) {
   let result = "";
   const authorMenuNode = document.querySelector(".movie__keyword ");
   data.forEach((person) => {
-    const { id, name  } = person;
+    const { id, name } = person;
     result += `
     <p class="col__key" data-id="${id}">  ${name} </p>
     `;
@@ -255,4 +250,3 @@ export function initializeCastEvent() {
     location.reload();
   });
 }
-

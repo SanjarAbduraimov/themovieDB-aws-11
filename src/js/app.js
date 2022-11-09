@@ -34,26 +34,50 @@ import {
   initializeMEvent,
   displayMoviesUpcoming,
   displayVedioTreller,
-  
 } from "./home";
-import {eventKeywords, displayKeywords, displayKeywordResults, initializeKeyEvent} from "./keyword";
+import {
+  eventKeywords,
+  displayKeywords,
+  displayKeywordResults,
+  initializeKeyEvent,
+} from "./keyword";
 import {
   displayActor,
   initializeActorEvent,
   displayCastActor,
   displayCrewActor,
-  initializeActorMenuEvent, 
+  initializeActorMenuEvent,
 } from "./actor";
 import { displaySearchMovies } from "./movies";
 import { displaySearchMovies } from "./movies";
 const _ = require(`lodash`);
 
-
 document.addEventListener("DOMContentLoaded", async (e) => {
   addEventListener("popstate", (event) => {
     location.reload();
   });
+  document.addEventListener("click", (e) => {
+    const element = e.target;
 
+    let cardList = document.querySelectorAll(".card.show");
+    console.log("salom", cardList);
+    if (!cardList.length) return;
+
+    cardList?.forEach((card) => {
+      console.log(card);
+      card.classList.remove("show");
+      card.querySelector(".card__menu").classList.remove("show");
+    });
+    let isMenuBtn = element
+      .closest(".card__menu__btn")
+      ?.classList.contains("card__menu__btn");
+    if (isMenuBtn) {
+      let card__menu = element.closest(".card__menu__btn");
+      console.log(card__menu);
+      card__menu.nextElementSibling.classList.toggle("show");
+      card__menu.parentElement.parentElement.classList.toggle("show");
+    }
+  });
   addEventListener("popstate", (event) => {
     location.reload();
   });
@@ -62,7 +86,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   if (page === "/index.html" || page === "/") {
     fetch(Type.movie, status.popular)
       .then(({ data }) => {
-
         displayMovies(data.results);
         initializeMoveEvent();
         let showTv = document.querySelector(".show__tv");
@@ -78,20 +101,16 @@ document.addEventListener("DOMContentLoaded", async (e) => {
           showMovie.style.color = " rgb(3, 37, 65)";
           showTv.style.color = "rgb(187, 253, 206)";
         });
-      }).catch((err) => console.log(err));
-      // fetch(Type.movie, status.topRated).then(({data})=>{
-      //   // console.log(data);
-      //   fetchMovieVedio(Type.movie, data.results[0].id).then((data)=>{
-      //     let vedio = data.data.results
-      //     displayVedioTreller(vedio)
-      //   })
-        
-      // })
-    
-    
-   
-    
-    
+      })
+      .catch((err) => console.log(err));
+    // fetch(Type.movie, status.topRated).then(({data})=>{
+    //   // console.log(data);
+    //   fetchMovieVedio(Type.movie, data.results[0].id).then((data)=>{
+    //     let vedio = data.data.results
+    //     displayVedioTreller(vedio)
+    //   })
+
+    // })
   }
   if (page === "/movie.html" || page === "/movie") {
     const promise = await Promise.all([
@@ -102,23 +121,23 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     // fetchDetails(Type.movie, history.state.id).then((data) => {});
     // fetchMovieVedio(Type.movie, history.state.id).then((data) => {});
     displayMovieStatus(promise[0].data);
-    fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then((data) => {
+    fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then(
+      (data) => {
         displayCast(data.data.cast);
       }
     );
-    fetchlistMovie(Type.movie, history.state.id).then(({data})=>{
+    fetchlistMovie(Type.movie, history.state.id).then(({ data }) => {
       displayNetwork(data);
     });
-    fetchKeywordMovie(Type.movie, history.state.id).then(({data})=>{
+    fetchKeywordMovie(Type.movie, history.state.id).then(({ data }) => {
       console.log(data);
       displayKeyword(data.keywords);
-    
     });
-    fetchRecommendation(Type.movie, history.state.id).then((data)=>{
+    fetchRecommendation(Type.movie, history.state.id).then((data) => {
       console.log(data);
-      displayRecomaditions(data.data.results)
-      initializeMEvent()
-    })
+      displayRecomaditions(data.data.results);
+      initializeMEvent();
+    });
     eventKeywords();
     initializeCastEvent();
   }
@@ -143,9 +162,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       (data) => {
         displayCastActor(data.data.cast);
         displayCrewActor(data.data.crew);
-        initializeActorMenuEvent()
+        initializeActorMenuEvent();
       }
-
     );
   }
 
@@ -192,17 +210,15 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       formSearchAll.reset();
       displaySearchMovies(data.data.results);
       initializeMEvent();
-
     });
   }
 
   if (page === "/keyword.html" || page === "/keyword") {
-    fetchKeyword(Type.keyword, history.state.id).then(({data})=>{
+    fetchKeyword(Type.keyword, history.state.id).then(({ data }) => {
       console.log(data);
-      displayKeywords(data.results)
-      displayKeywordResults(data.total_results)
-      
-    })
+      displayKeywords(data.results);
+      displayKeywordResults(data.total_results);
+    });
     initializeKeyEvent();
   }
 });
