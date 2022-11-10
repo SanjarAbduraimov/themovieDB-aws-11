@@ -1,14 +1,12 @@
 import moment from "moment/moment";
 import configs from "../configs";
-import { fetch } from "../api"
+import { fetch } from "../api";
 import Type, { status, credits, sortBy } from "../constants";
 import ModalVideo from "modal-video";
 
-
-
 export function cardTemplate(item) {
   const { id, img, title, release_date } = item;
-  return `<div class="col"> <article class="card card__hero card__hero" data-id="${id}">
+  return `<div class="col"> <article class="card card__hero " data-id="${id}">
   <div class="card__header dropdown">
     <svg
       id="glyphicons-basic"
@@ -70,8 +68,6 @@ export function displayMovies(data = []) {
     result += cardTemplate({ ...docs, img });
   });
   authorMenuNode.innerHTML = result;
-  
-  
 }
 export function displayMovie(data = []) {
   let result = "";
@@ -84,8 +80,6 @@ export function displayMovie(data = []) {
     result += cardTemplate({ ...docs, img });
   });
   authorMenuNode.innerHTML = result;
-  
-  
 }
 export function displayMoviesUpcoming(data = []) {
   let result = "";
@@ -98,22 +92,18 @@ export function displayMoviesUpcoming(data = []) {
     result += cardTemplate({ ...docs, img });
   });
   authorMenuNode.innerHTML = result;
-  
-  
 }
-
-
 
 export function displayTv(data = []) {
   let result = "";
 
   const authorMenuNode = document.querySelector(".movies__wrapper");
   data.forEach((movies) => {
-    const { backdrop_path, id, name, release_date} = movies;
+    const { backdrop_path, id, name, release_date } = movies;
     const imgs = backdrop_path
       ? configs.baseImgURL + backdrop_path
       : configs.defaultImg + "500";
-    result +=    ` <div class="col"> <article class="card card__hero" data-id="${id}">
+    result += ` <div class="col"> <article class="card card__hero" data-id="${id}">
     <div class="card__header dropdown">
       <svg
         id="glyphicons-basic"
@@ -165,14 +155,13 @@ export function displayTv(data = []) {
   </article></div>`;
   });
   authorMenuNode.innerHTML = result;
-  let showMovie = document.querySelector(".show__movie")
-  showMovie.addEventListener("click", ()=>{
-    fetch(Type.movie, status.popular).then((data)=>{
+  let showMovie = document.querySelector(".show__movie");
+  showMovie.addEventListener("click", () => {
+    fetch(Type.movie, status.popular).then((data) => {
       console.log(data);
       history.go(0);
-    })
-      
-  })
+    });
+  });
 }
 
 export function displayVedioTreller(data = []) {
@@ -180,11 +169,11 @@ export function displayVedioTreller(data = []) {
 
   const authorMenuNode = document.querySelector(".movies__wrapper--vedios");
   data.forEach((movies) => {
-    const { backdrop_path, id, name, release_date} = movies;
+    const { backdrop_path, id, name, release_date } = movies;
     const imgs = backdrop_path
       ? configs.baseImgURL + backdrop_path
       : configs.defaultImg + "500";
-    result +=    `
+    result += `
     <div class="col"> <article class="card" data-id="${id}">
     <div class="card__img--wrapper">
       <img
@@ -203,35 +192,32 @@ export function displayVedioTreller(data = []) {
   authorMenuNode.innerHTML = result;
 }
 
+// export function initializeMEvent() {
+//   const cardNodeList = document.querySelectorAll(".card");
+//   cardNodeList.forEach((card) => {
+//     card.addEventListener("click", (event) => {
+//       const element = event.target;
+//       const id = card?.dataset?.id;
+//       let showMovieDetails =
+//         element.closest(".card__img")?.classList.contains("card__img") ||
+//         element.closest(".card__title")?.classList.contains("card__title");
+//       let isMenuBtn = element
+//         .closest(".card__menu__btn")
+//         ?.classList.contains("card__menu__btn");
+//       if (showMovieDetails) {
+//         if (!id) return;
+//         history.pushState({ id }, null, "/movie.html");
+//         location.reload();
+//       }
+//       if (isMenuBtn) {
 
-
-
-export function initializeMEvent() {
-  const cardNodeList = document.querySelectorAll(".card");
-  cardNodeList.forEach((card) => {
-    card.addEventListener("click", (event) => {
-      const element = event.target;
-      const id = card?.dataset?.id;
-      let showMovieDetails =
-        element.closest(".card__img")?.classList.contains("card__img") ||
-        element.closest(".card__title")?.classList.contains("card__title");
-      let isMenuBtn = element
-        .closest(".card__menu__btn")
-        ?.classList.contains("card__menu__btn");
-      if (showMovieDetails) {
-        if (!id) return;
-        history.pushState({ id }, null, "/movie.html");
-        location.reload();
-      }
-      if (isMenuBtn) {
-
-        let cardContent = card.querySelector(".dropdown__content");
-        cardContent.classList.toggle("show");
-        card.classList.toggle("show");
-      }
-    });
-  });
-}
+//         let cardContent = card.querySelector(".dropdown__content");
+//         cardContent.classList.toggle("show");
+//         card.classList.toggle("show");
+//       }
+//     });
+//   });
+// }
 
 export function initializeMoveEvent() {
   const cardNodeList = document.querySelectorAll(".card");
@@ -258,22 +244,10 @@ export function initializeMoveEvent() {
         location.reload();
       }
       if (isMenuBtn) {
-        // let focusedElement = document.querySelectorAll(
-        //   ".card dropdown__content.show"
-        // );
-        // focusedElement.forEach((item) => {
-        //   item.classList.remove("show");
-        //   item.closest(".dropdown__content").classList.remove();
-        // });
         let cardContent = card.querySelector(".dropdown__content");
         cardContent.classList.toggle("show");
         card.classList.toggle("show");
       }
     });
   });
-
 }
-
-
-
-  
