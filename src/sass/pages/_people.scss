@@ -6,9 +6,18 @@
 .people {
     display: flex;
     flex-wrap: wrap;
+    gap: 2rem;
 }
 .people__card{
-    margin-right: 4rem;
-    width: 235px;
-    height: 285px;
+    flex: 1;
+    min-width: 235px;
+    // padding-top: 10px;
+    border: 1px solid #dbdbdb;
+    box-shadow: 0 0 3px 1px #dbdbdb;
+
+    img {
+        height: 235px;
+        object-fit: cover;
+        object-position: 50% 50%;
+    }
 }
