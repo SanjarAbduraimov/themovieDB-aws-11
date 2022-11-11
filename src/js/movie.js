@@ -2,12 +2,13 @@ import configs from "../configs";
 import ModalVideo from "modal-video";
 import moment from "moment/moment";
 
-export function disMoviesDetails(data) {
+export function disMoviesDetails(data = []) {
   let result = "";
   const authorMenuNode = document.querySelector(".movies__detailes");
   const {
     poster_path,
     title,
+    name,
     release_date,
     tagline,
     overview,
@@ -22,7 +23,7 @@ export function disMoviesDetails(data) {
   const img = poster_path
     ? configs.baseImgURL + poster_path
     : configs.defaultImg + "500";
-
+  const nameTitle = name ? name : title;
   result += `
       <div class="moviestyle">
       <div class="details__moviess">
@@ -32,7 +33,7 @@ export function disMoviesDetails(data) {
       </div>
       <div class="details__moviess_col">
           <div class="details__title">
-          <h1>${title}</h1> 
+          <h1>${nameTitle}</h1> 
               <div class="films__details">
                   <p class="date__details"></p>
                   <p class="films__title_details"></p>
@@ -58,10 +59,7 @@ export function disMoviesDetails(data) {
               <div class="moviecol movie_icons">
               <i class="fa-solid fa-star"></i></div>
               <div class="moviecol trealler">
-              ${btnHtml}
-
-          </div>
-  
+              ${btnHtml}</div>
           <div class="details__text">
               <p class="tagline">
                   ${tagline}
@@ -76,16 +74,22 @@ export function disMoviesDetails(data) {
                   <p class="creter">Creator</p>
               </div>
           </div>
+          </div>
+          
+  
+          
   
       </div>
+      
       </div>
+      
           `;
   authorMenuNode.innerHTML = result;
   let modal = new ModalVideo(".js-modal-btn", {
     channel: "youtube",
   });
 }
-export function displayNetwork(data) {
+export function displayNetwork(data = []) {
   console.log(data);
   const { facebook_id, instagram_id, twitter_id } = data;
   console.log(facebook_id);
@@ -112,9 +116,11 @@ export function displayNetwork(data) {
     `;
   authorMenuNode.innerHTML = result;
 }
-export function displayMovieStatus(data) {
+export function displayMovieStatus(data = []) {
   console.log(data);
   const { budget, revenue, status, original_language } = data;
+  const budgets = budget ? budget : "";
+  const revenues = revenue ? revenue : "";
 
   let result = "";
   const authorMenuNode = document.querySelector(".movie__status");
@@ -124,24 +130,24 @@ export function displayMovieStatus(data) {
      <h4>Original language</h4>
      <div class="status">${original_language}</div>
      <h4>Budget</h4>
-     <div class="status">$${budget}</div>
+     <div class="status">$${budgets}</div>
      <h4>Revenue</h4>
-     <div class="status">$${revenue}</div>
+     <div class="status">$${revenues}</div>
    
     `;
   authorMenuNode.innerHTML = result;
 }
 
-export function displayRecomaditions(data) {
+export function displayRecomaditions(data = [] ) {
   console.log(data);
   let result = "";
   const authorMenuNode = document.querySelector(".recommendations");
   data.forEach((movies) => {
-    const { id, title, backdrop_path } = movies;
+    const { id, title, backdrop_path , name} = movies;
     const img = backdrop_path
       ? configs.baseImgURL + backdrop_path
       : configs.defaultImg + "500";
-
+    const nameTitle = name ? name : title;
     result += `
     <div class="col"> <article class="card card__recommadation" data-id="${id}">
     <div class="card__img--wrapper">
@@ -149,11 +155,11 @@ export function displayRecomaditions(data) {
         width="100%"
         class="card__img"
         src="${img}"
-        alt="${title}"
+        alt="${nameTitle}"
       />
     </div>
     <div class="card__body card__percentage cart-flex">
-      <h4 class="card__title">${title}</h4>
+      <h4 class="card__title">${nameTitle}</h4>
       <div class="percentage">${81}</div>
     </div>
   </article></div>
@@ -163,7 +169,7 @@ export function displayRecomaditions(data) {
   authorMenuNode.innerHTML = result;
 }
 
-export function displayKeyword(data) {
+export function displayKeyword(data = []) {
   let result = "";
   const authorMenuNode = document.querySelector(".movie__keyword ");
   data.forEach((person) => {
@@ -175,7 +181,7 @@ export function displayKeyword(data) {
   authorMenuNode.innerHTML = result;
 }
 
-export function displayCast(cast) {
+export function displayCast(cast = []) {
   let result = "";
   const authorMenuNode = document.querySelector(".cast__people");
   cast.forEach((person) => {
@@ -248,5 +254,95 @@ export function initializeCastEvent() {
     if (!id) return;
     history.pushState({ id }, null, "/actor.html");
     location.reload();
+  });
+}
+
+export function displayTvSearch(data = []) {
+  let result = "";
+
+  const authorMenuNode = document.querySelector(".search__results");
+  data.forEach((movies) => {
+    const { backdrop_path, id, name, release_date } = movies;
+    const imgs = backdrop_path
+      ? configs.baseImgURL + backdrop_path
+      : configs.defaultImg + "500";
+    result += ` <div class="col"> <article class="card card__hero" data-id="${id}">
+    <div class="card__header dropdown">
+      <svg
+        id="glyphicons-basic"
+        class="card__menu__btn dropdown__btn"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 32 32"
+      >
+        <path
+          id="circle-more"
+          d="M16,4A12,12,0,1,0,28,16,12.01312,12.01312,0,0,0,16,4ZM10,18a2,2,0,1,1,2-2A2.00006,2.00006,0,0,1,10,18Zm6,0a2,2,0,1,1,2-2A2.00006,2.00006,0,0,1,16,18Zm6,0a2,2,0,1,1,2-2A2.00006,2.00006,0,0,1,22,18Z"
+          fill="#ffffff80"
+        ></path>
+      </svg>
+      <ul class="card__menu dropdown__content">
+        <li class="dropdown__item">
+          <a href="dropdown__link">
+            <i class="fas fa-heart"></i> Add to list
+          </a>
+        </li>
+        <li class="dropdown__item">
+          <a href="dropdown__link">
+            <i class="fas fa-heart"></i> Favourite
+          </a>
+        </li>
+        <li class="dropdown__item">
+          <a href="dropdown__link">
+            <i class="fas fa-heart"></i> Watchlist
+          </a>
+        </li>
+        <li class="dropdown__item">
+          <a href="dropdown__link">
+            <i class="fas fa-heart"></i> Your raiting
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="card__img--wrapper">
+      <img
+        class="card__img"
+        src="${imgs}"
+        alt="${name}"
+      />
+    </div>
+    <div class="card__body card__percentage">
+      <div class="percentage">${81}</div>
+      <h4 class="card__title">${name}</h4>
+      <p class="card__text">${moment(release_date).format("MMM DD, YYYY")}</p>
+    </div>
+  </article></div>`;
+  });
+  authorMenuNode.innerHTML = result;
+}
+
+export function initializeTvEvent() {
+  const cardNodeList = document.querySelectorAll(".card");
+  cardNodeList.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      const element = event.target;
+      const id = card?.dataset?.id;
+      let showMovieDetails =
+        element.closest(".card__img")?.classList.contains("card__img") ||
+        element.closest(".card__title")?.classList.contains("card__title");
+      let isMenuBtn = element
+        .closest(".card__menu__btn")
+        ?.classList.contains("card__menu__btn");
+      if (showMovieDetails) {
+        if (!id) return;
+        history.pushState({ id }, null, "/tv.html");
+        location.reload();
+      }
+      if (isMenuBtn) {
+
+        let cardContent = card.querySelector(".dropdown__content");
+        cardContent.classList.toggle("show");
+        card.classList.toggle("show");
+      }
+    });
   });
 }
