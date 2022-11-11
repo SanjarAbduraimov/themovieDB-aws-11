@@ -192,32 +192,32 @@ export function displayVedioTreller(data = []) {
   authorMenuNode.innerHTML = result;
 }
 
-// export function initializeMEvent() {
-//   const cardNodeList = document.querySelectorAll(".card");
-//   cardNodeList.forEach((card) => {
-//     card.addEventListener("click", (event) => {
-//       const element = event.target;
-//       const id = card?.dataset?.id;
-//       let showMovieDetails =
-//         element.closest(".card__img")?.classList.contains("card__img") ||
-//         element.closest(".card__title")?.classList.contains("card__title");
-//       let isMenuBtn = element
-//         .closest(".card__menu__btn")
-//         ?.classList.contains("card__menu__btn");
-//       if (showMovieDetails) {
-//         if (!id) return;
-//         history.pushState({ id }, null, "/movie.html");
-//         location.reload();
-//       }
-//       if (isMenuBtn) {
+export function initializeMEvent() {
+  const cardNodeList = document.querySelectorAll(".card");
+  cardNodeList.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      const element = event.target;
+      const id = card?.dataset?.id;
+      let showMovieDetails =
+        element.closest(".card__img")?.classList.contains("card__img") ||
+        element.closest(".card__title")?.classList.contains("card__title");
+      let isMenuBtn = element
+        .closest(".card__menu__btn")
+        ?.classList.contains("card__menu__btn");
+      if (showMovieDetails) {
+        if (!id) return;
+        history.pushState({ id }, null, "/movie.html");
+        location.reload();
+      }
+      if (isMenuBtn) {
 
-//         let cardContent = card.querySelector(".dropdown__content");
-//         cardContent.classList.toggle("show");
-//         card.classList.toggle("show");
-//       }
-//     });
-//   });
-// }
+        let cardContent = card.querySelector(".dropdown__content");
+        cardContent.classList.toggle("show");
+        card.classList.toggle("show");
+      }
+    });
+  });
+}
 
 export function initializeMoveEvent() {
   const cardNodeList = document.querySelectorAll(".card");

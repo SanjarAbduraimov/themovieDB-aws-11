@@ -27,6 +27,8 @@
       .details__moviess_col {
         width: 70%;
         padding: 10rem 3rem;
+        display: flex;
+        flex-flow: column;
         .movie__row {
           display: flex;
         }

@@ -1,6 +1,6 @@
 import "./style";
 import "../assets/modal-video.min.css";
-import Type, { status, credits, sortBy } from "../constants";
+import Type, { status, credits, sortBy, sortByTv } from "../constants";
 import {
   fetch,
   fetchGenres,
@@ -18,12 +18,13 @@ import {
 import {
   disMoviesDetails,
   displayCast,
-  displayCrew,
   initializeCastEvent,
   displayNetwork,
   displayKeyword,
   displayMovieStatus,
   displayRecomaditions,
+  displayTvSearch,
+  initializeTvEvent,
 } from "./movie";
 import { displayPeople } from "./people";
 import {
@@ -32,8 +33,6 @@ import {
   displayTv,
   displayMovie,
   initializeMEvent,
-  displayMoviesUpcoming,
-  displayVedioTreller,
 } from "./home";
 import {
   eventKeywords,
@@ -50,7 +49,6 @@ import {
 } from "./actor";
 import { displaySearchMovies } from "./movies";
 import { displaySearchMovies } from "./movies";
-import { displaySearchMovie } from "./movies";
 const _ = require(`lodash`);
 
 document.addEventListener("DOMContentLoaded", async (e) => {
@@ -61,11 +59,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     const element = e.target;
 
     let cardList = document.querySelectorAll(".card.show");
-    console.log("salom", cardList);
     if (!cardList.length) return;
 
     cardList?.forEach((card) => {
-      console.log(card);
       card.classList.remove("show");
       card.querySelector(".card__menu").classList.remove("show");
     });
@@ -74,7 +70,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       ?.classList.contains("card__menu__btn");
     if (isMenuBtn) {
       let card__menu = element.closest(".card__menu__btn");
-      console.log(card__menu);
       card__menu.nextElementSibling.classList.toggle("show");
       card__menu.parentElement.parentElement.classList.toggle("show");
     }
@@ -94,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
           fetch(Type.tv, status.popular).then(({ data }) => {
             console.log(data);
             displayTv(data.results);
-            initializeMEvent();
+            initializeTvEvent();
           });
           let showMovie = document.querySelector(".show__movie");
           showMovie.style.backgroundColor = "#fff";
@@ -217,6 +212,85 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       displaySearchMovies(data.results);
     });
   }
+  if (page === "/tvsearch.html" || page === "/tvsearch") {
+    let genreWrapper = document.querySelector("#with_genres");
+    let sortSelect = document.querySelector("#activitySelector");
+    // let languageSelect = document.querySelector("#languageSelector");
+    let sortTemplate = "";
+    Object.entries(sortByTv).forEach((option) => {
+      sortTemplate += `<option value="${option[1]}">${option[0]}</option>`;
+    });
+    sortSelect.innerHTML = sortTemplate;
+    const promise = await Promise.all(
+      [fetchGenres, fetchLanguages].map((func) => func(Type.tv))
+    );
+    let genresTemplate = "";
+    promise[0].data.genres.forEach((genre) => {
+      genresTemplate += `<li><input type="checkbox" id=${genre.id} value=${genre.id} name="with_genres" /> <label for="${genre.id}">${genre.name}</label></li>`;
+    });
+    genreWrapper.innerHTML = genresTemplate;
+
+    // let languageTemplate = "";
+    // promise[1].data.forEach((language) => {
+    //   languageTemplate += `<option value="${language.english_name}">${language.english_name}</option>`;
+    // });
+    // languageSelect.innerHTML = languageTemplate;
+
+    const formSearchAll = document.forms[0];
+    formSearchAll.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(formSearchAll);
+      const queryStringObj = {};
+      for (var pair of formData.entries()) {
+        if (queryStringObj[pair[0]]) {
+          queryStringObj[pair[0]] += `,${pair[1]}`;
+        } else {
+          queryStringObj[pair[0]] = pair[1];
+        }
+      }
+
+      let data = await fetchSearch(Type.tv, queryStringObj);
+      console.log(data, "tamom");
+      // })
+      formSearchAll.reset();
+      displayTvSearch(data.data.results);
+      initializeTvEvent();
+    });
+    fetch(Type.tv, status.popular).then(({ data }) => {
+      console.log(data.results);
+      displayTvSearch(data.results);
+      initializeTvEvent();
+    });
+  }
+  if (page === "/tv.html" || page === "/tv") {
+    const promise = await Promise.all([
+      fetchDetails(Type.tv, history.state.id),
+      fetchMovieVedio(Type.tv, history.state.id),
+    ]);
+    disMoviesDetails({ ...promise[0].data, ...promise[1].data });
+    // fetchDetails(Type.movie, history.state.id).then((data) => {});
+    // fetchMovieVedio(Type.movie, history.state.id).then((data) => {});
+    displayMovieStatus(promise[0].data);
+    fetchMovieCredits(Type.tv, history.state.id, credits.movieCredits).then(
+      (data) => {
+        displayCast(data.data.cast);
+      }
+    );
+    fetchlistMovie(Type.tv, history.state.id).then(({ data }) => {
+      displayNetwork(data);
+    });
+    fetchKeywordMovie(Type.tv, history.state.id).then(({ data }) => {
+      console.log(data);
+      displayKeyword(data.keywords);
+    });
+    fetchRecommendation(Type.tv, history.state.id).then((data) => {
+      console.log(data);
+      displayRecomaditions(data.data.results);
+      initializeTvEvent();
+    });
+    eventKeywords();
+    initializeCastEvent();
+  }
 
   if (page === "/keyword.html" || page === "/keyword") {
     fetchKeyword(Type.keyword, history.state.id).then(({ data }) => {
@@ -227,3 +301,4 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     initializeKeyEvent();
   }
 });
+

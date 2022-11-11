@@ -3,7 +3,7 @@ const type = {
   movie: "movie",
   tv: "tv",
   list: "list",
-  keyword: "keyword"
+  keyword: "keyword",
 };
 const status = {
   popular: "popular",
@@ -26,4 +26,16 @@ const sortBy = {
   "title Z-A": "original_title.desc",
 };
 
-export { sortBy, credits, status, type as default };
+const sortByTv = {
+  "popularity Descending": "popularity.desc",
+  "popularity Ascending": "popularity.asc",
+  "rating Descending": "vote_average.desc",
+  "rating Ascending": "vote_average.asc",
+  "release Date Descending": "first_air_date.desc",
+  "release Date Ascending": "first_air_date.asc",
+};
+
+
+export { sortByTv, sortBy, credits, status, type as default };
+
+
