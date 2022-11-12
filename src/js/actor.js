@@ -9,13 +9,13 @@ export function displayActor(actor = []) {
     : configs.defaultImg + "500";
   configs.baseImgURL;
   result += `
-      <div class=" actor__cards">
-      <div class=" actor__img__wrapper">
+      <div class="row actor__cards">
+      <div class="col actor__img__wrapper">
           <div class="actor__imgs">
           <img width:"100%" src="${img}">
           </div>
       </div>
-      <div class="actor__wrapper">
+      <div class="col   actor__wrapper">
           <div class="actor__title">
               <h1>${name} </h1> 
               <div class="actor__details">
@@ -93,13 +93,13 @@ export function displayCrewActor(crew) {
   let result = "";
   const authorMenuNode = document.querySelector(".crew__films");
   crew.forEach((person) => {
-    const { title } = person;
+    const { title, id } = person;
     result += `
-   <div class="acting">
+   <div class="acting" >
      <p></p>
      <span></span>
      
-     <div class="acting__title"> ${title}</div>
+     <div class="acting__title" data-id="${id}"> ${title}</div>
 
    </div>
       `;
@@ -147,5 +147,16 @@ export function initializeActorMenuEvent() {
         card.classList.toggle("show");
       }
     });
+  });
+}
+
+export function initializeActingEvent() {
+  const keywordMenuNode = document.querySelector(".crew__films");
+  keywordMenuNode.addEventListener("click", (event) => {
+    const id = event.target.closest(".acting__title")?.dataset?.id;
+    console.log(id, "bosilgan");
+    if (!id) return;
+    history.pushState({ id }, null, "/movie.html");
+    location.reload();
   });
 }

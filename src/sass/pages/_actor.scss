@@ -4,11 +4,10 @@
 
 .actor__img__wrapper {
   width: 30%;
+  padding-right: 30px;
   .actor__imgs img {
-    width: 30rem;
-    height: 450px;
+    width: 100%;
     border-radius: 1rem;
-    object-fit: cover;
     margin-top: 1.5rem;
   }
 }
@@ -17,10 +16,6 @@
   width: 70%;
   margin-top: 1.5rem;
 }
-
-// .actor__title{
-
-// }
 
 .cast__films.row {
   gap: 2rem;
@@ -75,44 +70,59 @@
 
 .actor__title {
   padding: 1rem 0;
-
 }
-.biography__actor{
+.biography__actor {
   padding: 1rem 0;
 }
 
-.actor__known{
-  padding-top: 3rem ;
+.actor__known {
+  padding-top: 3rem;
   font-size: 1.8rem;
   font-weight: 700;
 }
 
-.acting__wrepper{
+.acting__wrepper {
   display: flex;
   align-items: center;
-  justify-content:space-between;
-  
+  justify-content: space-between;
 }
 
-.crew__container{
+.crew__container {
   border: 1px solid #dbdbdb;
 }
-.acting{
+.acting {
   padding: 1rem;
-  p{
+  p {
     margin-right: 2rem;
   }
-  span{
+  span {
     margin-right: 2rem;
   }
 }
 
-.acting__title:hover{
-    color: aqua;
-    cursor: pointer;
+.acting__title:hover {
+  color: aqua;
+  cursor: pointer;
 }
 
-span:hover{
+span:hover {
   background: black;
   cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+  .actor__wrapper{
+    width: 60%;
+  }
+  .actor__img__wrapper{
+    width: 40%;
+  }
+}
+@media screen and (max-width: 440px) {
+  .actor__wrapper{
+    width: 100%;
+  }
+  .actor__img__wrapper{
+    width: 100%;
+  }
 }
