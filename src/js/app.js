@@ -46,6 +46,7 @@ import {
   displayCastActor,
   displayCrewActor,
   initializeActorMenuEvent,
+  initializeActingEvent,
 } from "./actor";
 import { displaySearchMovies } from "./movies";
 import { displaySearchMovies } from "./movies";
@@ -159,6 +160,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         displayCastActor(data.data.cast);
         displayCrewActor(data.data.crew);
         initializeActorMenuEvent();
+        initializeActingEvent();
       }
     );
   }
