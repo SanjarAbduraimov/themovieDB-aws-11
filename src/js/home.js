@@ -3,7 +3,7 @@ import configs from "../configs";
 import { fetch } from "../api";
 import Type, { status, credits, sortBy } from "../constants";
 import ModalVideo from "modal-video";
-
+import {fetchReating} from "../api"
 export function cardTemplate(item) {
   const { id, img, title, release_date } = item;
   return `<div class="col"> <article class="card card__hero " data-id="${id}">
@@ -22,22 +22,22 @@ export function cardTemplate(item) {
     </svg>
     <ul class="card__menu dropdown__content">
       <li class="dropdown__item">
-        <a href="dropdown__link">
+        <a href="#dropdown__link">
           <i class="fas fa-heart"></i> Add to list
         </a>
       </li>
       <li class="dropdown__item">
-        <a href="dropdown__link">
+        <a href="#dropdown__link">
           <i class="fas fa-heart"></i> Favourite
         </a>
       </li>
       <li class="dropdown__item">
-        <a href="dropdown__link">
+        <a href="#dropdown__link">
           <i class="fas fa-heart"></i> Watchlist
         </a>
       </li>
       <li class="dropdown__item">
-        <a href="dropdown__link">
+        <a href="#dropdown__link" >
           <i class="fas fa-heart"></i> Your raiting
         </a>
       </li>
@@ -163,6 +163,8 @@ export function displayTv(data = []) {
     });
   });
 }
+
+
 
 export function displayVedioTreller(data = []) {
   let result = "";
