@@ -14,6 +14,7 @@ export function disMoviesDetails(data = []) {
     overview,
     vote_average,
     results,
+    id,
   } = data;
   console.log(data, "data from movie details");
   const popularuty = vote_average;
@@ -51,9 +52,8 @@ export function disMoviesDetails(data = []) {
               <div class="moviecol movie_icons"><i class="fa-solid fa-bars"></i>
               </div>
               <div class="moviecol movie_icons">
-              
- 
-              <i class="fa-solid fa-heart"></i></div>
+              <i class="fa-solid fa-heart"></i>
+              </div>
               <div class="moviecol movie_icons">
               <i class="fa-solid fa-bookmark"></i></div>
               <div class="moviecol movie_icons">

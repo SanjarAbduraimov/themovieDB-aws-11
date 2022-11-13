@@ -162,4 +162,19 @@ export function fetchRecommendation(type, id, page=1) {
     `${type}/${id}/recommendations?api_key=${apiKey}&language=${navigator.languages[0]}&page=${page}`
   );
 }
-
+const { sessionId } = configs;
+export function fetchMovieFavority(
+  type,
+  id,
+) {
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+ 
+  let url = `${type}/karimov_14/favorite?api_key=${apiKey}&session_id=${sessionId}`;
+  return axios.post(url, {
+    "media_type": "movie",
+    "media_id": `${id}`,
+    "favorite": true
+  });
+}
