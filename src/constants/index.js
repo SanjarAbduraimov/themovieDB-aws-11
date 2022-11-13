@@ -4,6 +4,7 @@ const type = {
   tv: "tv",
   list: "list",
   keyword: "keyword",
+  account: "account",
 };
 const status = {
   popular: "popular",

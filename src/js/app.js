@@ -14,6 +14,7 @@ import {
   fetchKeywordMovie,
   fetchKeyword,
   fetchRecommendation,
+  fetchMovieFavority,
 } from "../api";
 import {
   disMoviesDetails,
@@ -123,6 +124,14 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         displayCast(data.data.cast);
       }
     );
+    let faHeart = document.querySelector(".fa-heart");
+    faHeart.addEventListener("click", ()=>{
+      console.log("assalom");
+      fetchMovieFavority(Type.account, promise[0].data.id).then((data)=>{
+        console.log(data);
+      })
+
+    })
     fetchlistMovie(Type.movie, history.state.id).then(({ data }) => {
       displayNetwork(data);
     });
