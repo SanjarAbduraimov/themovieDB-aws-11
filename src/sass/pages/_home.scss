@@ -20,8 +20,6 @@
 //     flex-wrap: nowrap;
 //     overflow-x: auto;
 //     overflow-y: hidden;
-    
-  
 
 // }
 
@@ -48,41 +46,37 @@ body::-webkit-scrollbar-thumb {
   border-radius: 15px;
 }
 
-
-
-
-  .drop-content a {
-    float: none;
-    color: black;
-    padding: 5px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  .drop-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    border: 1px solid rgba(99, 99, 99, 0.527);
-    border-radius: 0.5rem;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    padding: 0.8rem;
-  }
-  .drop .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 1rem 0;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-  }
-  .drop:hover .drop-content {
-    display: block;
-  }
-
+.drop-content a {
+  float: none;
+  color: black;
+  padding: 5px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.drop-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  border: 1px solid rgba(99, 99, 99, 0.527);
+  border-radius: 0.5rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 0.8rem;
+}
+.drop .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 1rem 0;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+.drop:hover .drop-content {
+  display: block;
+}
 
 // Progress Bar
 
@@ -123,21 +117,22 @@ body::-webkit-scrollbar-thumb {
 
 .card__hero {
   width: 16rem;
-  height: 30rem;
+  height: auto;
+  padding-bottom: 50px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+  border: 1px solid rgba(227, 227, 227, 1);
+  border-radius: 10px;
   .card__img--wrapper {
     height: 20rem;
-      object-fit: cover;
-      overflow: hidden;
+    object-fit: cover;
+    overflow: hidden;
     img {
       width: 100%;
-      
     }
   }
-  
- 
 }
 .movies {
-  .row.movies__wrapper{
+  .row.movies__wrapper {
     padding: 1rem 0;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -154,13 +149,13 @@ body::-webkit-scrollbar-thumb {
       border: 1px solid;
       border-radius: 10rem;
     }
-    .show__movie, .show__tv  {
+    .show__movie,
+    .show__tv {
       border: none;
-      padding: .7rem 2.5rem;
+      padding: 0.7rem 2.5rem;
       border-radius: 10rem;
       background-color: $mainWhite;
       cursor: pointer;
-
     }
     .show__movie {
       background-color: $blue;
@@ -169,7 +164,6 @@ body::-webkit-scrollbar-thumb {
     // .show__movie:focus {
     //   background-color: $blue;
     //   color: $linerg;
-      
 
     // }
     .show__tv:focus {
@@ -177,13 +171,4 @@ body::-webkit-scrollbar-thumb {
       color: $linerg;
     }
   }
-  
 }
-
-
-
-
-
-
-
-
