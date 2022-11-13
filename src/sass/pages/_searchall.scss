@@ -15,16 +15,21 @@
   input {
     display: none;
     &:checked + label {
-      color: red;
+       background-color: rgb(1, 180, 228);
+       color: $mainWhite;
     }
   }
   li {
     display: inline-flex;
-    border: 1px solid #9e9e9e;
     border-radius: 14px;
-    padding: 4px 12px;
     font-size: 0.9em;
     margin-right: 6px;
     margin-top: 8px;
+  }
+  label {
+    border: 1px solid #dbdbdb;
+    border-radius: 14px;
+    padding: 4px 12px;
+
   }
 }

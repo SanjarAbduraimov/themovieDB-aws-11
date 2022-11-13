@@ -101,14 +101,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         });
       })
       .catch((err) => console.log(err));
-    // fetch(Type.movie, status.topRated).then(({data})=>{
-    //   // console.log(data);
-    //   fetchMovieVedio(Type.movie, data.results[0].id).then((data)=>{
-    //     let vedio = data.data.results
-    //     displayVedioTreller(vedio)
-    //   })
-
-    // })
   }
   if (page === "/movie.html" || page === "/movie") {
     const promise = await Promise.all([
@@ -221,6 +213,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     fetch(Type.movie, status.popular).then(({ data }) => {
       console.log(data.results);
       displaySearchMovies(data.results);
+      initializeMEvent();
     });
   }
   if (page === "/tvsearch.html" || page === "/tvsearch") {
@@ -241,11 +234,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     });
     genreWrapper.innerHTML = genresTemplate;
 
-    // let languageTemplate = "";
-    // promise[1].data.forEach((language) => {
-    //   languageTemplate += `<option value="${language.english_name}">${language.english_name}</option>`;
-    // });
-    // languageSelect.innerHTML = languageTemplate;
 
     const formSearchAll = document.forms[0];
     formSearchAll.addEventListener("submit", async (e) => {
@@ -261,7 +249,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       }
 
       let data = await fetchSearch(Type.tv, queryStringObj);
-      console.log(data, "tamom");
       // })
       formSearchAll.reset();
       displayTvSearch(data.data.results);
@@ -305,7 +292,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
 
   if (page === "/keyword.html" || page === "/keyword") {
     fetchKeyword(Type.keyword, history.state.id).then(({ data }) => {
-      console.log(data);
       displayKeywords(data.results);
       displayKeywordResults(data.total_results);
     });

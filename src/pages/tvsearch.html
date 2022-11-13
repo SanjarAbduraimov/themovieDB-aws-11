@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aws-11 The_Movie DB</title>
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-  />
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
   </head>
   <body>
     <header>
@@ -16,7 +16,9 @@
         <div class="container">
           <div class="navbar">
             <ul class="nav_menu">
-              <a href="./index.html"><img src="../assets/img/logo.svg" alt="Logo" /></a>
+              <a href="./index.html"
+                ><img src="../assets/img/logo.svg" alt="Logo"
+              /></a>
               <div class="drop">
                 <button class="dropbtn">
                   <li><a>Movies</a></li>
@@ -76,46 +78,65 @@
         </div>
       </nav>
     </header>
-    <section >
+    <section>
       <div class="container">
         <h1>Popular Movies</h1>
-       <div class="row">
-        <div class=" movies__col__wrapper">
-          <form>
-            <h3>Sort by</h3>
-            <select
-              id="activitySelector"
-              placeholder="String"
-              name="sort_by"
-            ></select>
-            <!-- <select
+        <div class="row">
+          <div class="movies__col__wrapper">
+            <form>
+              <details class="sort_details">
+                <summary class="sort_summary">Sort</summary>
+                <h3>Sort Results By</h3>
+                <select
+                  id="activitySelector"
+                  placeholder="String"
+                  name="sort_by"
+                ></select>
+              </details>
+              <!-- <select
             id="languageSelector"
             name="with_original_language">
             </select> -->
-  
-            <ul
-              id="with_genres"
-              class="multi_select text"
-              name="with_genres"
-            ></ul>
-            <div>
-              <input type="date" name="release_date.gte" id="release_date.gte" />
-              <input type="date" name="release_date.lte" id="release_date.lte" />
-            </div>
-            <button class="searchsort">Search</button>
-          </form>
-        </div>
-        <div class=" movies__col__wrap">
-        <div class="search__results row"></div>
-        
+              <details class="sort_details">
+                <summary class="sort_summary">Filters</summary>
+                <h3>Genres</h3>
+                <ul
+                  id="with_genres"
+                  class="multi_select text"
+                  name="with_genres"
+                ></ul>
 
+                <div>
+                  <input
+                    type="date"
+                    name="release_date.gte"
+                    id="release_date.gte"
+                  />
+                  <input
+                    type="date"
+                    name="release_date.lte"
+                    id="release_date.lte"
+                  />
+                </div>
+              </details>
+              <button class="searchsort">Search</button>
+            </form>
+          </div>
+          <div class="movies__col__wrap">
+            <div class="search__results row"></div>
+          </div>
         </div>
-       </div>
       </div>
     </section>
-    
 
     <script type="module" src="../js/app.js"></script>
-   
   </body>
 </html>
+
+
+
+
+
+
+
+
