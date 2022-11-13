@@ -75,12 +75,7 @@ export function disMoviesDetails(data = []) {
               </div>
           </div>
           </div>
-          
-  
-          
-  
       </div>
-      
       </div>
       
           `;
@@ -138,12 +133,12 @@ export function displayMovieStatus(data = []) {
   authorMenuNode.innerHTML = result;
 }
 
-export function displayRecomaditions(data = [] ) {
+export function displayRecomaditions(data = []) {
   console.log(data);
   let result = "";
   const authorMenuNode = document.querySelector(".recommendations");
   data.forEach((movies) => {
-    const { id, title, backdrop_path , name} = movies;
+    const { id, title, backdrop_path, name } = movies;
     const img = backdrop_path
       ? configs.baseImgURL + backdrop_path
       : configs.defaultImg + "500";
@@ -338,7 +333,6 @@ export function initializeTvEvent() {
         location.reload();
       }
       if (isMenuBtn) {
-
         let cardContent = card.querySelector(".dropdown__content");
         cardContent.classList.toggle("show");
         card.classList.toggle("show");

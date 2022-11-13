@@ -3,9 +3,9 @@ import configs from "../configs";
 import { fetch } from "../api";
 import Type, { status, credits, sortBy } from "../constants";
 import ModalVideo from "modal-video";
-import {fetchReating} from "../api"
+import { fetchReating } from "../api";
 export function cardTemplate(item) {
-  const { id, img, title, release_date } = item;
+  const { id, img, title, release_date, vote_average } = item;
   return `<div class="col"> <article class="card card__hero " data-id="${id}">
   <div class="card__header dropdown">
     <svg
@@ -51,7 +51,7 @@ export function cardTemplate(item) {
     />
   </div>
   <div class="card__body card__percentage">
-    <div class="percentage">${81}</div>
+    <div class="percentage">${vote_average * 10}</div>
     <h4 class="card__title">${title}</h4>
     <p class="card__text">${moment(release_date).format("MMM DD, YYYY")}</p>
   </div>
@@ -99,7 +99,7 @@ export function displayTv(data = []) {
 
   const authorMenuNode = document.querySelector(".movies__wrapper");
   data.forEach((movies) => {
-    const { backdrop_path, id, name, release_date } = movies;
+    const { backdrop_path, id, name, release_date, vote_average } = movies;
     const imgs = backdrop_path
       ? configs.baseImgURL + backdrop_path
       : configs.defaultImg + "500";
@@ -148,7 +148,7 @@ export function displayTv(data = []) {
       />
     </div>
     <div class="card__body card__percentage">
-      <div class="percentage">${81}</div>
+      <div class="percentage">${vote_average * 10}</div>
       <h4 class="card__title">${name}</h4>
       <p class="card__text">${moment(release_date).format("MMM DD, YYYY")}</p>
     </div>
@@ -164,14 +164,12 @@ export function displayTv(data = []) {
   });
 }
 
-
-
 export function displayVedioTreller(data = []) {
   let result = "";
 
   const authorMenuNode = document.querySelector(".movies__wrapper--vedios");
   data.forEach((movies) => {
-    const { backdrop_path, id, name, release_date } = movies;
+    const { backdrop_path, id, name, release_date, vote_average } = movies;
     const imgs = backdrop_path
       ? configs.baseImgURL + backdrop_path
       : configs.defaultImg + "500";
@@ -185,7 +183,7 @@ export function displayVedioTreller(data = []) {
       />
     </div>
     <div class="card__body card__percentage">
-      <div class="percentage">${81}</div>
+      <div class="percentage">${vote_average * 10}</div>
       <h4 class="card__title">${name}</h4>
       <p class="card__text">${moment(release_date).format("MMM DD, YYYY")}</p>
     </div>
@@ -212,7 +210,6 @@ export function initializeMEvent() {
         location.reload();
       }
       if (isMenuBtn) {
-
         let cardContent = card.querySelector(".dropdown__content");
         cardContent.classList.toggle("show");
         card.classList.toggle("show");
