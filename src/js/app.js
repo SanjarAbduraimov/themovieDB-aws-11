@@ -15,6 +15,8 @@ import {
   fetchKeyword,
   fetchRecommendation,
   fetchMovieFavority,
+  fetchMovieFavorityGet,
+  fetchMovieWatchList,
 } from "../api";
 import {
   disMoviesDetails,
@@ -117,12 +119,35 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       }
     );
     let faHeart = document.querySelector(".fa-heart");
+    let faBookmark = document.querySelector(".fa-bookmark");
     faHeart.addEventListener("click", ()=>{
       console.log("assalom");
-      fetchMovieFavority(Type.account, promise[0].data.id).then((data)=>{
+      fetchMovieFavority(Type.account, promise[0].data.id, status.favorite).then((data)=>{
+        alert("Add to Favority List");
         console.log(data);
+        faHeart.style.color = "rgb(239, 71, 182)";
       })
 
+    })
+    faBookmark.addEventListener("click", ()=>{
+      console.log("assalom");
+      fetchMovieWatchList(Type.account, promise[0].data.id, status.watchlist).then((data)=>{
+        alert("Add to Watch List");
+        console.log(data);
+        faBookmark.style.color = "rgb(207, 49, 49)";
+      })
+
+    })
+    fetchMovieFavorityGet(Type.movie, promise[0].data.id).then((data)=>{
+      console.log(data);
+      if (data.data.favorite !== false) {
+        faHeart.style.color = "rgb(239, 71, 182)";
+      } 
+      if (data.data.watchlist !== false) {
+        faBookmark.style.color = "rgb(207, 49, 49)";
+      }
+      
+      
     })
     fetchlistMovie(Type.movie, history.state.id).then(({ data }) => {
       displayNetwork(data);

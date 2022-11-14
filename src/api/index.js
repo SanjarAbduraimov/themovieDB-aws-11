@@ -166,15 +166,53 @@ const { sessionId } = configs;
 export function fetchMovieFavority(
   type,
   id,
+  status,
 ) {
   if (!type) {
     throw "Please insert type parametr";
   }
+  if (!status) {
+    throw "Please insert type parametr";
+  }
  
-  let url = `${type}/karimov_14/favorite?api_key=${apiKey}&session_id=${sessionId}`;
+  let url = `${type}/karimov_14/${status}?api_key=${apiKey}&session_id=${sessionId}`;
   return axios.post(url, {
     "media_type": "movie",
     "media_id": `${id}`,
     "favorite": true
   });
+}
+export function fetchMovieWatchList(
+  type,
+  id,
+  status,
+) {
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  if (!status) {
+    throw "Please insert type parametr";
+  }
+  let url = `${type}/karimov_14/${status}?api_key=${apiKey}&session_id=${sessionId}`;
+  return axios.post(url, {
+      "media_type": "movie",
+      "media_id": `${id}`,
+      "watchlist": true
+    
+  });
+}
+
+export function fetchMovieFavorityGet(
+  type,
+  id,
+) {
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  if (!id) {
+    throw "Please insert type parametr";
+  }
+ 
+  let url = `${type}/${id}/account_states?api_key=${apiKey}&session_id=${sessionId}`;
+  return axios.get(url);
 }

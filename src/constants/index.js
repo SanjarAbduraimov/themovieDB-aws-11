@@ -11,6 +11,8 @@ const status = {
   topRated: "top_rated",
   now: "now",
   upcoming: "upcoming",
+  watchlist: "watchlist",
+  favorite: "favorite",
 };
 const credits = {
   movieCredits: "credits",
