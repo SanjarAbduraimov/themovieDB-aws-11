@@ -23,7 +23,7 @@ export function cardTemplate(item) {
     <ul class="card__menu dropdown__content">
       <li class="dropdown__item">
         <a href="#dropdown__link">
-          <i class="fas fa-heart"></i> Add to list
+        <i class="fa-solid fa-house-chimney"></i> Add to list
         </a>
       </li>
       <li class="dropdown__item">
@@ -33,12 +33,12 @@ export function cardTemplate(item) {
       </li>
       <li class="dropdown__item">
         <a href="#dropdown__link">
-          <i class="fas fa-heart"></i> Watchlist
+          <i class="fa-solid fa-bookmark"></i> Watchlist
         </a>
       </li>
       <li class="dropdown__item">
         <a href="#dropdown__link" >
-          <i class="fas fa-heart"></i> Your raiting
+          <i class="fa-solid fa-star"></i> Raiting
         </a>
       </li>
     </ul>
