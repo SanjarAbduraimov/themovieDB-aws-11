@@ -216,3 +216,33 @@ export function fetchMovieFavorityGet(
   let url = `${type}/${id}/account_states?api_key=${apiKey}&session_id=${sessionId}`;
   return axios.get(url);
 }
+
+export function fetchAccount(
+  type,
+) {
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  let url = `${type}?api_key=${apiKey}&session_id=${sessionId}`;
+  return axios.get(url);
+}
+
+export function fetchAccountStatus(
+  type,
+  status,
+  typeAccount,
+  page=1,
+) {
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  if (!typeAccount) {
+    throw "Please insert type parametr";
+  }
+  if (!status) {
+    throw "Please insert type parametr";
+  }
+ 
+  let url = `${type}/{account_id}/${status}/${typeAccount}?api_key=${apiKey}&session_id=${sessionId}&sort_by=created_at.asc&page=${page}`;
+  return axios.get(url);
+}

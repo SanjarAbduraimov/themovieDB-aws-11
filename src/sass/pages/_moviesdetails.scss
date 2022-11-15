@@ -374,3 +374,17 @@
 .movies__col__wrap {
   width: 70%;
 }
+
+.account__img {
+  img {
+    height: 23rem;
+    object-fit: cover;
+  }
+  background: rgb(60,15,60);
+  background: linear-gradient(80deg, rgba(60,15,60,1) 0%, rgba(8,27,68,1) 100%);
+  
+}
+.container-account {
+  width: 80%;
+  margin: auto;
+}
