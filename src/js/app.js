@@ -1,6 +1,6 @@
 import "./style";
 import "../assets/modal-video.min.css";
-import Type, { status, credits, sortBy, sortByTv } from "../constants";
+import Type, { status, credits, sortBy, sortByTv, typeAccount} from "../constants";
 import {
   fetch,
   fetchGenres,
@@ -17,6 +17,8 @@ import {
   fetchMovieFavority,
   fetchMovieFavorityGet,
   fetchMovieWatchList,
+  fetchAccount,
+  fetchAccountStatus,
 } from "../api";
 import {
   disMoviesDetails,
@@ -321,6 +323,15 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       displayKeywordResults(data.total_results);
     });
     initializeKeyEvent();
+  }
+  if (page === "/profile.html" || page === "/profile") {
+    fetchAccount(Type.account).then((data)=>console.log(data));
+    fetchAccountStatus(Type.account, status.favorite, typeAccount.movies).then((data)=>console.log(data));
+    fetchAccountStatus(Type.account, status.favorite, typeAccount.tv).then((data)=>console.log(data));
+    fetchAccountStatus(Type.account, status.watchlist, typeAccount.movies).then((data)=>console.log(data));
+    fetchAccountStatus(Type.account, status.watchlist, typeAccount.tv).then((data)=>console.log(data));
+    fetchAccountStatus(Type.account, status.rated, typeAccount.movies).then((data)=>console.log(data));
+    fetchAccountStatus(Type.account, status.rated, typeAccount.tv).then((data)=>console.log(data));
   }
 });
 

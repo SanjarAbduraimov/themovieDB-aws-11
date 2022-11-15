@@ -6,6 +6,14 @@ const type = {
   keyword: "keyword",
   account: "account",
 };
+const typeAccount = {
+  person: "person",
+  movies: "movies",
+  tv: "tv",
+  list: "list",
+  keyword: "keyword",
+  account: "account",
+};
 const status = {
   popular: "popular",
   topRated: "top_rated",
@@ -13,6 +21,8 @@ const status = {
   upcoming: "upcoming",
   watchlist: "watchlist",
   favorite: "favorite",
+  rated: "rated",
+  lists: "lists",
 };
 const credits = {
   movieCredits: "credits",
@@ -39,6 +49,6 @@ const sortByTv = {
 };
 
 
-export { sortByTv, sortBy, credits, status, type as default };
+export { typeAccount, sortByTv, sortBy, credits, status, type as default };
 
 
