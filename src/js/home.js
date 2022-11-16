@@ -5,7 +5,8 @@ import Type, { status, credits, sortBy } from "../constants";
 import ModalVideo from "modal-video";
 import { fetchReating } from "../api";
 export function cardTemplate(item) {
-  const { id, img, title, release_date, vote_average } = item;
+  const { id, img, title, release_date, vote_average , name} = item;
+  const nameorigin = name ? name : title;
   return `<div class="col"> <article class="card card__hero " data-id="${id}">
   <div class="card__header dropdown">
     <svg
@@ -47,12 +48,12 @@ export function cardTemplate(item) {
     <img
       class="card__img"
       src="${img}"
-      alt="${title}"
+      alt="${nameorigin}"
     />
   </div>
   <div class="card__body card__percentage">
     <div class="percentage">${vote_average * 10}</div>
-    <h4 class="card__title">${title}</h4>
+    <h4 class="card__title">${nameorigin}</h4>
     <p class="card__text">${moment(release_date).format("MMM DD, YYYY")}</p>
   </div>
 </article></div>`;
