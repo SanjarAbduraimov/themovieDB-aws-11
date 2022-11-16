@@ -9,3 +9,12 @@
         left: 28rem;
     }
 }
+.card__img--wrappers {
+    height: 22rem;
+    .card__img {
+        width: 15rem;
+        object-fit: cover;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+}

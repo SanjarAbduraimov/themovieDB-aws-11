@@ -55,7 +55,8 @@ export function disMoviesDetails(data = []) {
               <i class="fa-solid fa-heart"></i>
               </div>
               <div class="moviecol movie_icons">
-              <i class="fa-solid fa-bookmark"></i></div>
+              <i class="fa-solid fa-bookmark"></i>
+              </div>
               <div class="moviecol movie_icons">
               <i class="fa-solid fa-star"></i></div>
               <div class="moviecol trealler">
