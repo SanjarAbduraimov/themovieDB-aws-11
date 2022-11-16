@@ -201,6 +201,25 @@ export function fetchMovieWatchList(
     
   });
 }
+export function fetchMovieWatchDel(
+  type,
+  id,
+  status,
+) {
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+  if (!status) {
+    throw "Please insert type parametr";
+  }
+  let url = `${type}/karimov_14/${status}?api_key=${apiKey}&session_id=${sessionId}`;
+  return axios.post(url, {
+      "media_type": "movie",
+      "media_id": `${id}`,
+      "watchlist": false
+    
+  });
+}
 
 export function fetchMovieFavorityGet(
   type,

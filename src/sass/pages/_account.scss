@@ -1,0 +1,11 @@
+.account__img {
+    position: relative;
+    color: $mainWhite;
+    font-size: 3rem;
+    font-weight: 600;
+    .username {
+        position: absolute;
+        top: 8rem;
+        left: 28rem;
+    }
+}
