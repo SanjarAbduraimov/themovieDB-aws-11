@@ -136,6 +136,12 @@
     background-color: $mainBlue;
     padding: 1.5rem 1.6rem;
     border-radius: 50%;
+    [data-favorite="true"] {
+      color:rgb(239, 71, 182);
+    }
+    [data-watchlist="true"] {
+      color: rgb(207, 49, 49);
+    }
   }
   .trealler {
     margin-left: 4rem;
@@ -154,6 +160,14 @@
     text-decoration: none;
     display: block;
     text-align: left;
+  }
+  .dropdow-content div {
+    float: none;
+    color: black;
+    padding: 5px 16px;
+    display: block;
+    text-align: left;
+    cursor: pointer;
   }
   .dropdow-content {
     display: none;
@@ -380,9 +394,12 @@
     height: 23rem;
     object-fit: cover;
   }
-  background: rgb(60,15,60);
-  background: linear-gradient(80deg, rgba(60,15,60,1) 0%, rgba(8,27,68,1) 100%);
-  
+  background: rgb(60, 15, 60);
+  background: linear-gradient(
+    80deg,
+    rgba(60, 15, 60, 1) 0%,
+    rgba(8, 27, 68, 1) 100%
+  );
 }
 .container-account {
   width: 80%;

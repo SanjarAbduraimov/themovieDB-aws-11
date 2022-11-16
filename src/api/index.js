@@ -45,7 +45,6 @@ export function fetchKeywordMovie(type, id) {
   );
 }
 
-
 export function fetchMovieCredits(type, id, credits) {
   if (!id) {
     throw "Please insert id parametr";
@@ -80,8 +79,6 @@ export function fetchMovieSearch(
   return axios.get(url);
 }
 
-
-
 export function fetchSearch(type, query) {
   if (!type) {
     throw "Please insert type parametr";
@@ -107,15 +104,15 @@ export function fetchSearchGenres(type, with_genres, page = 1) {
     `discover/${type}?api_key=${apiKey}&language=${navigator.languages[0]}&page=${page}&with_genres=${with_genres}`
   );
 }
-export function fetchMovieVedio(type,movie_id) {
+export function fetchMovieVedio(type, movie_id) {
   if (!type) {
     throw "Please insert type parametr";
   }
   if (!movie_id) {
     throw "Please insert type parametr";
   }
-  let url = `${type}/${movie_id}/videos?api_key=${apiKey}&language=${navigator.languages[0]}`
-   
+  let url = `${type}/${movie_id}/videos?api_key=${apiKey}&language=${navigator.languages[0]}`;
+
   return axios.get(url);
 }
 export function fetchGenres(type) {
@@ -146,12 +143,10 @@ export function fetchKeyword(type, keyword_id) {
   if (!type) {
     throw "Please insert type parametr";
   }
-  return axios.get(
-    `${type}/${keyword_id}/movies?api_key=${apiKey}`
-  );
+  return axios.get(`${type}/${keyword_id}/movies?api_key=${apiKey}`);
 }
 
-export function fetchRecommendation(type, id, page=1) {
+export function fetchRecommendation(type, id, page = 1) {
   if (!id) {
     throw "Please insert id parametr";
   }
@@ -163,82 +158,44 @@ export function fetchRecommendation(type, id, page=1) {
   );
 }
 const { sessionId } = configs;
-export function fetchMovieFavority(
-  type,
-  id,
-  status,
-) {
+export function fetchMovieFavority(type, id, status, types) {
   if (!type) {
     throw "Please insert type parametr";
   }
-  if (!status) {
-    throw "Please insert type parametr";
-  }
- 
-  let url = `${type}/karimov_14/${status}?api_key=${apiKey}&session_id=${sessionId}`;
+
+  let url = `${type}/{account_id}/favorite?api_key=${apiKey}&session_id=${sessionId}`;
   return axios.post(url, {
-    "media_type": "movie",
-    "media_id": `${id}`,
-    "favorite": true
+    media_type: types,
+    media_id: `${id}`,
+    favorite: status,
   });
 }
-export function fetchMovieWatchList(
-  type,
-  id,
-  status,
-) {
+export function fetchMovieWatchList(type, id, status, types) {
   if (!type) {
     throw "Please insert type parametr";
   }
-  if (!status) {
-    throw "Please insert type parametr";
-  }
-  let url = `${type}/karimov_14/${status}?api_key=${apiKey}&session_id=${sessionId}`;
+  let url = `${type}/{account_id}/watchlist?api_key=${apiKey}&session_id=${sessionId}`;
   return axios.post(url, {
-      "media_type": "movie",
-      "media_id": `${id}`,
-      "watchlist": true
-    
-  });
-}
-export function fetchMovieWatchDel(
-  type,
-  id,
-  status,
-) {
-  if (!type) {
-    throw "Please insert type parametr";
-  }
-  if (!status) {
-    throw "Please insert type parametr";
-  }
-  let url = `${type}/karimov_14/${status}?api_key=${apiKey}&session_id=${sessionId}`;
-  return axios.post(url, {
-      "media_type": "movie",
-      "media_id": `${id}`,
-      "watchlist": false
-    
+    media_type: types,
+    media_id: `${id}`,
+    watchlist: status,
   });
 }
 
-export function fetchMovieFavorityGet(
-  type,
-  id,
-) {
+
+export function fetchMovieFavorityGet(type, id) {
   if (!type) {
     throw "Please insert type parametr";
   }
   if (!id) {
     throw "Please insert type parametr";
   }
- 
+
   let url = `${type}/${id}/account_states?api_key=${apiKey}&session_id=${sessionId}`;
   return axios.get(url);
 }
 
-export function fetchAccount(
-  type,
-) {
+export function fetchAccount(type) {
   if (!type) {
     throw "Please insert type parametr";
   }
@@ -246,12 +203,7 @@ export function fetchAccount(
   return axios.get(url);
 }
 
-export function fetchAccountStatus(
-  type,
-  status,
-  typeAccount,
-  page=1,
-) {
+export function fetchAccountStatus(type, status, typeAccount, page = 1) {
   if (!type) {
     throw "Please insert type parametr";
   }
@@ -261,7 +213,7 @@ export function fetchAccountStatus(
   if (!status) {
     throw "Please insert type parametr";
   }
- 
+
   let url = `${type}/{account_id}/${status}/${typeAccount}?api_key=${apiKey}&session_id=${sessionId}&sort_by=created_at.asc&page=${page}`;
   return axios.get(url);
 }
