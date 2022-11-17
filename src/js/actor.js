@@ -58,8 +58,8 @@ export function displayActor(actor = []) {
               <a href="#">Production</a>
               <a href="#">Crew</a>
             </div>
-          </div> 
-        </div>
+           </div> 
+           </div>
           </div> 
           
           <div class="container crew__container">
@@ -75,7 +75,7 @@ export function displayActor(actor = []) {
   actorDetails.innerHTML = result;
 }
 
-export function displayCastActor(cast) {
+export function displayCastActor(cast = []) {
   let result = "";
   const authorMenuNode = document.querySelector(".cast__films");
   cast.forEach((movies) => {
@@ -89,7 +89,7 @@ export function displayCastActor(cast) {
   authorMenuNode.innerHTML = result;
 }
 
-export function displayCrewActor(crew) {
+export function displayCrewActor(crew = []) {
   let result = "";
   const authorMenuNode = document.querySelector(".crew__films");
   crew.forEach((person) => {
