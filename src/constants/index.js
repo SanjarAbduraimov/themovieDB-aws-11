@@ -48,7 +48,4 @@ const sortByTv = {
   "release Date Ascending": "first_air_date.asc",
 };
 
-
 export { typeAccount, sortByTv, sortBy, credits, status, type as default };
-
-

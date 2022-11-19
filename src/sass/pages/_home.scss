@@ -7,6 +7,12 @@
 .movies__wrapper.row .col {
   flex: 1 250px;
 }
+.movies__wrapper-treanding.row {
+  gap: 20px;
+}
+.movies__wrapper-treanding.row .col {
+  flex: 1 250px;
+}
 .tv__wrapper.row {
   gap: 20px;
 }
@@ -172,3 +178,47 @@ body::-webkit-scrollbar-thumb {
     }
   }
 }
+.movies__wrapper-treanding {
+  padding: 1rem 0;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.movies__wrapper-treanding::-webkit-scrollbar {
+  height: 8px;
+}
+.movies__wrapper-treanding::-webkit-scrollbar-track {
+  border-radius: 15px;
+  padding: 1px;
+}
+.movies__wrapper-treanding::-webkit-scrollbar-thumb {
+  background-color: #dbdbdb;
+  border-radius: 15px;
+}
+
+// .movies {
+//   background-image: url(/src/assets/img/bg_index.png);
+//   background-position: 0 100%;
+//   background-size: 15%;
+//   background-repeat: repeat-x;
+//   overflow: hidden;
+// }
+
+// .btn__wrapperweek {
+//   border: 1px solid;
+//   border-radius: 10rem;
+//   margin-right: 2rem;
+//   .show__today,
+//     .show__week {
+//       border: none;
+//       padding: 0.7rem 2.5rem;
+//       border-radius: 10rem;
+//       background-color: $mainWhite;
+//       cursor: pointer;
+//     }
+//     .show__today {
+//       background-color: $blue;
+//       color: $linerg;
+//     }
+// }

@@ -70,6 +70,20 @@ export function displayMovies(data = []) {
   });
   authorMenuNode.innerHTML = result;
 }
+
+export function displayMoviesTreanding(data = []) {
+  let result = "";
+  const authorMenuNode = document.querySelector(".movies__wrapper-treanding");
+  data.forEach((movies) => {
+    const { backdrop_path, ...docs } = movies;
+    const img = backdrop_path
+      ? configs.baseImgURL + backdrop_path
+      : configs.defaultImg + "500";
+    result += cardTemplate({ ...docs, img });
+  });
+  authorMenuNode.innerHTML = result;
+}
+
 export function displayMovie(data = []) {
   let result = "";
   const authorMenuNode = document.querySelector(".movies__wrappe");

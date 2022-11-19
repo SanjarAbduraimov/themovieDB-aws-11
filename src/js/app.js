@@ -45,6 +45,7 @@ import {
   displayTv,
   displayMovie,
   initializeMEvent,
+  displayMoviesTreanding,
 } from "./home";
 import {
   eventKeywords,
@@ -116,6 +117,11 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         });
       })
       .catch((err) => console.log(err));
+    // fetch(Type.movie, status.topRated).then(({data})=>{
+    //   console.log(data);
+    //   displayMoviesTreanding(data.results);
+    //   initializeMoveEvent();
+    // })
   }
   if (page === "/movie.html" || page === "/movie") {
     const promise = await Promise.all([
