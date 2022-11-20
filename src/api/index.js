@@ -217,3 +217,16 @@ export function fetchAccountStatus(type, status, typeAccount, page = 1) {
   let url = `${type}/{account_id}/${status}/${typeAccount}?api_key=${apiKey}&session_id=${sessionId}&sort_by=created_at.asc&page=${page}`;
   return axios.get(url);
 }
+
+export function fetchMovieFavorityDel(type, id, types) {
+  if (!type) {
+    throw "Please insert type parametr";
+  }
+
+  let url = `${type}/{account_id}/favorite?api_key=${apiKey}&session_id=${sessionId}`;
+  return axios.post(url, {
+    media_type: types,
+    media_id: `${id}`,
+    favorite: false,
+  });
+}
