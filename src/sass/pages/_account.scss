@@ -1,20 +1,34 @@
 .account__img {
-    position: relative;
-    color: $mainWhite;
-    font-size: 3rem;
-    font-weight: 600;
-    .username {
-        position: absolute;
-        top: 8rem;
-        left: 28rem;
-    }
+  position: relative;
+  color: $mainWhite;
+  font-size: 3rem;
+  font-weight: 600;
+  .username {
+    position: absolute;
+    top: 8rem;
+    left: 28rem;
+  }
 }
 .card__img--wrappers {
-    height: 22rem;
-    .card__img {
-        width: 15rem;
-        object-fit: cover;
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
+  height: 22rem;
+  .card__img {
+    width: 15rem;
+    object-fit: cover;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+.profile__watchlist {
+  .stats_blocks {
+    display: flex;
+    h3 {
+        font-weight: 400;
     }
+    justify-content: space-between;
+    padding-top: 1rem;
+  }
+}
+.profile__nav-part {
+    padding: .4rem 0;
+    border-bottom: 1px solid #dbdbdb;
 }
