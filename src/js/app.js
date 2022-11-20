@@ -95,6 +95,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   addEventListener("popstate", (event) => {
     location.reload();
   });
+  fetchAccount(Type.account).then((data) => {
+    displayAccountName(data.data.username);
+  });
 
   const page = location.pathname;
   if (page === "/index.html" || page === "/") {

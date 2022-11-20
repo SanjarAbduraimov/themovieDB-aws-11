@@ -18,9 +18,12 @@ footer {
         margin-right: 3rem;
         .logged_in{
             background-color: $mainWhite;
-            padding: 1rem;
-            border-radius: 1rem;
-            margin-top: 1rem;
+            padding: 1rem 2.3rem;
+            border-radius: .5rem;
+            margin-top: 2rem;
+        }
+        img {
+            margin-left: 3rem;
         }
         a {
             color: rgb(1, 180, 228);
@@ -32,5 +35,6 @@ footer {
     }
     .footer__wrapper {
         margin-right: 2rem;
+        padding: 1rem;
     }
 }

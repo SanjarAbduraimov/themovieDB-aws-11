@@ -4,7 +4,7 @@ import { cardTemplate } from "./home";
 export function displayAccountName(data = []) {
   let result = "";
   const authorMenuNode = document.querySelector(".account__name");
-  result += `<p class="username"> ${data}</p> `;
+  result += `<p class="username">Hi ${data}!</p> `;
   authorMenuNode.innerHTML = result;
 }
 
