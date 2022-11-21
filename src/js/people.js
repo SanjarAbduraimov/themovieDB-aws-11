@@ -39,3 +39,5 @@ export function displayPeople(peoples = []) {
   });
   peopleWrapper.innerHTML = result;
 }
+
+

@@ -1,23 +1,22 @@
-*{
-    padding: 0;
-    margin: 0;
+* {
+padding: 0;
+margin: 0;
 }
 
 .people {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
+display: flex;
+flex-wrap: wrap;
+gap: 2rem;
 }
-.people__card{
-    flex: 1;
-    min-width: 235px;
-    // padding-top: 10px;
-    border: 1px solid #dbdbdb;
-    box-shadow: 0 0 3px 1px #dbdbdb;
+.people__card {
+flex: 1;
+min-width: 235px;
+border: 1px solid #dbdbdb;
+box-shadow: 0 0 3px 1px #dbdbdb;
 
-    img {
-        height: 235px;
-        object-fit: cover;
-        object-position: 50% 50%;
-    }
+img {
+    height: 235px;
+    object-fit: cover;
+    aspect-ratio: 0.67/1;
+}
 }
