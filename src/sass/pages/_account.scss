@@ -32,3 +32,59 @@
     padding: .4rem 0;
     border-bottom: 1px solid #dbdbdb;
 }
+.profile__favo {
+  position: absolute;
+  bottom: 2rem;
+  display: flex;
+  align-items: center;
+  .dropdown__item {
+    margin-right: 2rem;
+    i {
+      padding: 1rem;
+      border: 1px solid rgb(149, 149, 149);
+      border-radius: 50%;
+    }
+    #exxx {
+      padding: 1rem 1.3rem;
+    }
+  }
+  .profile__ratingd {
+    padding-left: 2rem;
+  }
+  .dropdown__item a{
+    display: flex;
+    color: rgb(149, 149, 149);
+    align-items: center;
+  }
+}
+.card__keySearc {
+  position: relative;
+}
+.profile__movie-tv {
+  .title_header {
+    display: flex;
+    align-items: center;
+  }
+  .flex__profile {
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

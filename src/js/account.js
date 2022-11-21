@@ -37,6 +37,27 @@ export function displayFavoriteMovies(data = []) {
           <p class="card__text">${moment(release_date).format(
             "MMM DD, YYYY"
           )}</p>
+          <div class="profile__favo">
+          <li class="dropdown__item">
+           <a href="#dropdown__link" >
+           <i class="fa-solid fa-star"></i> <p class="profile__ratingd">Raiting </p>       </a>
+          </li>
+          
+          <li class="dropdown__item">
+           <a href="#dropdown__link">
+           <i class="fas fa-heart"></i> <p class="profile__ratingd">Favourite</p>          </a>
+          </li>
+          <li class="dropdown__item">
+           <a href="#dropdown__link">
+           <i class="fa-solid fa-list"></i><p class="profile__ratingd">Add to list </p>
+           </a>
+          </li>
+          <li class="dropdown__item">
+          <a href="#dropdown__link">
+          <i id="exxx" class="fa-solid fa-xmark"></i> <p class="profile__ratingd " > Remove  </p>         </a>
+          </li>
+          
+      </div>
         </div>
       </article></div>`;
     }
