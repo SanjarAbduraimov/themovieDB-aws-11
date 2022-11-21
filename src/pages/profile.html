@@ -134,45 +134,41 @@
       </div> 
     </div>
 
-    <section>
+
+    <section class="profile__movie-tv">
       <div class="container">
         <div class="title_header">
-        <div class="title_group">
+        <div class="title_group flex__profile">
             <div>
               <h2>My Favorites</h2>
               <div class="list_option_wrapper" data-role="tooltip">
-                <div class="list_options glyphicons_v2 more"></div>
+                <div class="list_options"></div>
               </div>
             </div>
-          <div>
-            <h3 class="scroll border_color pink on"><a class="no_click" data-media-type="movie" data-title="My Favorites — The Movie Database (TMDB)" data-partial="/u/karimov_14/items/favorites" href="/u/karimov_14/favorites">Movies <span class="color pink">23</span></a></h3>
-            <h3 class="scroll border_color pink"><a class="no_click" data-media-type="tv" data-title="My Favorites — The Movie Database (TMDB)" data-partial="/u/karimov_14/items/favorites" href="/u/karimov_14/favorites/tv">TV <span class="color pink">5</span></a></h3>
+          <div class="flex__profile">
+            <h3 > Movies 23 </h3>
+            <h3> TV 5 </h3>
           </div>
         </div>
 
         <div class="filter_group">
-          <div class="sort_filter">
+          <div class="sort_filter flex__profile">
             <h4>Filter by:</h4>
             <div class="group_wrapper">
-              <div class="group_dropdown filters">
-                <span id="sort_by_created_at" class="sort_text color border_color pink hide"><span class="text">Date Added </span></span>
-                <span id="sort_by_popularity" class="sort_text color border_color pink hide"><span class="text">Popularity </span></span>
-                <span id="sort_by_release_date" class="sort_text color border_color pink"><span class="text">Release Date </span></span>
+              <select class="group_dropdown filters">
+               <option class="text">Date Added </option>
+                <option class="text">Popularity </option>
+               <option class="text">Release Date </span>
 
-                <ul class="filters">
-                  <li id="filter_by_created_at" class=""><a>Date Added</a></li>
-                  <li id="filter_by_popularity" class=""><a>Popularity</a></li>
-                  <li id="filter_by_release_date" class="selected"><a>Release Date</a></li>
-                </ul>
-              </div>
+               
+              </select>
             </div>
 
-            <div class="order_filter">
+            <div class="order_filter flex__profile">
               <h4>Order:</h4>
               <div class="group_wrapper">
                 <div class="group_dropdown sort">
-                  <a class="sort_order selected color_hover pink no_click" data-order="desc"><span>↓</span></a>
-                  <a class="sort_order hide color_hover pink no_click" data-order="asc"><span>↑</span></a>
+                  <a href="#" ><i class="fa-solid fa-arrow-down"></i></a>
                 </div>
               </div>
             </div>
