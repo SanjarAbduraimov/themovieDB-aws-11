@@ -8,6 +8,7 @@ import Type, {
   sortByTv,
   typeAccount,
 } from "../constants";
+
 export function displayAccountName(data = []) {
   let result = "";
   const authorMenuNode = document.querySelector(".account__name");
