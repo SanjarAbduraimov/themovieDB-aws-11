@@ -2,30 +2,31 @@ import configs from "../configs";
 import { cardTemplate } from "../js/home";
 export function displayActor(actor = []) {
   let result = "";
-  const actorDetails = document.querySelector(".actor");
+  let results = "";
+  const actorDetails = document.querySelector(".actor__img__wrapper");
+  const actorDetailsCol = document.querySelector(".actor__wrapper");
   const { profile_path, name, biography } = actor;
   const img = profile_path
     ? configs.baseImgURL + profile_path
     : configs.defaultImg + "500";
   configs.baseImgURL;
   result += `
-      <div class="row actor__cards">
-      <div class="col actor__img__wrapper">
           <div class="actor__imgs">
           <img width:"100%" src="${img}">
-          </div>
-      </div>
-      <div class="col   actor__wrapper">
-          <div class="actor__title">
+          </div>  
+          `;
+  actorDetails.innerHTML = result;
+  results += `
+  <div class="actor__title">
               <h1>${name} </h1> 
               <div class="actor__details">
                   <p class="day__details"></p>
                   <p class="actor__title_details"></p>
                   <p class="hour__formovie"></p>
               </div>
-          </div>
+  </div>
   
-          <div class="actor__text">
+  <div class="actor__text">
               <p class="tagline">
                   
               </p>
@@ -67,12 +68,8 @@ export function displayActor(actor = []) {
             
           </div>
     
-        </div>
-  
-      </div>
-       </div>
-          `;
-  actorDetails.innerHTML = result;
+        </div>`
+        actorDetailsCol.innerHTML = results;
 }
 
 export function displayCastActor(cast = []) {
