@@ -8,11 +8,10 @@ import Type, {
   sortByTv,
   typeAccount,
 } from "../constants";
-
 export function displayAccountName(data = []) {
   let result = "";
   const authorMenuNode = document.querySelector(".account__name");
-  result += `<p class="username">Hi ${data}!</p> `;
+  result += `<p class="username">Hi ${data}!</p>` ;
   authorMenuNode.innerHTML = result;
 }
 
@@ -25,6 +24,9 @@ export function displayFavoriteMovies(data = []) {
       ? configs.baseImgURL + backdrop_path
       : configs.defaultImg + "500";
     const originName = name ? name : title;
+    if (data === []) {
+      result +=  `<div class="col">wederferfr</div>`;
+    }
     if (data !== []) {
       result += ` <div class="col"> <article class="card card__keySearc" data-id="${id}">
        
@@ -86,7 +88,7 @@ export function initializeAccouEvent() {
   const keywordMenuNode = document.querySelector(".profile__wrapper");
   keywordMenuNode.addEventListener("click", (event) => {
     const id =
-      event.target.closest(".fa-heart")?.dataset?.id ||
+      event.target.closest(".fa-heart")?.dataset?.id 
       event.target.closest(".fa-xmark")?.dataset?.id;
 
     console.log(id, "bosilgan");
