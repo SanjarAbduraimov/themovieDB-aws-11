@@ -1,6 +1,13 @@
 import moment from "moment/moment";
 import configs from "../configs";
-import { cardTemplate } from "./home";
+import {fetchMovieFavorityDel} from "../api";
+import Type, {
+  status,
+  credits,
+  sortBy,
+  sortByTv,
+  typeAccount,
+} from "../constants";
 export function displayAccountName(data = []) {
   let result = "";
   const authorMenuNode = document.querySelector(".account__name");
@@ -17,9 +24,6 @@ export function displayFavoriteMovies(data = []) {
       ? configs.baseImgURL + backdrop_path
       : configs.defaultImg + "500";
     const originName = name ? name : title;
-    if (data === []) {
-      result += ` <div class="col">wederferfr</div>`;
-    }
     if (data !== []) {
       result += ` <div class="col"> <article class="card card__keySearc" data-id="${id}">
        
@@ -39,22 +43,22 @@ export function displayFavoriteMovies(data = []) {
           )}</p>
           <div class="profile__favo">
           <li class="dropdown__item">
-           <a href="#dropdown__link" >
+           <a>
            <i class="fa-solid fa-star"></i> <p class="profile__ratingd">Raiting </p>       </a>
           </li>
           
           <li class="dropdown__item">
-           <a href="#dropdown__link">
-           <i class="fas fa-heart"></i> <p class="profile__ratingd">Favourite</p>          </a>
+           <a>
+           <i class="fas fa-heart"  data-id="${id}"></i> <p class="profile__ratingd">Favourite</p>          </a>
           </li>
           <li class="dropdown__item">
-           <a href="#dropdown__link">
+           <a>
            <i class="fa-solid fa-list"></i><p class="profile__ratingd">Add to list </p>
            </a>
           </li>
           <li class="dropdown__item">
-          <a href="#dropdown__link">
-          <i id="exxx" class="fa-solid fa-xmark"></i> <p class="profile__ratingd " > Remove  </p>         </a>
+          <a>
+          <i id="exxx" class="fa-solid fa-xmark" data-id="${id}"></i> <p class="profile__ratingd " > Remove  </p>         </a>
           </li>
           
       </div>
@@ -69,11 +73,24 @@ export function initializeAccountEvent() {
   const keywordMenuNode = document.querySelector(".profile__wrapper");
   keywordMenuNode.addEventListener("click", (event) => {
     const id =
-      event.target.closest(".card__img")?.dataset?.id ||
+      event.target.closest(".card__img")?.dataset?.id 
       event.target.closest(".card__title")?.dataset?.id;
     console.log(id, "bosilgan");
     if (!id) return;
     history.pushState({ id }, null, "/movie.html");
     location.reload();
+  });
+}
+export function initializeAccouEvent() {
+  const keywordMenuNode = document.querySelector(".profile__wrapper");
+  keywordMenuNode.addEventListener("click", (event) => {
+    const id =
+      event.target.closest(".fa-heart")?.dataset?.id ||
+      event.target.closest(".fa-xmark")?.dataset?.id;
+
+    console.log(id, "bosilgan");
+    if (!id) return;
+    fetchMovieFavorityDel(Type.account, id , "movie");
+    // location.reload();
   });
 }

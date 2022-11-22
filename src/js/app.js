@@ -65,6 +65,7 @@ import {
   displayAccountName,
   displayFavoriteMovies,
   initializeAccountEvent,
+  initializeAccouEvent,
 } from "./account";
 import { displaySearchMovies } from "./movies";
 const _ = require(`lodash`);
@@ -416,6 +417,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
             })
           });
         });
+        initializeAccouEvent();
 
         console.log(data);
         displayFavoriteMovies(data.data.results);
