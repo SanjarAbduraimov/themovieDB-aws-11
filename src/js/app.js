@@ -66,6 +66,7 @@ import {
   displayFavoriteMovies,
   initializeAccountEvent,
   initializeAccouEvent,
+  displayFavoriteMov,
 } from "./account";
 import { displaySearchMovies } from "./movies";
 const _ = require(`lodash`);
@@ -417,10 +418,10 @@ document.addEventListener("DOMContentLoaded", async (e) => {
             })
           });
         });
+        console.log(data);
+        displayFavoriteMov(data.data.results);
         initializeAccouEvent();
 
-        console.log(data);
-        displayFavoriteMovies(data.data.results);
       });
     });
     const favoritetvShows = document.querySelector(".favorite_stv");
