@@ -1,6 +1,6 @@
 import moment from "moment/moment";
 import configs from "../configs";
-import {fetchMovieFavorityDel} from "../api";
+import { fetchMovieFavorityDel } from "../api";
 import Type, {
   status,
   credits,
@@ -11,23 +11,26 @@ import Type, {
 export function displayAccountName(data = []) {
   let result = "";
   const authorMenuNode = document.querySelector(".account__name");
-  result += `<p class="username">Hi ${data}!</p>` ;
+  result += `<p class="username">Hi ${data}!</p>`;
   authorMenuNode.innerHTML = result;
 }
 
 export function displayFavoriteMovies(data = []) {
   const authorMenuNode = document.querySelector(".profile__wrapper");
   const profilewatchlist = document.querySelector(".no_results");
-  // data > [] ? data : profilewatchlist.innerHTML = `<p> You haven't added any favorite movies .</p>`;
-  let result = "";  
+  data > []
+    ? data
+    : (profilewatchlist.innerHTML = `<p> You haven't added any favorite movies .</p>`);
+  let result = "";
+
   data.forEach((keyword) => {
     const { backdrop_path, id, title, release_date, overview, name } = keyword;
     const imgs = backdrop_path
       ? configs.baseImgURL + backdrop_path
       : configs.defaultImg + "500";
     const originName = name ? name : title;
-    
-      result += ` <div class="col"> <article class="card card__keySearc" data-id="${id}">
+
+    result += ` <div class="col"> <article class="card card__keySearc" data-id="${id}">
        
         <div class="card__img--wrappers">
           <img
@@ -43,29 +46,9 @@ export function displayFavoriteMovies(data = []) {
           <p class="card__text">${moment(release_date).format(
             "MMM DD, YYYY"
           )}</p>
-          <div class="profile__favo">
-          <li class="dropdown__item">
-           <div class="flex__profile">
-           <i class="fa-solid fa-star"></i> <p class="profile__ratingd">Raiting </p>       </div>
-          </li>
-          
-          <li class="dropdown__item">
-           <div class="flex__profile">
-           <i class="fas fa-heart"  data-id="${id}"></i> <p class="profile__ratingd">Favourite</p>          </div>
-          </li>
-          <li class="dropdown__item">
-           <div class="flex__profile">
-           <i class="fa-solid fa-list"></i><p class="profile__ratingd">Add to list </p>
-           </div>
-          </li>
-          <li class="dropdown__item">
-          <div class="flex__profile">
-          <i id="exxx" class="fa-solid fa-xmark" data-id="${id}"></i> <p class="profile__ratingd " > Remove  </p>         </div>
-          </li>
-          
-      </div>
         </div>
-      </article></div>`;
+      </article>
+      </div>`;
     // }
   });
   authorMenuNode.innerHTML = result;
@@ -73,16 +56,18 @@ export function displayFavoriteMovies(data = []) {
 export function displayFavoriteMov(data = []) {
   const authorMenuNode = document.querySelector(".profile__wrapper");
   const profilewatchlist = document.querySelector(".no_results");
-  data > [] ? data : profilewatchlist.innerHTML = `<p> You haven't added any favorite movies .</p>`;
-  let result = "";  
+  data > []
+    ? data
+    : (profilewatchlist.innerHTML = `<p> You haven't added any favorite movies .</p>`);
+  let result = "";
   data.forEach((keyword) => {
     const { backdrop_path, id, title, release_date, overview, name } = keyword;
     const imgs = backdrop_path
       ? configs.baseImgURL + backdrop_path
       : configs.defaultImg + "500";
     const originName = name ? name : title;
-    
-      result += ` <div class="col"> <article class="card card__keySearc" data-id="${id}">
+
+    result += ` <div class="col"> <article class="card card__keySearc" data-id="${id}">
        
         <div class="card__img--wrappers">
           <img
@@ -120,11 +105,12 @@ export function displayFavoriteMov(data = []) {
           
       </div>
         </div>
-      </article></div>`;
-    // }
+      </article>
+      </div>`;
   });
   authorMenuNode.innerHTML = result;
 }
+
 
 export function initializeAccountEvent() {
   const keywordMenuNode = document.querySelector(".profile__wrapper");
@@ -147,7 +133,7 @@ export function initializeAccouEvent() {
 
     console.log(id, "bosilgan");
     if (!id) return;
-    fetchMovieFavorityDel(Type.account, id , "movie");
+    fetchMovieFavorityDel(Type.account, id, "movie");
     // location.reload();
   });
 }
