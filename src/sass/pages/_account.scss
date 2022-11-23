@@ -27,6 +27,9 @@
     justify-content: space-between;
     padding-top: 1rem;
   }
+  .inner_bloc {
+    margin-top: 9rem;
+  }
 }
 .profile__nav-part {
     padding: .4rem 0;
@@ -61,14 +64,49 @@
   position: relative;
 }
 .profile__movie-tv {
+  .profile__wrapper {
+    margin-top: 1.5rem;
+  }
   .title_header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+  }
+  .gropp__listed {
+    margin-right: 2rem;
   }
   .flex__profile {
+    padding-top: .3rem;
     display: flex;
     align-items: center;
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    .movie__counters{
+      margin-right: 2rem;
+    }
+
   }
+  .filter_group {
+    h4 {
+      font-weight: 400;
+    }
+    .group_wrapper{
+      margin: 0 1.5rem;
+    }
+  }
+  .addede_gropuo {
+    border-bottom: 2px solid;
+    padding: .5rem;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    font-size: large;
+    color: rgb(234, 22, 140);
+    
+  }
+  
 }
 
 
