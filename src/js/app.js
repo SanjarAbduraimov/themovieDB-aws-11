@@ -25,7 +25,6 @@ import {
   fetchMovieWatchList,
   fetchAccount,
   fetchAccountStatus,
-  fetchMovieFavorityDel,
 } from "../api";
 import {
   disMoviesDetails,
@@ -75,6 +74,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   addEventListener("popstate", (event) => {
     location.reload();
   });
+  let loader = document.querySelector(".loader__wrapper");
   document.addEventListener("click", (e) => {
     const element = e.target;
 
@@ -94,9 +94,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       card__menu.parentElement.parentElement.classList.toggle("show");
     }
   });
-  addEventListener("popstate", (event) => {
-    location.reload();
-  });
   fetchAccount(Type.account).then((data) => {
     displayAccountName(data.data.username);
   });
@@ -106,6 +103,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     fetch(Type.movie, status.popular)
       .then(({ data }) => {
         displayMovies(data.results);
+        loader.remove();
         initializeMoveEvent();
         let showTv = document.querySelector(".show__tv");
         showTv.addEventListener("click", () => {
@@ -410,18 +408,17 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         typeAccount.movies
       ).then((data) => {
         data.data.results.forEach((data) => {
-            fetchMovieFavorityGet(Type.movie, data.id).then(({ data }) => {
+          fetchMovieFavorityGet(Type.movie, data.id).then(({ data }) => {
             console.log(data);
             let faHeart = document.querySelectorAll(".fa-heart");
-            faHeart.forEach(data=>{
+            faHeart.forEach((data) => {
               data.style.color = "rgb(239, 71, 182)";
-            })
+            });
           });
         });
         console.log(data);
         displayFavoriteMov(data.data.results);
         initializeAccouEvent();
-
       });
     });
     const favoritetvShows = document.querySelector(".favorite_stv");
