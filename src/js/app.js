@@ -25,6 +25,7 @@ import {
   fetchMovieWatchList,
   fetchAccount,
   fetchAccountStatus,
+  fatchMovieRating,
 } from "../api";
 import {
   disMoviesDetails,
@@ -66,7 +67,6 @@ import {
   initializeAccountEvent,
   initializeAccouEvent,
   displayFavoriteMov,
-  initializeStar,
 } from "./account";
 import { displaySearchMovies } from "./movies";
 const _ = require(`lodash`);
@@ -76,6 +76,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     location.reload();
   });
   let loader = document.querySelector(".loader__wrapper");
+  let loaderMovie = document.querySelector(".loader__movie");
+  // loader__movie
   document.addEventListener("click", (e) => {
     const element = e.target;
 
@@ -141,6 +143,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then(
       (data) => {
         displayCast(data.data.cast);
+        loaderMovie.remove()
       }
     );
     let faHeart = document.querySelector(".fa-heart");
@@ -174,10 +177,39 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         }
       });
     });
+
+    let ratingMovie = document.querySelector(".fa-star");
+    const allStar = document.querySelectorAll(".star");
+    allStar.forEach((star, i)=>{
+      star.onclick = function(){
+        let correntLeval = i + 1;
+        allStar.forEach((star, j)=>{
+          if(correntLeval >= j + 1){
+            star.innerHTML = '&#9733'
+            
+          }
+          else{
+            star.innerHTML = '&#9734'
+          }
+         
+          
+        })
+        fatchMovieRating(Type.movie, promise[0].data.id, correntLeval).then((data)=>{
+          
+          if (data.success) {
+            e.target.dataset.rated =
+            e.target.dataset.rated === value ? undefined : value;
+            console.log(data);
+          }
+        })
+        
+      }
+    })
     fetchMovieFavorityGet(Type.movie, promise[0].data.id).then(({ data }) => {
-      const { favorite, watchlist } = data;
+      const { favorite, watchlist , rated} = data;
       faHeart.dataset.favorite = favorite;
       faBookmark.dataset.watchlist = watchlist;
+      ratingMovie.dataset.rated = rated.value;
       // if (!data.data.favorite) {
       //   faHeart.style.color = "rgb(239, 71, 182)";
       //   // faBookmark.addEventListener("click", ()=>{
@@ -203,21 +235,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       displayRecomaditions(data.data.results);
       initializeMEvent();
     });
-    const allStar = document.querySelectorAll(".star");
     
-    allStar.forEach((star, i)=>{
-      star.onclick = function(){
-        let correntLeval = i + 1;
-        allStar.forEach((star, j)=>{
-          if(correntLeval >= j + 1){
-            star.innerHTML = '&#9733'
-          }
-          else{
-            star.innerHTML = '&#9734'
-          }
-        })
-      }
-    })
+    
     eventKeywords();
     initializeCastEvent();
   }

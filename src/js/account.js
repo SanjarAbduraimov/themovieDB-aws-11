@@ -18,6 +18,7 @@ export function displayAccountName(data = []) {
 
 export function displayFavoriteMovies(data = []) {
   const authorMenuNode = document.querySelector(".profile__wrapper");
+  authorMenuNode.innerHTML = "" ;
   const profilewatchlist = document.querySelector(".no_results");
   profilewatchlist.innerHTML = "";
   data > []
@@ -78,6 +79,7 @@ export function displayFavoriteMovies(data = []) {
 }
 export function displayFavoriteMov(data = []) {
   const authorMenuNode = document.querySelector(".profile__wrapper");
+  authorMenuNode.innerHTML = "" 
   const profilewatchlist = document.querySelector(".no_results");
   const addedSameNav = document.querySelector(".title__profiles-page");
   const addedSame = document.querySelector(".profile__watchlist");

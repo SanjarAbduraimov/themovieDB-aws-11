@@ -142,6 +142,21 @@
     [data-watchlist="true"] {
       color: rgb(207, 49, 49);
     }
+    [data-rated= "5"] {
+      color: rgb(207, 191, 49);
+    }
+    [data-rated= "4"] {
+      color: rgb(207, 191, 49);
+    }
+    [data-rated= "3"] {
+      color: rgb(207, 191, 49);
+    }
+    [data-rated= "2"] {
+      color: rgb(207, 191, 49);
+    }
+    [data-rated= "1"] {
+      color: rgb(207, 191, 49);
+    }
   }
   .trealler {
     margin-left: 4rem;
