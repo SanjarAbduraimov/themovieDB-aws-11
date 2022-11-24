@@ -8,6 +8,7 @@ import Type, {
   sortByTv,
   typeAccount,
 } from "../constants";
+import { add } from "lodash";
 export function displayAccountName(data = []) {
   let result = "";
   const authorMenuNode = document.querySelector(".account__name");
@@ -17,6 +18,7 @@ export function displayAccountName(data = []) {
 
 export function displayFavoriteMovies(data = []) {
   const authorMenuNode = document.querySelector(".profile__wrapper");
+  authorMenuNode.innerHTML = "" ;
   const profilewatchlist = document.querySelector(".no_results");
   profilewatchlist.innerHTML = "";
   data > []
@@ -47,6 +49,27 @@ export function displayFavoriteMovies(data = []) {
           <p class="card__text">${moment(release_date).format(
             "MMM DD, YYYY"
           )}</p>
+          <div class="profile__favo">
+          <li class="dropdown__item">
+           <a>
+           <i class="fa-solid fa-star"></i> <p class="profile__ratingd">Raiting </p>       </a>
+          </li>
+          
+          <li class="dropdown__item">
+           <a class="rovove__favority-contents" data-id="${id}">
+           <i class="fas fa-heart"  ></i> <p class="profile__ratingd">Favourite</p>          </a>
+          </li>
+          <li class="dropdown__item">
+           <a>
+           <i class="fa-solid fa-list"></i><p class="profile__ratingd">Add to list </p>
+           </a>
+          </li>
+          <li class="dropdown__item">
+          <a class="rovove__favority-conten" data-id="${id}">
+          <i id="exxx" class="fa-solid fa-xmark" ></i> <p class="profile__ratingd " > Remove  </p>         </a>
+          </li>
+          
+      </div>
         </div>
       </article>
       </div>`;
@@ -56,6 +79,7 @@ export function displayFavoriteMovies(data = []) {
 }
 export function displayFavoriteMov(data = []) {
   const authorMenuNode = document.querySelector(".profile__wrapper");
+  authorMenuNode.innerHTML = "" 
   const profilewatchlist = document.querySelector(".no_results");
   const addedSameNav = document.querySelector(".title__profiles-page");
   const addedSame = document.querySelector(".profile__watchlist");
@@ -178,3 +202,4 @@ export function initializeAccouEvent() {
     event.target.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
   });
 }
+

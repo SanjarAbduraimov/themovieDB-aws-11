@@ -58,7 +58,26 @@ export function disMoviesDetails(data = []) {
               <i class="fa-solid fa-bookmark"></i>
               </div>
               <div class="moviecol movie_icons">
-              <i class="fa-solid fa-star"></i></div>
+              <div class="nav__Star">
+              <div class="dropdow">
+              <button class="dropbtn"> <li><a><i class="fa-solid fa-star"></i></a></li>
+              </button>
+              <div class="dropdow-content">
+                <a>
+                <div class="wrapper_iconstas">
+                <button class="star">&#9734</button>
+                <button class="star">&#9734</button>
+                <button class="star">&#9734</button>
+                <button class="star">&#9734</button>
+                <button class="star">&#9734</button>
+                </div>
+                </a>
+              </div>
+             </div> 
+             </div>
+
+              </div>
+              
               <div class="moviecol trealler">
               ${btnHtml}</div>
           <div class="details__text">
@@ -341,3 +360,4 @@ export function initializeTvEvent() {
     });
   });
 }
+
