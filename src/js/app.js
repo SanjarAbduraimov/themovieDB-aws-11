@@ -66,6 +66,7 @@ import {
   initializeAccountEvent,
   initializeAccouEvent,
   displayFavoriteMov,
+  initializeStar,
 } from "./account";
 import { displaySearchMovies } from "./movies";
 const _ = require(`lodash`);
@@ -131,6 +132,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       fetchDetails(Type.movie, history.state.id),
       fetchMovieVedio(Type.movie, history.state.id),
     ]);
+    
+
     disMoviesDetails({ ...promise[0].data, ...promise[1].data });
     // fetchDetails(Type.movie, history.state.id).then((data) => {});
     // fetchMovieVedio(Type.movie, history.state.id).then((data) => {});
@@ -200,6 +203,21 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       displayRecomaditions(data.data.results);
       initializeMEvent();
     });
+    const allStar = document.querySelectorAll(".star");
+    
+    allStar.forEach((star, i)=>{
+      star.onclick = function(){
+        let correntLeval = i + 1;
+        allStar.forEach((star, j)=>{
+          if(correntLeval >= j + 1){
+            star.innerHTML = '&#9733'
+          }
+          else{
+            star.innerHTML = '&#9734'
+          }
+        })
+      }
+    })
     eventKeywords();
     initializeCastEvent();
   }

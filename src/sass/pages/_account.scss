@@ -108,7 +108,23 @@
   }
   
 }
-
+.wrapper_iconstas {
+  .star {
+   border: none;
+   background-color: unset;
+   font-size: 2.5rem;
+   color: rgb(255, 217, 0);
+  }
+  .star:hover {
+    cursor: pointer;
+  }
+  .star__reating {
+    user-select: none;
+  }
+  
+  
+ 
+}
 
 
 
