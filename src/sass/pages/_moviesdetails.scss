@@ -166,6 +166,13 @@
   font-size: 1.9rem;
   padding: 1rem 0;
 }
+  [data-favorite="true"] {
+    color:rgb(239, 71, 182);
+  }
+  [data-watchlist="true"] {
+    color: rgb(207, 49, 49);
+  }
+  
 
 .nav__part {
   .dropdow-content a {

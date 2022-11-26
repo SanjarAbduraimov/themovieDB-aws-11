@@ -1,218 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/jpg" href="../assets/img/icon.jpg" />
+    <title>Aws-11 The_Movie DB</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/jpg" href="../assets/img/icon.jpg">
-  <title>Aws-11 The_Movie DB</title>
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-/>
-</head>
+  <body>
+    <div class="loader__others">
+      <div class="lds-default">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <header>
+      <nav>
+        <div class="container">
+          <div class="navbar">
+            <ul class="nav_menu">
+              <a href="./index.html"
+                ><img src="../assets/img/logo.svg" alt="Logo"
+              /></a>
+              <div class="drop">
+                <button class="dropbtn">
+                  <li><a href="#">Movies</a></li>
+                </button>
+                <div class="drop-content">
+                  <a href="./movies.html">Popular</a>
+                  <a href="#">Now Playing</a>
+                  <a href="#">Upcoming</a>
+                  <a href="#">Top Rated</a>
+                </div>
+              </div>
+              <div class="drop">
+                <button class="dropbtn">
+                  <li><a href="#">TV Shows</a></li>
+                </button>
+                <div class="drop-content">
+                  <a href="./tvsearch.html">Popular</a>
+                  <a href="#">Airing Today</a>
+                  <a href="#">On TV</a>
+                  <a href="#">Top Rated</a>
+                </div>
+              </div>
+              <div class="drop">
+                <button class="dropbtn">
+                  <li><a href="#">People</a></li>
+                </button>
+                <div class="drop-content">
+                  <a href="./people.html">Popular People</a>
+                </div>
+              </div>
+              <div class="drop">
+                <button class="dropbtn">
+                  <li><a href="#">More</a></li>
+                </button>
+                <div class="drop-content">
+                  <a href="#">Discussions</a>
+                  <a href="#">Leaderboard</a>
+                  <a href="#">Support</a>
+                  <a href="https://developers.themoviedb.org/3" target="_blank"
+                    >API</a
+                  >
+                </div>
+              </div>
+            </ul>
+            <ul class="join_menu">
+              <li>
+                <a href="#"><b>+</b></a>
+              </li>
+              <li><a href="#">EN</a></li>
+              <li><a href="#">Login</a></li>
+              <li><a href="./profile.html">Join TMDB</a></li>
+              <li>
+                <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
 
+    <section class="drobdavn__bar">
+      <div class="nav__part">
+        <div class="dropdow">
+          <button class="dropbtn">
+            <li>
+              <a>Overview <i class="fa-sharp fa-solid fa-caret-down"></i></a>
+            </li>
+          </button>
+          <div class="dropdow-content">
+            <a href="./movie.html">Main</a>
+            <a href="#">Alternative Title</a>
+            <a href="#">Case & Crew</a>
+            <a href="#">Epesode Groups</a>
+            <a href="#">Seazons</a>
+            <a href="#">Translitions</a>
+            <a href="#">Chenges</a>
+            <a href="#">Report</a>
+            <a href="#">Edit</a>
+          </div>
+        </div>
+        <div class="dropdow">
+          <button class="dropbtn">
+            <li>
+              <a href="#"
+                >Media <i class="fa-sharp fa-solid fa-caret-down"></i
+              ></a>
+            </li>
+          </button>
 
-<body>
-  <header>
-    <nav>
+          <div class="dropdow-content">
+            <a href="#">Bacdrops</a>
+            <a href="#">Logos</a>
+            <a href="#">Posters</a>
+            <a href="#">Vedios</a>
+          </div>
+        </div>
+
+        <div class="dropdow">
+          <button class="dropbtn">
+            <li>
+              <a href="#"
+                >Fardom <i class="fa-sharp fa-solid fa-caret-down"></i
+              ></a>
+            </li>
+          </button>
+          <div class="dropdow-content">
+            <a href="#">Discussions</a>
+            <a href="#">Review</a>
+          </div>
+        </div>
+        <div class="dropdow">
+          <button class="dropbtn">
+            <li>
+              <a href="#"
+                >Shere <i class="fa-sharp fa-solid fa-caret-down"></i
+              ></a>
+            </li>
+          </button>
+          <div class="dropdow-content">
+            <a href="#">Shere-link</a>
+            <a href="#">Facebook</a>
+            <a href="#">Tweet</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="actor__details">
       <div class="container">
-        <div class="navbar">
-          <ul class="nav_menu">
-            <a href="./index.html"><img src="../assets/img/logo.svg" alt="Logo" /></a>
-            <div class="drop">
-              <button class="dropbtn">
-                <li><a href="#">Movies</a></li>
-              </button>
-              <div class="drop-content">
-                <a href="./movies.html">Popular</a>
-                <a href="#">Now Playing</a>
-                <a href="#">Upcoming</a>
-                <a href="#">Top Rated</a>
-              </div>
-            </div>
-            <div class="drop">
-              <button class="dropbtn">
-                <li><a href="#">TV Shows</a></li>
-              </button>
-              <div class="drop-content">
-                <a href="./tvsearch.html">Popular</a>
-                <a href="#">Airing Today</a>
-                <a href="#">On TV</a>
-                <a href="#">Top Rated</a>
-              </div>
-            </div>
-            <div class="drop">
-              <button class="dropbtn">
-                <li><a href="#">People</a></li>
-              </button>
-              <div class="drop-content">
-                <a href="./people.html">Popular People</a>
-              </div>
-            </div>
-            <div class="drop">
-              <button class="dropbtn">
-                <li><a href="#">More</a></li>
-              </button>
-              <div class="drop-content">
-                <a href="#">Discussions</a>
-                <a href="#">Leaderboard</a>
-                <a href="#">Support</a>
-                <a href="https://developers.themoviedb.org/3" target="_blank"
-                  >API</a
-                >
-              </div>
-            </div>
-          </ul>
-          <ul class="join_menu">
+        <div class="actor"></div>
+      </div>
+    </section>
+    <section>
+      <div class="container">
+        <div class="row actor__cards">
+          <div class="col actor__img__wrapper"></div>
+          <div class="col actor__wrapper"></div>
+        </div>
+      </div>
+    </section>
+
+    <ul></ul>
+
+    <footer>
+      <article class="footer">
+        <div class="join">
+          <img
+            src="../assets/img/img_footer.svg"
+            alt="The Movie Database (TMDB)"
+            width="130"
+            height="94"
+          />
+
+          <a class="rounded logged_in account__name" href="./profile.html"></a>
+        </div>
+
+        <div class="footer__wrapper">
+          <h3>The Basics</h3>
+          <ul>
+            <li><a href="#">About TMDB</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Support Forums</a></li>
+            <li><a href="#">API</a></li>
             <li>
-              <a href="#"><b>+</b></a>
-            </li>
-            <li><a href="#">EN</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="./profile.html">Join TMDB</a></li>
-            <li>
-              <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+              <a href="#" target="_blank" rel="noopener">System Status</a>
             </li>
           </ul>
         </div>
-      </div>
-    </nav>
-  </header>
-
-
-
-
-  <section class="drobdavn__bar">
-    <div class="nav__part">
-      <div class="dropdow">
-        <button class="dropbtn"><li><a >Overview <i class="fa-sharp fa-solid fa-caret-down"></i></a></li> 
-        </button>
-        <div class="dropdow-content">
-          <a href="./movie.html">Main</a>
-          <a href="#">Alternative Title</a>
-          <a href="#">Case & Crew</a>
-          <a href="#">Epesode Groups</a>
-          <a href="#">Seazons</a>
-          <a href="#">Translitions</a>
-          <a href="#">Chenges</a>
-          <a href="#">Report</a>
-          <a href="#">Edit</a>
+        <div class="footer__wrapper">
+          <h3>Get Involved</h3>
+          <ul>
+            <li>
+              <a href="#"
+                ><span class="glyphicons glyphicons-asterisk"></span>
+                Contribution Bible</a
+              >
+            </li>
+            <li><a href="#">Add New Movie</a></li>
+            <li><a href="#">Add New TV Show</a></li>
+          </ul>
         </div>
-      </div> 
-      <div class="dropdow">
-        <button class="dropbtn"> <li><a href="#">Media <i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
-        </button>
-
-        <div class="dropdow-content">
-          <a href="#">Bacdrops</a>
-          <a href="#">Logos</a>
-          <a href="#">Posters</a>
-          <a href="#">Vedios</a>
+        <div class="footer__wrapper">
+          <h3>Community</h3>
+          <ul>
+            <li><a href="#">Guidelines</a></li>
+            <li><a href="#">Discussions</a></li>
+            <li><a href="#">Leaderboard</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Twitter</a></li>
+          </ul>
         </div>
-      </div> 
-
-
-
-
-      
-
-
-      <div class="dropdow">
-        <button class="dropbtn">  <li><a href="#">Fardom <i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
-        </button>
-        <div class="dropdow-content">
-          <a href="#">Discussions</a>
-          <a href="#">Review</a>
+        <div class="footer__wrapper">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">API Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
         </div>
-      </div> 
-      <div class="dropdow">
-        <button class="dropbtn"> <li><a href="#">Shere <i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
-        </button>
-        <div class="dropdow-content">
-          <a href="#">Shere-link</a>
-          <a href="#">Facebook</a>
-          <a href="#">Tweet</a>
-        </div>
-      </div> 
-    </div>
-  </section>
-  <section class="actor__details">
-    <div class="container">
-      <div class="actor"></div>
-    </div>
+      </article>
+    </footer>
 
-  </section>
-  <section>
-   <div class="container">
-    <div class="row actor__cards">
-      <div class="col actor__img__wrapper">
-
-      </div>
-      <div class="col   actor__wrapper">
-
-      </div>
-    </div>
-   </div>
-   
-  </section>
-
-  <ul></ul>
-
-
-  <footer>
-    <article class="footer">
-      <div class="join">
-        <img src="../assets/img/img_footer.svg" alt="The Movie Database (TMDB)" width="130" height="94">
-
-        <a class="rounded logged_in account__name" href="./profile.html"></a>
-      </div>
-
-      <div class="footer__wrapper">
-        <h3>The Basics</h3>
-        <ul>
-          <li><a href="#">About TMDB</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Support Forums</a></li>
-          <li><a href="#">API</a></li>
-          <li><a href="#" target="_blank" rel="noopener">System Status</a></li>
-        </ul>
-      </div>
-      <div class="footer__wrapper">
-        <h3>Get Involved</h3>
-        <ul>
-          <li><a href="#"><span class="glyphicons glyphicons-asterisk"></span> Contribution Bible</a></li>
-          <li><a href="#">Add New Movie</a></li>
-          <li><a href="#">Add New TV Show</a></li>
-        </ul>
-      </div>
-      <div class="footer__wrapper">
-        <h3>Community</h3>
-        <ul>
-          <li><a href="#">Guidelines</a></li>
-          <li><a href="#">Discussions</a></li>
-          <li><a href="#">Leaderboard</a></li>
-          <li><a href="#" target="_blank" rel="noopener">Twitter</a></li>
-        </ul>
-      </div>
-      <div class="footer__wrapper">
-        <h3>Legal</h3>
-        <ul>
-          <li><a href="#">Terms of Use</a></li>
-          <li><a href="#">API Terms of Use</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-        </ul>
-      </div>
-    </article>
-  </footer>
-
-  <script type="module" src="../js/app.js"></script>
-
-
-
-
-
-</body>
-
+    <script type="module" src="../js/app.js"></script>
+  </body>
 </html>

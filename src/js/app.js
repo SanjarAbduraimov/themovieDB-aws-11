@@ -77,7 +77,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   });
   let loader = document.querySelector(".loader__wrapper");
   let loaderMovie = document.querySelector(".loader__movie");
-  // loader__movie
+  let loaderOthers = document.querySelector(".loader__others");
+  // loader__movie loader__others
   document.addEventListener("click", (e) => {
     const element = e.target;
 
@@ -106,6 +107,45 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     fetch(Type.movie, status.popular)
       .then(({ data }) => {
         displayMovies(data.results);
+        let faHeart = document.querySelector(".fa-heart");
+        let faBookmark = document.querySelector(".fa-bookmark");
+        faHeart.addEventListener("click", (e) => {
+          console.log(e.target.dataset.favorite);
+          fetchMovieFavority(
+            Type.account,
+            data.id,
+            e.target.dataset.favorite === "true" ? false : true,
+            "movie"
+          ).then(({ data }) => {
+            if (data.success) {
+              e.target.dataset.favorite =
+                e.target.dataset.favorite === "true" ? false : true;
+            }
+            console.log(data);
+          });
+        });
+        faBookmark.addEventListener("click", (e) => {
+          console.log(e.target.dataset.watchlist);
+          fetchMovieWatchList(
+            Type.account,
+            data.id,
+            e.target.dataset.watchlist === "true" ? false : true,
+            "movie"
+          ).then(({ data }) => {
+            if (data.success) {
+              e.target.dataset.watchlist =
+                e.target.dataset.watchlist === "true" ? false : true;
+            }
+          });
+        });
+        data.results.forEach(data=>{
+          fetchMovieFavorityGet(Type.movie, data.id).then(({ data }) => {
+            const { favorite, watchlist , rated} = data;
+            faHeart.dataset.favorite = favorite;
+            faBookmark.dataset.watchlist = watchlist;
+            // ratingMovie.dataset.rated = rated.value;
+          });
+        })
         loader.remove();
         initializeMoveEvent();
         let showTv = document.querySelector(".show__tv");
@@ -243,6 +283,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   if (page === "/people.html" || page === "/people") {
     fetch(Type.person, status.popular).then(({ data }) => {
       displayPeople(data?.results);
+      loaderOthers.remove();
       initializeActorEvent();
     });
   }
@@ -250,12 +291,14 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     // const query = new URLSearchParams(location.search);
     fetchMovieSearch(history.state.title).then(({ data }) => {
       displayMovie(data.results);
+      loaderOthers.remove();
       initializeMEvent();
     });
   }
   if (page === "/actor.html" || page === "/actor") {
     fetchDetails(Type.person, history.state.id).then((data) => {
       displayActor(data.data);
+      loaderOthers.remove();
     });
     fetchMovieCredits(Type.person, history.state.id, credits.movieCredits).then(
       (data) => {
@@ -306,14 +349,14 @@ document.addEventListener("DOMContentLoaded", async (e) => {
 
       let data = await fetchSearch(Type.movie, queryStringObj);
       console.log(data, "tamom");
-      // })
-      formSearchAll.reset();
       displaySearchMovies(data.data.results);
+
       initializeMEvent();
     });
     fetch(Type.movie, status.popular).then(({ data }) => {
       console.log(data.results);
       displaySearchMovies(data.results);
+      loaderOthers.remove();
       initializeMEvent();
     });
   }
@@ -357,6 +400,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     fetch(Type.tv, status.popular).then(({ data }) => {
       console.log(data.results);
       displayTvSearch(data.results);
+      loaderOthers.remove();
       initializeTvEvent();
     });
   }
@@ -365,6 +409,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       fetchDetails(Type.tv, history.state.id),
       fetchMovieVedio(Type.tv, history.state.id),
     ]);
+
     disMoviesDetails({ ...promise[0].data, ...promise[1].data });
     // fetchDetails(Type.movie, history.state.id).then((data) => {});
     // fetchMovieVedio(Type.movie, history.state.id).then((data) => {});
@@ -372,6 +417,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     fetchMovieCredits(Type.tv, history.state.id, credits.movieCredits).then(
       (data) => {
         displayCast(data.data.cast);
+        loaderOthers.remove();
       }
     );
     let faHeart = document.querySelector(".fa-heart");
@@ -436,6 +482,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   if (page === "/profile.html" || page === "/profile") {
     fetchAccount(Type.account).then((data) => {
       displayAccountName(data.data.username);
+      loaderOthers.remove();
     });
     const favoriteMovies = document.querySelector(".favorites_movies");
     favoriteMovies.addEventListener("click", () => {

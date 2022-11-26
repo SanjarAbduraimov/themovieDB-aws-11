@@ -23,22 +23,22 @@ export function cardTemplate(item) {
     </svg>
     <ul class="card__menu dropdown__content">
       <li class="dropdown__item">
-        <a href="#dropdown__link">
+        <a>
         <i class="fa-solid fa-house-chimney"></i> Add to list
         </a>
       </li>
       <li class="dropdown__item">
-        <a href="#dropdown__link">
+        <a>
           <i class="fas fa-heart"></i> Favourite
         </a>
       </li>
       <li class="dropdown__item">
-        <a href="#dropdown__link">
+        <a>
           <i class="fa-solid fa-bookmark"></i> Watchlist
         </a>
       </li>
       <li class="dropdown__item">
-        <a href="#dropdown__link" >
+        <a >
           <i class="fa-solid fa-star"></i> Raiting
         </a>
       </li>
