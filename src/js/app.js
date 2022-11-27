@@ -43,9 +43,7 @@ import {
   displayMovies,
   initializeMoveEvent,
   displayTv,
-  displayMovie,
   initializeMEvent,
-  displayMoviesTreanding,
 } from "./home";
 import {
   eventKeywords,
@@ -68,6 +66,12 @@ import {
   initializeAccouEvent,
   displayFavoriteMov,
 } from "./account";
+import {
+  displaySearchResults,
+  displaySearchResultsCount,
+  displaySearchResultsPages,
+  displaySearchResultsSee,
+} from "./search";
 import { displaySearchMovies } from "./movies";
 const _ = require(`lodash`);
 
@@ -138,14 +142,14 @@ document.addEventListener("DOMContentLoaded", async (e) => {
             }
           });
         });
-        data.results.forEach(data=>{
+        data.results.forEach((data) => {
           fetchMovieFavorityGet(Type.movie, data.id).then(({ data }) => {
-            const { favorite, watchlist , rated} = data;
+            const { favorite, watchlist, rated } = data;
             faHeart.dataset.favorite = favorite;
             faBookmark.dataset.watchlist = watchlist;
             // ratingMovie.dataset.rated = rated.value;
           });
-        })
+        });
         loader.remove();
         initializeMoveEvent();
         let showTv = document.querySelector(".show__tv");
@@ -174,7 +178,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       fetchDetails(Type.movie, history.state.id),
       fetchMovieVedio(Type.movie, history.state.id),
     ]);
-    
 
     disMoviesDetails({ ...promise[0].data, ...promise[1].data });
     // fetchDetails(Type.movie, history.state.id).then((data) => {});
@@ -183,7 +186,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then(
       (data) => {
         displayCast(data.data.cast);
-        loaderMovie.remove()
+        loaderMovie.remove();
       }
     );
     let faHeart = document.querySelector(".fa-heart");
@@ -220,48 +223,33 @@ document.addEventListener("DOMContentLoaded", async (e) => {
 
     let ratingMovie = document.querySelector(".fa-star");
     const allStar = document.querySelectorAll(".star");
-    allStar.forEach((star, i)=>{
-      star.onclick = function(){
+    allStar.forEach((star, i) => {
+      star.onclick = function () {
         let correntLeval = i + 1;
-        allStar.forEach((star, j)=>{
-          if(correntLeval >= j + 1){
-            star.innerHTML = '&#9733'
-            
+        allStar.forEach((star, j) => {
+          if (correntLeval >= j + 1) {
+            star.innerHTML = "&#9733";
+          } else {
+            star.innerHTML = "&#9734";
           }
-          else{
-            star.innerHTML = '&#9734'
+        });
+        fatchMovieRating(Type.movie, promise[0].data.id, correntLeval).then(
+          (data) => {
+            if (data.success) {
+              e.target.dataset.rated =
+                e.target.dataset.rated === value ? undefined : value;
+              console.log(data);
+            }
           }
-         
-          
-        })
-        fatchMovieRating(Type.movie, promise[0].data.id, correntLeval).then((data)=>{
-          
-          if (data.success) {
-            e.target.dataset.rated =
-            e.target.dataset.rated === value ? undefined : value;
-            console.log(data);
-          }
-        })
-        
-      }
-    })
+        );
+      };
+    });
     fetchMovieFavorityGet(Type.movie, promise[0].data.id).then(({ data }) => {
-      const { favorite, watchlist , rated} = data;
+      const { favorite, watchlist, rated } = data;
       faHeart.dataset.favorite = favorite;
       faBookmark.dataset.watchlist = watchlist;
       ratingMovie.dataset.rated = rated.value;
-      // if (!data.data.favorite) {
-      //   faHeart.style.color = "rgb(239, 71, 182)";
-      //   // faBookmark.addEventListener("click", ()=>{
-      //   //   console.log("assalom");
-      //   //   fetchMovieWatchDel(Type.account, promise[0].data.id, status.watchlist).then((data)=>{
-      //   //     faBookmark.style.color = "#ffffff";
-      //   //   })
-      //   // })
-      // }
-      // if (data.data.watchlist !== false) {
-      //   faBookmark.style.color = "rgb(207, 49, 49)";
-      // }
+     
     });
     fetchlistMovie(Type.movie, history.state.id).then(({ data }) => {
       displayNetwork(data);
@@ -275,8 +263,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       displayRecomaditions(data.data.results);
       initializeMEvent();
     });
-    
-    
+
     eventKeywords();
     initializeCastEvent();
   }
@@ -290,7 +277,10 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   if (page === "/search.html" || page === "/search") {
     // const query = new URLSearchParams(location.search);
     fetchMovieSearch(history.state.title).then(({ data }) => {
-      displayMovie(data.results);
+      displaySearchResults(data.results);
+      displaySearchResultsCount(data.total_results);
+      displaySearchResultsPages(data.total_pages);
+      displaySearchResultsSee(data.results);
       loaderOthers.remove();
       initializeMEvent();
     });
