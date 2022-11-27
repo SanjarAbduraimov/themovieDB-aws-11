@@ -68,6 +68,7 @@ import {
   initializeAccouEvent,
   displayFavoriteMov,
 } from "./account";
+import {displaySearchResultsAll, displaySearchResultspage }from "./search";
 import { displaySearchMovies } from "./movies";
 const _ = require(`lodash`);
 
@@ -179,12 +180,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       faBookmark.dataset.watchlist = watchlist;
       // if (!data.data.favorite) {
       //   faHeart.style.color = "rgb(239, 71, 182)";
-      //   // faBookmark.addEventListener("click", ()=>{
-      //   //   console.log("assalom");
-      //   //   fetchMovieWatchDel(Type.account, promise[0].data.id, status.watchlist).then((data)=>{
-      //   //     faBookmark.style.color = "#ffffff";
-      //   //   })
-      //   // })
       // }
       // if (data.data.watchlist !== false) {
       //   faBookmark.style.color = "rgb(207, 49, 49)";
@@ -215,7 +210,10 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     // const query = new URLSearchParams(location.search);
     fetchMovieSearch(history.state.title).then(({ data }) => {
       displayMovie(data.results);
+      displaySearchResultsAll(data.total_results);
+      displaySearchResultspage(data.total_pages)
       initializeMEvent();
+      console.log(data);
     });
   }
   if (page === "/actor.html" || page === "/actor") {
