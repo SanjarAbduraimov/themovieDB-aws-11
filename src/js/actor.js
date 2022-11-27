@@ -4,7 +4,7 @@ export function displayActor(actor = []) {
   let result = "";
   let results = "";
   const actorDetails = document.querySelector(".actor__img__wrapper");
-  const actorDetailsCol = document.querySelector(".actor__wrapper");
+  const actorDetailsCol = document.querySelector(".actor__title");
   const { profile_path, name, biography } = actor;
   const img = profile_path
     ? configs.baseImgURL + profile_path
@@ -17,59 +17,56 @@ export function displayActor(actor = []) {
           `;
   actorDetails.innerHTML = result;
   results += `
-  <div class="actor__title">
+ 
               <h1>${name} </h1> 
               <div class="actor__details">
                   <p class="day__details"></p>
                   <p class="actor__title_details"></p>
                   <p class="hour__formovie"></p>
-              </div>
-  </div>
-  
-  <div class="actor__text">
+              </div>`;
+
+  actorDetailsCol.innerHTML = results;
+  let resultCol = "";
+  const actorDetailText = document.querySelector(".actor__text");
+  resultCol += `
+              
               <p class="tagline">
-                  
+              
               </p>
               <h4 class="biography__actor">Biography</h4>
               <p class="details__description">
-                 ${biography}
+              ${biography}
               </p>
-          </div>
-          <p class="actor__known">Known For</p>
-         
-          <div class="row cast__films">
-          </div>
-          <div class="acting__wrepper">
-          <p class="acting__title">Acting</p>
-          <div class="nav__part">
-
-          <div class="dropdow">
-            <button class="dropbtn">  <li><a href="#">All <i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
-            </button>
-            <div class="dropdow-content">
+              `;
+              actorDetailText.innerHTML = resultCol;
+              let dataDiskription = document.querySelector(".details__description");
+              console.log(dataDiskription.length);
+              
+  const actorDetail = document.querySelector(".acting__wrepper");
+  let acting = "";
+  acting += `
+              <p class="acting__title">Acting</p>
+              <div class="nav__part">
+              
+              <div class="dropdow">
+              <button class="dropbtn">  <li><a href="#">All <i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
+              </button>
+              <div class="dropdow-content">
               <a href="#">Movies</a>
               <a href="#">TV Shows</a>
-            </div>
-          </div> 
-          <div class="dropdow">
-            <button class="dropbtn"> <li><a href="#">Department <i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
-            </button>
-            <div class="dropdow-content">
+              </div>
+              </div> 
+              <div class="dropdow">
+              <button class="dropbtn"> <li><a href="#">Department <i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
+              </button>
+              <div class="dropdow-content">
               <a href="#">Acting</a>
               <a href="#">Production</a>
               <a href="#">Crew</a>
-            </div>
-           </div> 
-           </div>
-          </div> 
-          
-          <div class="container crew__container">
-          <div class="crew__films">
-            
-          </div>
-    
-        </div>`
-        actorDetailsCol.innerHTML = results;
+              </div>
+              </div> 
+              </div> `;
+  actorDetail.innerHTML = acting;
 }
 
 export function displayCastActor(cast = []) {
