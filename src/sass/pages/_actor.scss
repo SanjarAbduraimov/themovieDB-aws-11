@@ -1,15 +1,21 @@
 .actor__cards {
   display: flex;
+  margin: auto;
+
 }
 
 .actor__img__wrapper {
   width: 30%;
-  padding-right: 30px;
-  .actor__imgs img {
-    width: 100%;
-    border-radius: 1rem;
-    margin-top: 1.5rem;
-  }
+  padding-right: 3rem;
+  .actor__imgs{
+     width: 30rem;
+
+    img {
+      width: 100%;
+      border-radius: 1rem;
+      margin-top: .5rem;
+    }
+  } 
 }
 
 .actor__wrapper {
