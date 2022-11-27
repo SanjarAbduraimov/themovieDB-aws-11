@@ -1,41 +1,9 @@
-.main {
-  width: 32rem;
-  border-radius: 1rem;
-  border: 1px solid rgb(238, 230, 230);
-}
-.result {
-  background-color: rgb(44, 186, 241);
-  height: 7rem;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  object-fit: cover;
-}
-
-.just {
+.search__results-wreapper {
   display: flex;
-  justify-content: space-between;
-  padding: 1.8rem;
-}
-.just__one {
-  display: flex;
-  justify-content: space-between;
-  padding: 1.8rem;
-  background-color: blanchedalmond;
-}
-.just:hover {
-  background-color: blanchedalmond;
-}
-
-.movie__wrapper {
-  display: flex;
-  .serch__detail {
+  .count__results-total {
     width: 30%;
   }
-  .serch__detail_col {
+  .results__col-search {
     width: 70%;
-    .movies__wrapper {
-      display: flex;
-      flex-direction: column;
-    }
   }
 }
