@@ -7,3 +7,36 @@
     width: 70%;
   }
 }
+.search__pagehgh{
+  border: 1px solid;
+  border-radius: 10px;
+  border-color: #dbdbdb;
+  margin-right: 3rem;
+  overflow: hidden;
+  
+
+}
+.keyword__count{
+  display: flex;
+  align-items: end;
+  cursor: pointer;
+  padding:1.4rem 1.6rem ;
+  font-weight: 500;
+
+  font-size: 1.5rem;
+  justify-content: space-between;  
+}
+.keyword__count:hover{
+  background-color:rgb(235, 235, 235);
+}
+.keyword__count__number{
+  background: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+.title__search{
+  // padding-left: 1.5rem;
+  color: white;
+  background-color:rgb(1, 180, 228); 
+  padding: 2rem;
+}
