@@ -5,7 +5,7 @@ import Type, { status, credits, sortBy } from "../constants";
 import ModalVideo from "modal-video";
 import { fetchReating } from "../api";
 export function cardTemplate(item) {
-  const { id, img, title, release_date, vote_average , name} = item;
+  const { id, img, title, release_date, vote_average, name } = item;
   const nameorigin = name ? name : title;
   return `<div class="col"> <article class="card card__hero " data-id="${id}">
   <div class="card__header dropdown">
@@ -29,7 +29,7 @@ export function cardTemplate(item) {
       </li>
       <li class="dropdown__item">
         <a>
-          <i class="fas fa-heart"></i> Favourite
+          <i class="fas fa-heart"  data-id="${id}" ></i> Favourite
         </a>
       </li>
       <li class="dropdown__item">
@@ -52,7 +52,7 @@ export function cardTemplate(item) {
     />
   </div>
   <div class="card__body card__percentage">
-    <div class="percentage">${vote_average * 10}</div>
+    <div class="percentage">${Math.round(vote_average * 10)}</div>
     <h4 class="card__title">${nameorigin}</h4>
     <p class="card__text">${moment(release_date).format("MMM DD, YYYY")}</p>
   </div>
@@ -70,8 +70,6 @@ export function displayMovies(data = []) {
   });
   authorMenuNode.innerHTML = result;
 }
-
-
 
 export function displayMoviesUpcoming(data = []) {
   let result = "";
@@ -111,22 +109,22 @@ export function displayTv(data = []) {
       </svg>
       <ul class="card__menu dropdown__content">
         <li class="dropdown__item">
-          <a href="dropdown__link">
+          <a class="#">
             <i class="fas fa-heart"></i> Add to list
           </a>
         </li>
         <li class="dropdown__item">
-          <a href="dropdown__link">
-            <i class="fas fa-heart"></i> Favourite
+          <a class="likesda">
+            <i class="fas fa-heart" data-id="${id}"></i> Favourite
           </a>
         </li>
         <li class="dropdown__item">
-          <a href="dropdown__link">
+          <a class="#">
             <i class="fas fa-heart"></i> Watchlist
           </a>
         </li>
         <li class="dropdown__item">
-          <a href="dropdown__link">
+          <a class="#">
             <i class="fas fa-heart"></i> Your raiting
           </a>
         </li>

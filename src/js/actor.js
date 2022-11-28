@@ -28,6 +28,7 @@ export function displayActor(actor = []) {
   actorDetailsCol.innerHTML = results;
   let resultCol = "";
   const actorDetailText = document.querySelector(".actor__text");
+  let temp = `<span id="dots">...</span><span class="more"></span>`;
   resultCol += `
               
               <p class="tagline">
@@ -35,13 +36,14 @@ export function displayActor(actor = []) {
               </p>
               <h4 class="biography__actor">Biography</h4>
               <p class="details__description">
-              ${biography}
+              ${biography.slice(0, 450)}
+              ${temp}
+              <button class="read__more" id="myBtn">Read more <i class="fa-solid fa-angle-right"></i></button>
               </p>
               `;
-              actorDetailText.innerHTML = resultCol;
-              let dataDiskription = document.querySelector(".details__description");
-              console.log(dataDiskription.length);
-              
+  actorDetailText.innerHTML = resultCol;
+  // let dataDiskription = document.querySelector(".details__description");
+
   const actorDetail = document.querySelector(".acting__wrepper");
   let acting = "";
   acting += `
@@ -67,6 +69,11 @@ export function displayActor(actor = []) {
               </div> 
               </div> `;
   actorDetail.innerHTML = acting;
+  let readMore = document.querySelector("#myBtn");
+  readMore.addEventListener("click", () => {
+    let read = document.querySelector(".details__description");
+    read.innerHTML = `${biography}`;
+  });
 }
 
 export function displayCastActor(cast = []) {

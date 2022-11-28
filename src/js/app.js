@@ -58,6 +58,7 @@ import {
   displayCrewActor,
   initializeActorMenuEvent,
   initializeActingEvent,
+  functionssas,
 } from "./actor";
 import {
   displayAccountName,
@@ -111,47 +112,48 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     fetch(Type.movie, status.popular)
       .then(({ data }) => {
         displayMovies(data.results);
-        let faHeart = document.querySelector(".fa-heart");
-        let faBookmark = document.querySelector(".fa-bookmark");
-        faHeart.addEventListener("click", (e) => {
-          console.log(e.target.dataset.favorite);
-          fetchMovieFavority(
-            Type.account,
-            data.id,
-            e.target.dataset.favorite === "true" ? false : true,
-            "movie"
-          ).then(({ data }) => {
-            if (data.success) {
-              e.target.dataset.favorite =
-                e.target.dataset.favorite === "true" ? false : true;
-            }
-            console.log(data);
+        let faHeart = document.querySelectorAll(".fa-heart");
+        // let faBookmark = document.querySelectorAll(".fa-bookmark");
+        faHeart.forEach((data) => {
+          data.addEventListener("click", (e) => {
+            let element = e.target;
+            const id = data?.dataset?.id;
+            console.log(element, id);
+            console.log(element?.dataset?.favorite);
+            fetchMovieFavority(
+              Type.account,
+              id,
+              element?.dataset?.favorite === "true" ? false : true,
+              "movie"
+            ).then(({ data }) => {
+              if (data.success) {
+                element.dataset.favorite =
+                  element.dataset.favorite === "true" ? false : true;
+              }
+              console.log(data);
+            });
           });
         });
-        faBookmark.addEventListener("click", (e) => {
-          console.log(e.target.dataset.watchlist);
-          fetchMovieWatchList(
-            Type.account,
-            data.id,
-            e.target.dataset.watchlist === "true" ? false : true,
-            "movie"
-          ).then(({ data }) => {
-            if (data.success) {
-              e.target.dataset.watchlist =
-                e.target.dataset.watchlist === "true" ? false : true;
-            }
-          });
-        });
-        data.results.forEach((data) => {
-          fetchMovieFavorityGet(Type.movie, data.id).then(({ data }) => {
-            const { favorite, watchlist, rated } = data;
-            faHeart.dataset.favorite = favorite;
-            faBookmark.dataset.watchlist = watchlist;
-            // ratingMovie.dataset.rated = rated.value;
-          });
-        });
+        // faBookmark.forEach(data=>{
+        //   .addEventListener("click", (e) => {
+        //   console.log(e.target.dataset.watchlist);
+        //   fetchMovieWatchList(
+        //     Type.account,
+        //     data.id,
+        //     e.target.dataset.watchlist === "true" ? false : true,
+        //     "movie"
+        //   ).then(({ data }) => {
+        //     if (data.success) {
+        //       e.target.dataset.watchlist =
+        //         e.target.dataset.watchlist === "true" ? false : true;
+        //     }
+        //   });
+        // });
+        // })
+
         loader.remove();
         initializeMoveEvent();
+
         let showTv = document.querySelector(".show__tv");
         showTv.addEventListener("click", () => {
           fetch(Type.tv, status.popular).then(({ data }) => {
@@ -167,11 +169,22 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         });
       })
       .catch((err) => console.log(err));
-    // fetch(Type.movie, status.topRated).then(({data})=>{
+    // thhdsss
+
+    // let faHeart = document.querySelectorAll(".fa-heart");
+    //  faHeart.forEach((data) => {
     //   console.log(data);
-    //   displayMoviesTreanding(data.results);
-    //   initializeMoveEvent();
-    // })
+    //   console.log(data.favorite);
+
+    //   fetchMovieFavorityGet(Type.movie, data.id).then(( datasad ) => {
+    //     let faHeart = document.querySelector(".fa-heart");
+    //     console.log(datasad.favorite);
+    //     const { favorite, watchlist, rated } = data;
+    //     faHeart.dataset.favorite = favorite;
+    //     // faBookmark.dataset.watchlist = watchlist;
+    //     // ratingMovie.dataset.rated = rated.value;
+    //   });
+    // });
   }
   if (page === "/movie.html" || page === "/movie") {
     const promise = await Promise.all([
@@ -236,8 +249,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         fatchMovieRating(Type.movie, promise[0].data.id, correntLeval).then(
           (data) => {
             if (data.success) {
-              e.target.dataset.rated =
-                e.target.dataset.rated === value ? undefined : value;
+              e.target.dataset.rated = e.target.dataset.rated === value;
               console.log(data);
             }
           }
@@ -249,7 +261,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       faHeart.dataset.favorite = favorite;
       faBookmark.dataset.watchlist = watchlist;
       ratingMovie.dataset.rated = rated.value;
-     
     });
     fetchlistMovie(Type.movie, history.state.id).then(({ data }) => {
       displayNetwork(data);
@@ -298,6 +309,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         initializeActingEvent();
       }
     );
+    
   }
 
   if (page === "/movies.html" || page === "/movies") {
