@@ -53,7 +53,7 @@ export function cardTemplate(item) {
   </div>
   <div class="card__body card__percentage">
     <div class="percentage">${Math.round(vote_average * 10)}</div>
-    <h4 class="card__title">${nameorigin}</h4>
+    <h4 class="card__title">${nameorigin.slice(0, 30)}</h4>
     <p class="card__text">${moment(release_date).format("MMM DD, YYYY")}</p>
   </div>
 </article></div>`;

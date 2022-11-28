@@ -220,7 +220,7 @@ export function displayCast(cast = []) {
   </div>
   <div class="card__body card__percentage">
     <div class="percentage">${character}</div>
-    <h4 class="card__title">${name}</h4>
+    <h4 class="card__title" data-id="${id}">${name}</h4>
   </div>
 </article></div>
     `;
@@ -264,7 +264,7 @@ export function displayCrew(crew) {
 export function initializeCastEvent() {
   const moviesssMenuNode = document.querySelector(".cast__people");
   moviesssMenuNode.addEventListener("click", (event) => {
-    const id = event.target.closest(".card__img_top")?.dataset?.id;
+    const id = event.target.closest(".card__img_top")?.dataset?.id || event.target.closest(".card__title")?.dataset?.id;
     console.log(id, "bosilgan");
     if (!id) return;
     history.pushState({ id }, null, "/actor.html");
