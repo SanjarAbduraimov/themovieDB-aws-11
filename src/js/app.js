@@ -44,6 +44,7 @@ import {
   initializeMoveEvent,
   displayTv,
   initializeMEvent,
+  initializeStatusEvent,
 } from "./home";
 import {
   eventKeywords,
@@ -112,47 +113,32 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     fetch(Type.movie, status.popular)
       .then(({ data }) => {
         displayMovies(data.results);
-        let faHeart = document.querySelectorAll(".fa-heart");
-        // let faBookmark = document.querySelectorAll(".fa-bookmark");
-        faHeart.forEach((data) => {
-          data.addEventListener("click", (e) => {
-            let element = e.target;
-            const id = data?.dataset?.id;
-            console.log(element, id);
-            console.log(element?.dataset?.favorite);
-            fetchMovieFavority(
-              Type.account,
-              id,
-              element?.dataset?.favorite === "true" ? false : true,
-              "movie"
-            ).then(({ data }) => {
-              if (data.success) {
-                element.dataset.favorite =
-                  element.dataset.favorite === "true" ? false : true;
-              }
-              console.log(data);
-            });
-          });
-        });
-        // faBookmark.forEach(data=>{
-        //   .addEventListener("click", (e) => {
-        //   console.log(e.target.dataset.watchlist);
-        //   fetchMovieWatchList(
-        //     Type.account,
-        //     data.id,
-        //     e.target.dataset.watchlist === "true" ? false : true,
-        //     "movie"
-        //   ).then(({ data }) => {
-        //     if (data.success) {
-        //       e.target.dataset.watchlist =
-        //         e.target.dataset.watchlist === "true" ? false : true;
-        //     }
-        //   });
-        // });
-        // })
-
         loader.remove();
         initializeMoveEvent();
+        let faHeart = document.querySelectorAll(".fa-heart");
+        // let faBookmark = document.querySelectorAll(".fa-bookmark");
+        data.results.forEach(datas=>{
+          faHeart.forEach(fav=>{
+            fav.addEventListener("click", (e) => {
+              console.log(e.target);
+              // console.log(e.target.dataset.favorite);
+              fetchMovieFavority(
+                Type.account,
+                datas.id,
+                e.target.dataset.favorite === "true" ? false : true,
+                "movie"
+              ).then(({ data }) => {
+                if (data.success) {
+                  e.target.dataset.favorite =
+                    e.target.dataset.favorite === "true" ? false : true;
+                }
+                // console.log(data);
+              });
+            });
+          })
+          // console.log(datas);
+        })
+        initializeStatusEvent();
 
         let showTv = document.querySelector(".show__tv");
         showTv.addEventListener("click", () => {
@@ -169,22 +155,21 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         });
       })
       .catch((err) => console.log(err));
-    // thhdsss
-
-    // let faHeart = document.querySelectorAll(".fa-heart");
-    //  faHeart.forEach((data) => {
-    //   console.log(data);
-    //   console.log(data.favorite);
-
-    //   fetchMovieFavorityGet(Type.movie, data.id).then(( datasad ) => {
-    //     let faHeart = document.querySelector(".fa-heart");
-    //     console.log(datasad.favorite);
-    //     const { favorite, watchlist, rated } = data;
-    //     faHeart.dataset.favorite = favorite;
-    //     // faBookmark.dataset.watchlist = watchlist;
-    //     // ratingMovie.dataset.rated = rated.value;
-    //   });
-    // });
+     
+      // faBookmark.addEventListener("click", (e) => {
+      //   console.log(e.target.dataset.watchlist);
+      //   fetchMovieWatchList(
+      //     Type.account,
+      //     promise[0].data.id,
+      //     e.target.dataset.watchlist === "true" ? false : true,
+      //     "movie"
+      //   ).then(({ data }) => {
+      //     if (data.success) {
+      //       e.target.dataset.watchlist =
+      //         e.target.dataset.watchlist === "true" ? false : true;
+      //     }
+      //   });
+      // });
   }
   if (page === "/movie.html" || page === "/movie") {
     const promise = await Promise.all([
@@ -309,7 +294,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         initializeActingEvent();
       }
     );
-    
   }
 
   if (page === "/movies.html" || page === "/movies") {
