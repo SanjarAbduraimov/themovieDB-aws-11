@@ -1,6 +1,6 @@
 import moment from "moment/moment";
 import configs from "../configs";
-import { fetch, fetchMovieFavorityGet } from "../api";
+import { fetch, fetchMovieFavorityGet, fetchMovieFavority } from "../api";
 import Type, { status, credits, sortBy } from "../constants";
 import ModalVideo from "modal-video";
 import { fetchReating } from "../api";
@@ -29,12 +29,12 @@ export function cardTemplate(item) {
         </a>
       </li>
       <li class="dropdown__item">
-        <a>
-          <i class="fas fa-heart"  data-id="${id}"   ></i> Favourite
+        <a class="faHeart" data-id="${id}">
+          <i class="fas fa-heart"     > </i> Favourite
         </a>
       </li>
       <li class="dropdown__item">
-        <a>
+        <a class="faBookmark">
           <i class="fa-solid fa-bookmark"></i> Watchlist
         </a>
       </li>
@@ -244,26 +244,49 @@ export function initializeMoveEvent() {
 
 export function initializeStatusEvent() {
   const moviesStatus = document.querySelector(".movies__wrapper");
+  const moviesLikeStatus = document.querySelector(".movies__wrapper");
+
   moviesStatus.addEventListener("click", (event) => {
     const id = event.target.closest("svg")?.dataset?.id;
     console.log(id, "bosilgan");
     if (!id) return;
-    let faHeart = document.querySelectorAll(".fa-heart");
-    let faBookmark = document.querySelectorAll(".fa-bookmark");
-    
+    let faHeart = document.querySelectorAll(".faHeart");
+    let faBookmark = document.querySelectorAll(".faBookmark");
+    // let ratingMovie = document.querySelectorall(".ratingMovie");
+
 
     fetchMovieFavorityGet(Type.movie, id).then(({ data }) => {
       const { favorite, watchlist, rated } = data;
-      faHeart.forEach(data=>{
+      faHeart.forEach((data) => {
         data.dataset.favorite = favorite;
-      })
-      faBookmark.forEach(data=>{
+      });
+      faBookmark.forEach((data) => {
         data.dataset.watchlist = watchlist;
-      })
+      });
+      // ratingMovie.dataset.rated = rated.value;
+
       // ratingMovie.dataset.rated = rated.value;
     });
-
   });
+  // moviesLikeStatus.addEventListener("click", (e) => {
+  //   const id = e.target.closest("faHeart")?.dataset?.id;
+  //   console.log(id, "bosilgan");
+  //   if (!id) return;
+  //   // let faHeart = document.querySelector(".faHeart");
+  //   // let faBookmark = document.querySelectorAll(".faBookmark");
+  //   fetchMovieFavority(
+  //     Type.account,
+  //     id,
+  //     e.target.dataset.favorite === "true" ? false : true,
+  //     "movie"
+  //   ).then(({ data }) => {
+  //     if (data.success) {
+  //       e.target.dataset.favorite =
+  //         e.target.dataset.favorite === "true" ? false : true;
+  //     }
+  //     console.log(data);
+  //   });
+  // });
 }
 
 // let faHeart = document.querySelector(".fa-heart");

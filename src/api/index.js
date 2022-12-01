@@ -59,13 +59,13 @@ export function fetchMovieCredits(type, id, credits) {
 
 export function fetchMovieSearch(
   title,
+  page ,
   query = {
     // adult: true,
     // primary_release_year: "date",
     // year: 2022,
     // region: "uzbekistan",
-  },
-  page = 1
+  }
 ) {
   if (!title) {
     throw "Please insert type parametr";

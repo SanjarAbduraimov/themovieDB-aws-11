@@ -361,3 +361,12 @@ export function initializeTvEvent() {
   });
 }
 
+
+export function paginations(done){
+  var result = [];
+  for(var i = 1; i < 196; i++){
+      result.push(i);
+  }
+  done(result);
+}
+

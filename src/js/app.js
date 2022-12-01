@@ -37,6 +37,7 @@ import {
   displayRecomaditions,
   displayTvSearch,
   initializeTvEvent,
+  paginations,
 } from "./movie";
 import { displayPeople } from "./people";
 import {
@@ -67,6 +68,8 @@ import {
   initializeAccountEvent,
   initializeAccouEvent,
   displayFavoriteMov,
+  displayFavoriteTiv,
+  initializeAccountEventtvs,
 } from "./account";
 import {
   displaySearchResults,
@@ -115,29 +118,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         displayMovies(data.results);
         loader.remove();
         initializeMoveEvent();
-        let faHeart = document.querySelectorAll(".fa-heart");
-        // let faBookmark = document.querySelectorAll(".fa-bookmark");
-        data.results.forEach(datas=>{
-          faHeart.forEach(fav=>{
-            fav.addEventListener("click", (e) => {
-              console.log(e.target);
-              // console.log(e.target.dataset.favorite);
-              fetchMovieFavority(
-                Type.account,
-                datas.id,
-                e.target.dataset.favorite === "true" ? false : true,
-                "movie"
-              ).then(({ data }) => {
-                if (data.success) {
-                  e.target.dataset.favorite =
-                    e.target.dataset.favorite === "true" ? false : true;
-                }
-                // console.log(data);
-              });
-            });
-          })
-          // console.log(datas);
-        })
         initializeStatusEvent();
 
         let showTv = document.querySelector(".show__tv");
@@ -155,21 +135,21 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         });
       })
       .catch((err) => console.log(err));
-     
-      // faBookmark.addEventListener("click", (e) => {
-      //   console.log(e.target.dataset.watchlist);
-      //   fetchMovieWatchList(
-      //     Type.account,
-      //     promise[0].data.id,
-      //     e.target.dataset.watchlist === "true" ? false : true,
-      //     "movie"
-      //   ).then(({ data }) => {
-      //     if (data.success) {
-      //       e.target.dataset.watchlist =
-      //         e.target.dataset.watchlist === "true" ? false : true;
-      //     }
-      //   });
-      // });
+
+    // faBookmark.addEventListener("click", (e) => {
+    //   console.log(e.target.dataset.watchlist);
+    //   fetchMovieWatchList(
+    //     Type.account,
+    //     promise[0].data.id,
+    //     e.target.dataset.watchlist === "true" ? false : true,
+    //     "movie"
+    //   ).then(({ data }) => {
+    //     if (data.success) {
+    //       e.target.dataset.watchlist =
+    //         e.target.dataset.watchlist === "true" ? false : true;
+    //     }
+    //   });
+    // });
   }
   if (page === "/movie.html" || page === "/movie") {
     const promise = await Promise.all([
@@ -272,7 +252,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   }
   if (page === "/search.html" || page === "/search") {
     // const query = new URLSearchParams(location.search);
-    fetchMovieSearch(history.state.title).then(({ data }) => {
+    fetchMovieSearch(history.state.title, 1).then(({ data }) => {
       displaySearchResults(data.results);
       displaySearchResultsCount(data.total_results);
       displaySearchResultsPages(data.total_pages);
@@ -280,6 +260,32 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       loaderOthers.remove();
       initializeMEvent();
     });
+    
+    
+    // let pagination = document.querySelector(".next__pagination");
+    // pagination.addEventListener("click", (e) => {
+    //   console.log("assalom");
+    //   let result = "";
+    //   let i=1;
+    //   do {
+    //     i = i + 1;
+    //     result = result + i;
+    //   } while (i < 5);
+    //   console.log(result);
+    //   for (let i = 1; i < 196; i++) {        
+    //     fetchMovieSearch(history.state.title, result).then(({ data }) => {
+    //       displaySearchResults(data.results);
+    //       displaySearchResultsCount(data.total_results);
+    //       displaySearchResultsPages(data.total_pages);
+    //       displaySearchResultsSee(data.results);
+    //       initializeMEvent();
+    //     });
+    //     return result;
+    //   }
+      
+      
+      
+    // });
   }
   if (page === "/actor.html" || page === "/actor") {
     fetchDetails(Type.person, history.state.id).then((data) => {
@@ -489,6 +495,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         console.log(data);
         displayFavoriteMov(data.data.results);
         initializeAccouEvent();
+        initializeAccountEvent();
       });
     });
     const favoritetvShows = document.querySelector(".favorite_stv");
@@ -496,7 +503,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       fetchAccountStatus(Type.account, status.favorite, typeAccount.tv).then(
         (data) => {
           console.log(data);
-          displayFavoriteMovies(data.data.results);
+          displayFavoriteTiv(data.data.results);
+          initializeAccountEventtvs();
         }
       );
     });
@@ -508,13 +516,15 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         typeAccount.movies
       ).then((data) => {
         displayFavoriteMovies(data.data.results);
+        initializeAccountEvent();
       });
     });
     const tvwatchlist = document.querySelector(".tv__watchlist");
     tvwatchlist.addEventListener("click", () => {
       fetchAccountStatus(Type.account, status.watchlist, typeAccount.tv).then(
         (data) => {
-          displayFavoriteMovies(data.data.results);
+          displayFavoriteTiv(data.data.results);
+          initializeAccountEventtvs();
         }
       );
     });
@@ -523,6 +533,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       fetchAccountStatus(Type.account, status.rated, typeAccount.movies).then(
         (data) => {
           displayFavoriteMovies(data.data.results);
+          initializeAccountEvent();
         }
       );
     });
@@ -530,11 +541,12 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     tvrated.addEventListener("click", () => {
       fetchAccountStatus(Type.account, status.rated, typeAccount.tv).then(
         (data) => {
-          displayFavoriteMovies(data.data.results);
+          displayFavoriteTiv(data.data.results);
+          initializeAccountEventtvs();
         }
       );
     });
 
-    initializeAccountEvent();
+    
   }
 });
