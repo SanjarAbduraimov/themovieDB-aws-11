@@ -74,12 +74,33 @@
               <li><a href="#">Login</a></li>
               <li><a href="./profile.html">Join TMDB</a></li>
               <li>
-                <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a href="#"
+                  ><i id="search-btn" class="fa-solid fa-magnifying-glass"></i
+                ></a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+      <!-- Search Keywords -->
+      <div class="container searchContainer">
+        <div class="searchKeywords">
+          <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+          <form class="searchKeywordsForm" >
+            <input
+              name="title"
+              type="text"
+              placeholder="Search for a movie, tv show, person......"
+              value=""
+              class="searchKeywordsInput"
+            />
+          </form>
+        </div>
+        <i class="fa-solid fa-xmark cancelSearch"></i>
+        <div class="searchKeywords_data container">
+          <ul class="searchKeywords_data__ul"></ul>
+        </div>
+      </div>
     </header>
     <section class="inner_content">
       <div class="container">

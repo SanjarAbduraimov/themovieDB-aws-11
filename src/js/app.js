@@ -26,6 +26,7 @@ import {
   fetchAccount,
   fetchAccountStatus,
   fatchMovieRating,
+  searchKeywords,
 } from "../api";
 import {
   disMoviesDetails,
@@ -135,6 +136,29 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         });
       })
       .catch((err) => console.log(err));
+
+    // fetch(Type.movie, status.topRated).then(({data})=>{
+    //   console.log(data);
+    //   displayMoviesTreanding(data.results);
+    //   initializeMoveEvent();
+    // })
+    let searchkeywordsInput = document.querySelector(".searchKeywordsInput");
+    let searchKeywordsForm = document.querySelector(".searchKeywordsForm");
+    searchKeywordsForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      searchKeywords(searchkeywordsInput.value).then((data) => {
+        console.log(data);
+      });
+    });
+    loader.remove();
+    initializeMoveEvent();
+    let searchBtn = document.querySelector("#search-btn");
+    let searchContainer = document.querySelector(".searchContainer");
+    searchBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      searchContainer.classList.toggle("show__cont");
+    });
+
 
     // faBookmark.addEventListener("click", (e) => {
     //   console.log(e.target.dataset.watchlist);

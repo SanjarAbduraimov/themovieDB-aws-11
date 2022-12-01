@@ -22,6 +22,15 @@ export function fetchDetails(type, id) {
   );
 }
 
+export function searchKeywords(query, page = 1) {
+  if (!query) {
+    throw "Please insert id parametr";
+  }
+  return axios.get(
+    `search/multi?api_key=${apiKey}&language=${navigator.languages[0]}&query=${query}&page=${page}&include_adult=false`
+  );
+}
+
 export function fetchlistMovie(type, id) {
   if (!id) {
     throw "Please insert id parametr";
@@ -182,7 +191,6 @@ export function fetchMovieWatchList(type, id, status, types) {
   });
 }
 
-
 export function fetchMovieFavorityGet(type, id) {
   if (!type) {
     throw "Please insert type parametr";
@@ -244,6 +252,6 @@ export function fatchMovieRating(type, id, value) {
 
   let url = `${type}/${id}/rating?api_key=${apiKey}&session_id=${sessionId}`;
   return axios.post(url, {
-      "value": `${value}`
+    value: `${value}`,
   });
 }
