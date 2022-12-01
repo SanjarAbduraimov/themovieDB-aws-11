@@ -1,6 +1,6 @@
 import moment from "moment/moment";
 import configs from "../configs";
-import { fetch } from "../api";
+import { fetch, fetchMovieFavorityGet, fetchMovieFavority } from "../api";
 import Type, { status, credits, sortBy } from "../constants";
 import ModalVideo from "modal-video";
 import { fetchReating } from "../api";
@@ -8,9 +8,10 @@ export function cardTemplate(item) {
   const { id, img, title, release_date, vote_average, name } = item;
   const nameorigin = name ? name : title;
   return `<div class="col"> <article class="card card__hero " data-id="${id}">
-  <div class="card__header dropdown">
+  <div class="card__header dropdown" >
     <svg
       id="glyphicons-basic"
+      data-id="${id}"
       class="card__menu__btn dropdown__btn"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
@@ -21,19 +22,19 @@ export function cardTemplate(item) {
         fill="#ffffff80"
       ></path>
     </svg>
-    <ul class="card__menu dropdown__content">
+    <ul class="card__menu dropdown__content status__events" >
       <li class="dropdown__item">
         <a>
         <i class="fa-solid fa-house-chimney"></i> Add to list
         </a>
       </li>
       <li class="dropdown__item">
-        <a>
-          <i class="fas fa-heart"></i> Favourite
+        <a class="faHeart" data-id="${id}">
+          <i class="fas fa-heart"     > </i> Favourite
         </a>
       </li>
       <li class="dropdown__item">
-        <a>
+        <a class="faBookmark">
           <i class="fa-solid fa-bookmark"></i> Watchlist
         </a>
       </li>
@@ -53,7 +54,8 @@ export function cardTemplate(item) {
   </div>
   <div class="card__body card__percentage">
     <div class="percentage">${Math.round(vote_average * 10)}</div>
-    <h4 class="card__title">${nameorigin}</h4>
+    <h4 class="card__title">${nameorigin.slice(0, 30)}</h4>
+
     <p class="card__text">${moment(release_date).format("MMM DD, YYYY")}</p>
   </div>
 </article></div>`;
@@ -71,6 +73,7 @@ export function displayMovies(data = []) {
   authorMenuNode.innerHTML = result;
 }
 
+
 // export function displaySearchKeywords(data = []) {
 //   let result = "";
 //   const searchKeywordsMenu = document.querySelector(".searchKeywords_data");
@@ -81,6 +84,7 @@ export function displayMovies(data = []) {
 //     searchKeywordsMenu.innerHTML = result;
 //   });
 // }
+
 
 export function displayMoviesUpcoming(data = []) {
   let result = "";
@@ -120,22 +124,22 @@ export function displayTv(data = []) {
       </svg>
       <ul class="card__menu dropdown__content">
         <li class="dropdown__item">
-          <a href="dropdown__link">
+          <a class="#">
             <i class="fas fa-heart"></i> Add to list
           </a>
         </li>
         <li class="dropdown__item">
-          <a href="dropdown__link">
-            <i class="fas fa-heart"></i> Favourite
+          <a class="likesda">
+            <i class="fas fa-heart" data-id="${id}"></i> Favourite
           </a>
         </li>
         <li class="dropdown__item">
-          <a href="dropdown__link">
+          <a class="#">
             <i class="fas fa-heart"></i> Watchlist
           </a>
         </li>
         <li class="dropdown__item">
-          <a href="dropdown__link">
+          <a class="#">
             <i class="fas fa-heart"></i> Your raiting
           </a>
         </li>
@@ -251,3 +255,62 @@ export function initializeMoveEvent() {
     });
   });
 }
+
+export function initializeStatusEvent() {
+  const moviesStatus = document.querySelector(".movies__wrapper");
+  const moviesLikeStatus = document.querySelector(".movies__wrapper");
+
+  moviesStatus.addEventListener("click", (event) => {
+    const id = event.target.closest("svg")?.dataset?.id;
+    console.log(id, "bosilgan");
+    if (!id) return;
+    let faHeart = document.querySelectorAll(".faHeart");
+    let faBookmark = document.querySelectorAll(".faBookmark");
+    // let ratingMovie = document.querySelectorall(".ratingMovie");
+
+
+    fetchMovieFavorityGet(Type.movie, id).then(({ data }) => {
+      const { favorite, watchlist, rated } = data;
+      faHeart.forEach((data) => {
+        data.dataset.favorite = favorite;
+      });
+      faBookmark.forEach((data) => {
+        data.dataset.watchlist = watchlist;
+      });
+      // ratingMovie.dataset.rated = rated.value;
+
+      // ratingMovie.dataset.rated = rated.value;
+    });
+  });
+  // moviesLikeStatus.addEventListener("click", (e) => {
+  //   const id = e.target.closest("faHeart")?.dataset?.id;
+  //   console.log(id, "bosilgan");
+  //   if (!id) return;
+  //   // let faHeart = document.querySelector(".faHeart");
+  //   // let faBookmark = document.querySelectorAll(".faBookmark");
+  //   fetchMovieFavority(
+  //     Type.account,
+  //     id,
+  //     e.target.dataset.favorite === "true" ? false : true,
+  //     "movie"
+  //   ).then(({ data }) => {
+  //     if (data.success) {
+  //       e.target.dataset.favorite =
+  //         e.target.dataset.favorite === "true" ? false : true;
+  //     }
+  //     console.log(data);
+  //   });
+  // });
+}
+
+// let faHeart = document.querySelector(".fa-heart");
+
+// //  console.log(datas.data.favorite);
+//   const { favorite, watchlist, rated } = datas.data;
+//   // console.log(favorite);
+//   faHeart.dataset.favorite = favorite;
+//   console.log(faHeart.classList);
+//   faHeart.classList.push('bgred')
+//   console.log(faHeart.dataset.favorite);
+//   // faBookmark.dataset.watchlist = watchlist;
+//   // ratingMovie.dataset.rated = rated.value;

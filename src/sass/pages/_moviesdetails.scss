@@ -468,3 +468,25 @@
     display: block;
   }
 }
+.icons__movies{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p{
+    font-weight: 600;
+    padding-top: 1.2rem;
+  }
+  input {
+    padding: 1rem;
+    border: 1px solid #dbdbdb;
+    border-radius: 1rem;
+  }
+  padding: 0 .8rem ;
+}
+.date__icons{
+  margin-top: 2rem;
+}
+.dates_icons{
+  margin-top: 1rem;
+ 
+}

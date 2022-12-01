@@ -6,12 +6,19 @@
 }
 .movies__wrapper.row .col {
   flex: 1 250px;
+  [data-favorite="true"] {
+    color:rgb(239, 71, 182);
+  }
+  [data-watchlist="true"] {
+    color: rgb(207, 49, 49);
+  }
 }
 .movies__wrapper-treanding.row {
   gap: 20px;
 }
 .movies__wrapper-treanding.row .col {
   flex: 1 250px;
+  
 }
 .tv__wrapper.row {
   gap: 20px;

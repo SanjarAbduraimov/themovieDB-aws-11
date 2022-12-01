@@ -110,6 +110,14 @@
   color: aqua;
   cursor: pointer;
 }
+#myBtn {
+  border: none;
+  background: #fff;
+  font-size: 1.6rem;
+  color: rgb(1,180,228);
+  font-weight: 600;
+  cursor: pointer;
+}
 
 // span:hover {
 //   background: black;
@@ -131,4 +139,16 @@
   .actor__img__wrapper{
     width: 100%;
   }
+}
+
+
+.pager .button {
+  background: #78909C !important;
+}
+
+.pager .is-secondary {
+  color: #78909C !important;
+  background: transparent !important;
+  border: 2px solid #78909C !important;
+  margin: 2px !important;
 }
