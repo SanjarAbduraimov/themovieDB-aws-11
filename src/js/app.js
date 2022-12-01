@@ -26,6 +26,7 @@ import {
   fetchAccount,
   fetchAccountStatus,
   fatchMovieRating,
+  searchKeywords,
 } from "../api";
 import {
   disMoviesDetails,
@@ -172,6 +173,22 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     //   displayMoviesTreanding(data.results);
     //   initializeMoveEvent();
     // })
+    let searchkeywordsInput = document.querySelector(".searchKeywordsInput");
+    let searchKeywordsForm = document.querySelector(".searchKeywordsForm");
+    searchKeywordsForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      searchKeywords(searchkeywordsInput.value).then((data) => {
+        console.log(data);
+      });
+    });
+    loader.remove();
+    initializeMoveEvent();
+    let searchBtn = document.querySelector("#search-btn");
+    let searchContainer = document.querySelector(".searchContainer");
+    searchBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      searchContainer.classList.toggle("show__cont");
+    });
   }
   if (page === "/movie.html" || page === "/movie") {
     const promise = await Promise.all([
@@ -249,7 +266,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       faHeart.dataset.favorite = favorite;
       faBookmark.dataset.watchlist = watchlist;
       ratingMovie.dataset.rated = rated.value;
-     
     });
     fetchlistMovie(Type.movie, history.state.id).then(({ data }) => {
       displayNetwork(data);

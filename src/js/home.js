@@ -5,7 +5,7 @@ import Type, { status, credits, sortBy } from "../constants";
 import ModalVideo from "modal-video";
 import { fetchReating } from "../api";
 export function cardTemplate(item) {
-  const { id, img, title, release_date, vote_average , name} = item;
+  const { id, img, title, release_date, vote_average, name } = item;
   const nameorigin = name ? name : title;
   return `<div class="col"> <article class="card card__hero " data-id="${id}">
   <div class="card__header dropdown">
@@ -52,7 +52,7 @@ export function cardTemplate(item) {
     />
   </div>
   <div class="card__body card__percentage">
-    <div class="percentage">${vote_average * 10}</div>
+    <div class="percentage">${Math.round(vote_average * 10)}</div>
     <h4 class="card__title">${nameorigin}</h4>
     <p class="card__text">${moment(release_date).format("MMM DD, YYYY")}</p>
   </div>
@@ -71,7 +71,16 @@ export function displayMovies(data = []) {
   authorMenuNode.innerHTML = result;
 }
 
-
+// export function displaySearchKeywords(data = []) {
+//   let result = "";
+//   const searchKeywordsMenu = document.querySelector(".searchKeywords_data");
+//   data.forEach((data) => {
+//     result += `
+//     <li class="searchKeywords_data__li"><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>${data.title}</li>
+//     `;
+//     searchKeywordsMenu.innerHTML = result;
+//   });
+// }
 
 export function displayMoviesUpcoming(data = []) {
   let result = "";

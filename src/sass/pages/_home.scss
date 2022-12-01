@@ -223,3 +223,51 @@ body::-webkit-scrollbar-thumb {
 //       color: $linerg;
 //     }
 // }
+
+//  Search Keywords
+.searchContainer {
+  justify-content: space-between;
+  display: none;
+  .searchKeywords {
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    width: 50%;
+    .searchKeywordsInput {
+      width: 90%;
+      height: 100%;
+      outline: none;
+      font-size: 1.8rem;
+      border: none;
+      margin-left: 1rem;
+      color: #dbdbdb;
+    }
+    .fa-xmark {
+      cursor: pointer;
+    }
+  }
+}
+.searchKeywords_data {
+  width: 100%;
+  display: inline-block;
+  .searchKeywords_data__li {
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 0.5rem 0;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #bdbdbd25;
+    }
+    i {
+      padding-right: 0.7rem;
+      color: #000;
+    }
+  }
+}
+
+.show__cont {
+  display: flex !important;
+}
