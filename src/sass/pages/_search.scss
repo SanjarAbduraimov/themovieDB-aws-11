@@ -40,3 +40,27 @@
   background-color:rgb(1, 180, 228); 
   padding: 2rem;
 }
+
+.pagination__wrapper {
+  .pagination{
+    display: flex;
+    margin: 1rem 3rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .page {
+    padding: 2rem;
+    cursor: pointer;
+  }
+  .page.disabled{
+    cursor: not-allowed;
+    color: grey;
+  }
+  .current {
+    padding: 1rem 2rem;
+    border-radius: 50%;
+    border: 5px solid rgb(164, 164, 252);
+    font-size: 2rem;
+    font-weight: 600;
+  }
+}

@@ -159,7 +159,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       searchContainer.classList.toggle("show__cont");
     });
 
-
     // faBookmark.addEventListener("click", (e) => {
     //   console.log(e.target.dataset.watchlist);
     //   fetchMovieWatchList(
@@ -277,15 +276,48 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   if (page === "/search.html" || page === "/search") {
     // const query = new URLSearchParams(location.search);
     fetchMovieSearch(history.state.title, 1).then(({ data }) => {
-      displaySearchResults(data.results);
-      displaySearchResultsCount(data.total_results);
-      displaySearchResultsPages(data.total_pages);
-      displaySearchResultsSee(data.results);
-      loaderOthers.remove();
-      initializeMEvent();
+      if (data.results.length !== 0) {
+        displaySearchResults(data.results);
+        var currentPage = data.page;
+        var nextPage = data.total_pages + 1;
+        var prevPage = data.total_pages - 1;
+        var totalPages = data.total_results;
+        displaySearchResultsCount(data.total_results);
+        displaySearchResultsPages(data.total_pages);
+        displaySearchResultsSee(data.results);
+        loaderOthers.remove();
+        initializeMEvent();
+      }else{
+       const searchNode = document.querySelector(".results__col-search");
+       searchNode.innerHTML = `<h3>We don't found nothing</h3>`
+       loaderOthers.remove();
+      }
     });
-    
-    
+    const prev = document.getElementById("prev");
+    const next = document.getElementById("next");
+    const current = document.getElementById("current");
+    var currentPage = 1;
+    var nextPage = 2;
+    var prevPage = 3;
+    var lastUrl = "";
+    var totalPages = 100;
+
+    next.addEventListener("click", ()=>{
+      if(nextPage <= totalPages){
+        pageCall(nextPage)
+      }
+    })
+    function pageCall(page){
+      let urlSplit = lastUrl.split("?");
+      let quaryParams = urlSplit[1].split("&");
+      let key = quaryParams[quaryParams.length -1].split("=");
+      if(key[0] != "page"){
+        let url = lastUrl + "&page=" + page; 
+        fetchMovieSearch(history.state.title, 2)
+      }
+
+    }
+
     // let pagination = document.querySelector(".next__pagination");
     // pagination.addEventListener("click", (e) => {
     //   console.log("assalom");
@@ -296,7 +328,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     //     result = result + i;
     //   } while (i < 5);
     //   console.log(result);
-    //   for (let i = 1; i < 196; i++) {        
+    //   for (let i = 1; i < 196; i++) {
     //     fetchMovieSearch(history.state.title, result).then(({ data }) => {
     //       displaySearchResults(data.results);
     //       displaySearchResultsCount(data.total_results);
@@ -306,9 +338,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     //     });
     //     return result;
     //   }
-      
-      
-      
+
     // });
   }
   if (page === "/actor.html" || page === "/actor") {
@@ -570,7 +600,5 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         }
       );
     });
-
-    
   }
 });

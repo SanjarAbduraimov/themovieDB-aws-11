@@ -85,6 +85,7 @@ export function fetchMovieSearch(
       url += `&${key}=${query[key]}`;
     }
   }
+  lastUrl = url;
   return axios.get(url);
 }
 
