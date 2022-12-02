@@ -47,6 +47,7 @@ import {
   displayTv,
   initializeMEvent,
   initializeStatusEvent,
+  initializeSearchssEvent,
 } from "./home";
 import {
   eventKeywords,
@@ -142,16 +143,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     //   displayMoviesTreanding(data.results);
     //   initializeMoveEvent();
     // })
-    let searchkeywordsInput = document.querySelector(".searchKeywordsInput");
-    let searchKeywordsForm = document.querySelector(".searchKeywordsForm");
-    searchKeywordsForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      searchKeywords(searchkeywordsInput.value).then((data) => {
-        console.log(data);
-      });
-    });
-    loader.remove();
-    initializeMoveEvent();
+
+    initializeSearchssEvent();
+
     let searchBtn = document.querySelector("#search-btn");
     let searchContainer = document.querySelector(".searchContainer");
     searchBtn.addEventListener("click", (e) => {
@@ -287,10 +281,10 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         displaySearchResultsSee(data.results);
         loaderOthers.remove();
         initializeMEvent();
-      }else{
-       const searchNode = document.querySelector(".results__col-search");
-       searchNode.innerHTML = `<h3>We don't found nothing</h3>`
-       loaderOthers.remove();
+      } else {
+        const searchNode = document.querySelector(".results__col-search");
+        searchNode.innerHTML = `<h3>We don't found nothing</h3>`;
+        loaderOthers.remove();
       }
     });
     const prev = document.getElementById("prev");
@@ -302,20 +296,19 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     var lastUrl = "";
     var totalPages = 100;
 
-    next.addEventListener("click", ()=>{
-      if(nextPage <= totalPages){
-        pageCall(nextPage)
+    next.addEventListener("click", () => {
+      if (nextPage <= totalPages) {
+        pageCall(nextPage);
       }
-    })
-    function pageCall(page){
+    });
+    function pageCall(page) {
       let urlSplit = lastUrl.split("?");
       let quaryParams = urlSplit[1].split("&");
-      let key = quaryParams[quaryParams.length -1].split("=");
-      if(key[0] != "page"){
-        let url = lastUrl + "&page=" + page; 
-        fetchMovieSearch(history.state.title, 2)
+      let key = quaryParams[quaryParams.length - 1].split("=");
+      if (key[0] != "page") {
+        let url = lastUrl + "&page=" + page;
+        fetchMovieSearch(history.state.title, 2);
       }
-
     }
 
     // let pagination = document.querySelector(".next__pagination");

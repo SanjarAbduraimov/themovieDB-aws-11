@@ -73,7 +73,6 @@ export function displayMovies(data = []) {
   authorMenuNode.innerHTML = result;
 }
 
-
 // export function displaySearchKeywords(data = []) {
 //   let result = "";
 //   const searchKeywordsMenu = document.querySelector(".searchKeywords_data");
@@ -84,7 +83,6 @@ export function displayMovies(data = []) {
 //     searchKeywordsMenu.innerHTML = result;
 //   });
 // }
-
 
 export function displayMoviesUpcoming(data = []) {
   let result = "";
@@ -232,6 +230,7 @@ export function initializeMoveEvent() {
     history.pushState({ title }, null, "/search.html");
     location.reload();
   });
+
   cardNodeList.forEach((card) => {
     card.addEventListener("click", (event) => {
       const element = event.target;
@@ -267,7 +266,6 @@ export function initializeStatusEvent() {
     let faHeart = document.querySelectorAll(".faHeart");
     let faBookmark = document.querySelectorAll(".faBookmark");
     // let ratingMovie = document.querySelectorall(".ratingMovie");
-
 
     fetchMovieFavorityGet(Type.movie, id).then(({ data }) => {
       const { favorite, watchlist, rated } = data;
@@ -314,3 +312,13 @@ export function initializeStatusEvent() {
 //   console.log(faHeart.dataset.favorite);
 //   // faBookmark.dataset.watchlist = watchlist;
 //   // ratingMovie.dataset.rated = rated.value;
+
+export function initializeSearchssEvent() {
+  const searchForm = document.querySelector(".searchKeywordsForm");
+  searchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const title = searchForm.title.value;
+    history.pushState({ title }, null, "/search.html");
+    location.reload();
+  });
+}
