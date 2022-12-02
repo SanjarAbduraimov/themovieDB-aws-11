@@ -47,6 +47,7 @@ import {
   displayTv,
   initializeMEvent,
   initializeStatusEvent,
+  initializeSearchssEvent,
 } from "./home";
 import {
   eventKeywords,
@@ -137,16 +138,14 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       })
       .catch((err) => console.log(err));
 
-    let searchkeywordsInput = document.querySelector(".searchKeywordsInput");
-    let searchKeywordsForm = document.querySelector(".searchKeywordsForm");
-    searchKeywordsForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      searchKeywords(searchkeywordsInput.value).then((data) => {
-        console.log(data);
-      });
-    });
-    loader.remove();
-    initializeMoveEvent();
+    // fetch(Type.movie, status.topRated).then(({data})=>{
+    //   console.log(data);
+    //   displayMoviesTreanding(data.results);
+    //   initializeMoveEvent();
+    // })
+
+    initializeSearchssEvent();
+
     let searchBtn = document.querySelector("#search-btn");
     let searchContainer = document.querySelector(".searchContainer");
     searchBtn.addEventListener("click", (e) => {
