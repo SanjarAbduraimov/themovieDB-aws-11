@@ -79,6 +79,7 @@ import {
   displaySearchResultsSee,
 } from "./search";
 import { displaySearchMovies } from "./movies";
+import { initializePagination } from "./pagination";
 const _ = require(`lodash`);
 
 document.addEventListener("DOMContentLoaded", async (e) => {
@@ -88,7 +89,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   let loader = document.querySelector(".loader__wrapper");
   let loaderMovie = document.querySelector(".loader__movie");
   let loaderOthers = document.querySelector(".loader__others");
-  // loader__movie loader__others
   document.addEventListener("click", (e) => {
     const element = e.target;
 
@@ -137,11 +137,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       })
       .catch((err) => console.log(err));
 
-    // fetch(Type.movie, status.topRated).then(({data})=>{
-    //   console.log(data);
-    //   displayMoviesTreanding(data.results);
-    //   initializeMoveEvent();
-    // })
     let searchkeywordsInput = document.querySelector(".searchKeywordsInput");
     let searchKeywordsForm = document.querySelector(".searchKeywordsForm");
     searchKeywordsForm.addEventListener("submit", (e) => {
@@ -158,21 +153,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       e.preventDefault();
       searchContainer.classList.toggle("show__cont");
     });
-
-    // faBookmark.addEventListener("click", (e) => {
-    //   console.log(e.target.dataset.watchlist);
-    //   fetchMovieWatchList(
-    //     Type.account,
-    //     promise[0].data.id,
-    //     e.target.dataset.watchlist === "true" ? false : true,
-    //     "movie"
-    //   ).then(({ data }) => {
-    //     if (data.success) {
-    //       e.target.dataset.watchlist =
-    //         e.target.dataset.watchlist === "true" ? false : true;
-    //     }
-    //   });
-    // });
   }
   if (page === "/movie.html" || page === "/movie") {
     const promise = await Promise.all([
@@ -181,8 +161,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     ]);
 
     disMoviesDetails({ ...promise[0].data, ...promise[1].data });
-    // fetchDetails(Type.movie, history.state.id).then((data) => {});
-    // fetchMovieVedio(Type.movie, history.state.id).then((data) => {});
     displayMovieStatus(promise[0].data);
     fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then(
       (data) => {
@@ -274,72 +252,26 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     });
   }
   if (page === "/search.html" || page === "/search") {
-    // const query = new URLSearchParams(location.search);
-    fetchMovieSearch(history.state.title, 1).then(({ data }) => {
-      if (data.results.length !== 0) {
-        displaySearchResults(data.results);
-        var currentPage = data.page;
-        var nextPage = data.total_pages + 1;
-        var prevPage = data.total_pages - 1;
-        var totalPages = data.total_results;
-        displaySearchResultsCount(data.total_results);
-        displaySearchResultsPages(data.total_pages);
-        displaySearchResultsSee(data.results);
-        loaderOthers.remove();
-        initializeMEvent();
-      }else{
-       const searchNode = document.querySelector(".results__col-search");
-       searchNode.innerHTML = `<h3>We don't found nothing</h3>`
-       loaderOthers.remove();
+    const query = new URLSearchParams(location.search);
+    const pageNumber = query.get("page");
+    // console.log(Array.from(query), "salom");
+    fetchMovieSearch(history.state.title, Number(pageNumber) || 1).then(
+      ({ data }) => {
+        if (data.results.length !== 0) {
+          displaySearchResults(data.results);
+          displaySearchResultsCount(data.total_results);
+          displaySearchResultsPages(data.total_pages);
+          displaySearchResultsSee(data.results);
+          loaderOthers.remove();
+          initializeMEvent();
+          initializePagination(data);
+        } else {
+          const searchNode = document.querySelector(".results__col-search");
+          searchNode.innerHTML = `<h3>We don't found nothing</h3>`;
+          loaderOthers.remove();
+        }
       }
-    });
-    const prev = document.getElementById("prev");
-    const next = document.getElementById("next");
-    const current = document.getElementById("current");
-    var currentPage = 1;
-    var nextPage = 2;
-    var prevPage = 3;
-    var lastUrl = "";
-    var totalPages = 100;
-
-    next.addEventListener("click", ()=>{
-      if(nextPage <= totalPages){
-        pageCall(nextPage)
-      }
-    })
-    function pageCall(page){
-      let urlSplit = lastUrl.split("?");
-      let quaryParams = urlSplit[1].split("&");
-      let key = quaryParams[quaryParams.length -1].split("=");
-      if(key[0] != "page"){
-        let url = lastUrl + "&page=" + page; 
-        fetchMovieSearch(history.state.title, 2)
-      }
-
-    }
-
-    // let pagination = document.querySelector(".next__pagination");
-    // pagination.addEventListener("click", (e) => {
-    //   console.log("assalom");
-    //   let result = "";
-    //   let i=1;
-    //   do {
-    //     i = i + 1;
-    //     result = result + i;
-    //   } while (i < 5);
-    //   console.log(result);
-    //   for (let i = 1; i < 196; i++) {
-    //     fetchMovieSearch(history.state.title, result).then(({ data }) => {
-    //       displaySearchResults(data.results);
-    //       displaySearchResultsCount(data.total_results);
-    //       displaySearchResultsPages(data.total_pages);
-    //       displaySearchResultsSee(data.results);
-    //       initializeMEvent();
-    //     });
-    //     return result;
-    //   }
-
-    // });
+    );
   }
   if (page === "/actor.html" || page === "/actor") {
     fetchDetails(Type.person, history.state.id).then((data) => {
@@ -373,12 +305,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       genresTemplate += `<li><input type="checkbox" id=${genre.id} value=${genre.id} name="with_genres" /> <label for="${genre.id}">${genre.name}</label></li>`;
     });
     genreWrapper.innerHTML = genresTemplate;
-
-    // let languageTemplate = "";
-    // promise[1].data.forEach((language) => {
-    //   languageTemplate += `<option value="${language.english_name}">${language.english_name}</option>`;
-    // });
-    // languageSelect.innerHTML = languageTemplate;
 
     const formSearchAll = document.forms[0];
     formSearchAll.addEventListener("submit", async (e) => {
@@ -457,8 +383,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     ]);
 
     disMoviesDetails({ ...promise[0].data, ...promise[1].data });
-    // fetchDetails(Type.movie, history.state.id).then((data) => {});
-    // fetchMovieVedio(Type.movie, history.state.id).then((data) => {});
     displayMovieStatus(promise[0].data);
     fetchMovieCredits(Type.tv, history.state.id, credits.movieCredits).then(
       (data) => {
