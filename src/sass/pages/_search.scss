@@ -64,3 +64,13 @@
     font-weight: 600;
   }
 }
+.pagination__list {
+  display: flex;
+  li {
+    border: 1px solid #dbdbdb;
+    padding: .5rem;
+    border-radius: 1rem;
+    margin-right: .5rem;
+    cursor: pointer;
+  }
+}

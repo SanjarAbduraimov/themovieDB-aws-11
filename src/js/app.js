@@ -26,7 +26,6 @@ import {
   fetchAccount,
   fetchAccountStatus,
   fatchMovieRating,
-  searchKeywords,
 } from "../api";
 import {
   disMoviesDetails,
@@ -62,7 +61,6 @@ import {
   displayCrewActor,
   initializeActorMenuEvent,
   initializeActingEvent,
-  functionssas,
 } from "./actor";
 import {
   displayAccountName,
@@ -80,7 +78,7 @@ import {
   displaySearchResultsSee,
 } from "./search";
 import { displaySearchMovies } from "./movies";
-import { initializePagination } from "./pagination";
+import { initializePagination, initializePaginationPeople } from "./pagination";
 const _ = require(`lodash`);
 
 document.addEventListener("DOMContentLoaded", async (e) => {
@@ -244,10 +242,13 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     initializeCastEvent();
   }
   if (page === "/people.html" || page === "/people") {
-    fetch(Type.person, status.popular).then(({ data }) => {
+    const query = new URLSearchParams(location.search);
+    const pageNumber = query.get("page");
+    fetch(Type.person, status.popular, Number(pageNumber) || 1).then(({ data }) => {
       displayPeople(data?.results);
       loaderOthers.remove();
       initializeActorEvent();
+      initializePaginationPeople(data)
     });
   }
   if (page === "/search.html" || page === "/search") {
