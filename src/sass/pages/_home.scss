@@ -7,7 +7,7 @@
 .movies__wrapper.row .col {
   flex: 1 250px;
   [data-favorite="true"] {
-    color:rgb(239, 71, 182);
+    color: rgb(239, 71, 182);
   }
   [data-watchlist="true"] {
     color: rgb(207, 49, 49);
@@ -18,7 +18,6 @@
 }
 .movies__wrapper-treanding.row .col {
   flex: 1 250px;
-  
 }
 .tv__wrapper.row {
   gap: 20px;
@@ -241,9 +240,9 @@ body::-webkit-scrollbar-thumb {
     top: 0;
     left: 0;
     max-width: 100%;
-    width: 50%;
+    width: 100%;
     .searchKeywordsInput {
-      width: 90%;
+      width: 100%;
       height: 100%;
       outline: none;
       font-size: 1.8rem;
@@ -251,8 +250,12 @@ body::-webkit-scrollbar-thumb {
       margin-left: 1rem;
       color: #dbdbdb;
     }
-    .fa-xmark {
-      cursor: pointer;
+    .searchKeywordsForm {
+      width: 100%;
+      height: auto;
+    }
+    .fa-magnifying-glass {
+      margin-top: 10px;
     }
   }
 }
