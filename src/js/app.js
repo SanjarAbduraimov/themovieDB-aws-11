@@ -70,6 +70,10 @@ import {
   displayFavoriteMov,
   displayFavoriteTiv,
   initializeAccountEventtvs,
+  displayRaitingMovue,
+  initializeRaitingsEvent,
+  initializeRaitTivEvent,
+  displayratedTiv,
 } from "./account";
 import {
   displaySearchResults,
@@ -510,8 +514,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     movierated.addEventListener("click", () => {
       fetchAccountStatus(Type.account, status.rated, typeAccount.movies).then(
         (data) => {
-          displayFavoriteMovies(data.data.results);
+          displayRaitingMovue(data.data.results);
           initializeAccountEvent();
+          initializeRaitingsEvent();
         }
       );
     });
@@ -519,8 +524,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     tvrated.addEventListener("click", () => {
       fetchAccountStatus(Type.account, status.rated, typeAccount.tv).then(
         (data) => {
-          displayFavoriteTiv(data.data.results);
+          displayratedTiv(data.data.results);
           initializeAccountEventtvs();
+          initializeRaitTivEvent();
         }
       );
     });

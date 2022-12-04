@@ -427,6 +427,17 @@
   width: 80%;
   margin: auto;
 }
+#rating {
+  color: rgb(207, 191, 49);
+  cursor: pointer;
+  i{
+    border-color: rgb(207, 191, 49);
+  }
+}
+
+.reatings__dels {
+  cursor: pointer;
+}
 
 
 
