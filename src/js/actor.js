@@ -10,6 +10,8 @@ export function displayActor(actor = []) {
     ? configs.baseImgURL + profile_path
     : configs.defaultImg + "500";
   configs.baseImgURL;
+  const text = biography ? biography.slice(0, 450) : configs.defaultText;
+
   result += `
           <div class="actor__imgs">
           <img width:"100%" src="${img}">
@@ -28,7 +30,9 @@ export function displayActor(actor = []) {
   actorDetailsCol.innerHTML = results;
   let resultCol = "";
   const actorDetailText = document.querySelector(".actor__text");
+  let textTT = biography ? biography : configs.defaultText;
   let temp = `<span id="dots">...</span><span class="more"></span>`;
+  let tempss = biography ? temp : "";
   resultCol += `
               
               <p class="tagline">
@@ -36,13 +40,12 @@ export function displayActor(actor = []) {
               </p>
               <h4 class="biography__actor">Biography</h4>
               <p class="details__description">
-              ${biography.slice(0, 450)}
-              ${temp}
+              ${text}
+              ${tempss}
               <button class="read__more" id="myBtn">Read more <i class="fa-solid fa-angle-right"></i></button>
               </p>
               `;
   actorDetailText.innerHTML = resultCol;
-  // let dataDiskription = document.querySelector(".details__description");
 
   const actorDetail = document.querySelector(".acting__wrepper");
   let acting = "";
@@ -72,7 +75,7 @@ export function displayActor(actor = []) {
   let readMore = document.querySelector("#myBtn");
   readMore.addEventListener("click", () => {
     let read = document.querySelector(".details__description");
-    read.innerHTML = `${biography}`;
+    read.innerHTML = `${textTT}`;
   });
 }
 
@@ -136,13 +139,6 @@ export function initializeActorMenuEvent() {
         location.reload();
       }
       if (isMenuBtn) {
-        // let focusedElement = document.querySelectorAll(
-        //   ".card dropdown__content.show"
-        // );
-        // focusedElement.forEach((item) => {
-        //   item.classList.remove("show");
-        //   item.closest(".dropdown__content").classList.remove();
-        // });
         let cardContent = card.querySelector(".dropdown__content");
         cardContent.classList.toggle("show");
         card.classList.toggle("show");
