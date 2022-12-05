@@ -1,6 +1,6 @@
 import moment from "moment/moment";
 import configs from "../configs";
-import { fetch, fetchMovieFavorityGet, fetchMovieFavority } from "../api";
+import { fetch, fetchMovieFavorityGet, fetchMovieFavority ,fetchMovieWatchList} from "../api";
 import Type, { status, credits, sortBy } from "../constants";
 import ModalVideo from "modal-video";
 import { fetchReating } from "../api";
@@ -30,12 +30,12 @@ export function cardTemplate(item) {
       </li>
       <li class="dropdown__item">
         <a class="faHeart" data-id="${id}">
-          <i class="fas fa-heart"     > </i> Favourite
+          <i class="fas fa-heart"  id="faHeart"  data-id="${id}" > </i> Favourite
         </a>
       </li>
       <li class="dropdown__item">
         <a class="faBookmark">
-          <i class="fa-solid fa-bookmark"></i> Watchlist
+          <i class="fa-solid fa-bookmark" id="faBookmark" data-id="${id}"></i> Watchlist
         </a>
       </li>
       <li class="dropdown__item">
@@ -72,17 +72,6 @@ export function displayMovies(data = []) {
   });
   authorMenuNode.innerHTML = result;
 }
-
-// export function displaySearchKeywords(data = []) {
-//   let result = "";
-//   const searchKeywordsMenu = document.querySelector(".searchKeywords_data");
-//   data.forEach((data) => {
-//     result += `
-//     <li class="searchKeywords_data__li"><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>${data.title}</li>
-//     `;
-//     searchKeywordsMenu.innerHTML = result;
-//   });
-// }
 
 export function displayMoviesUpcoming(data = []) {
   let result = "";
@@ -257,15 +246,13 @@ export function initializeMoveEvent() {
 
 export function initializeStatusEvent() {
   const moviesStatus = document.querySelector(".movies__wrapper");
-  const moviesLikeStatus = document.querySelector(".movies__wrapper");
 
   moviesStatus.addEventListener("click", (event) => {
     const id = event.target.closest("svg")?.dataset?.id;
     console.log(id, "bosilgan");
     if (!id) return;
-    let faHeart = document.querySelectorAll(".faHeart");
-    let faBookmark = document.querySelectorAll(".faBookmark");
-    // let ratingMovie = document.querySelectorall(".ratingMovie");
+    let faHeart = document.querySelectorAll("#faHeart");
+    let faBookmark = document.querySelectorAll("#faBookmark");
 
     fetchMovieFavorityGet(Type.movie, id).then(({ data }) => {
       const { favorite, watchlist, rated } = data;
@@ -275,43 +262,56 @@ export function initializeStatusEvent() {
       faBookmark.forEach((data) => {
         data.dataset.watchlist = watchlist;
       });
-      // ratingMovie.dataset.rated = rated.value;
-
-      // ratingMovie.dataset.rated = rated.value;
     });
   });
-  // moviesLikeStatus.addEventListener("click", (e) => {
-  //   const id = e.target.closest("faHeart")?.dataset?.id;
-  //   console.log(id, "bosilgan");
-  //   if (!id) return;
-  //   // let faHeart = document.querySelector(".faHeart");
-  //   // let faBookmark = document.querySelectorAll(".faBookmark");
-  //   fetchMovieFavority(
-  //     Type.account,
-  //     id,
-  //     e.target.dataset.favorite === "true" ? false : true,
-  //     "movie"
-  //   ).then(({ data }) => {
-  //     if (data.success) {
-  //       e.target.dataset.favorite =
-  //         e.target.dataset.favorite === "true" ? false : true;
-  //     }
-  //     console.log(data);
-  //   });
-  // });
+  
 }
 
-// let faHeart = document.querySelector(".fa-heart");
+export function initializeCardsEvent() {
+  const moviesLikeStatus = document.querySelector(".movies__wrapper");
+  moviesLikeStatus.addEventListener("click", (e) => {
+    const id = e.target.closest("#faHeart")?.dataset?.id;
+    console.log(id, "bosilgan");
+    if (!id) return;
+    fetchMovieFavority(
+      Type.account,
+      id,
+      e.target.dataset.favorite === "true" ? false : true,
+      "movie"
+    ).then(({ data }) => {
+      if (data.success) {
+        e.target.dataset.favorite =
+          e.target.dataset.favorite === "true" ? false : true;
+      }
+      console.log(data);
+    });
+  });
+}
 
-// //  console.log(datas.data.favorite);
-//   const { favorite, watchlist, rated } = datas.data;
-//   // console.log(favorite);
-//   faHeart.dataset.favorite = favorite;
-//   console.log(faHeart.classList);
-//   faHeart.classList.push('bgred')
-//   console.log(faHeart.dataset.favorite);
-//   // faBookmark.dataset.watchlist = watchlist;
-//   // ratingMovie.dataset.rated = rated.value;
+export function initializeWatchlistsEvent() {
+  const moviesLikeStatus = document.querySelector(".movies__wrapper");
+  moviesLikeStatus.addEventListener("click", (e) => {
+    console.log(e.target);
+    const id = e.target.closest("#faBookmark")?.dataset?.id;
+    if (!id) return;
+    fetchMovieWatchList(
+      Type.account,
+      id,
+      e.target.dataset.watchlist === "true" ? false : true,
+      "movie"
+    ).then(({ data }) => {
+      if (data.success) {
+        e.target.dataset.watchlist =
+          e.target.dataset.watchlist === "true" ? false : true;
+      }
+      console.log(data);
+    });
+  });
+}
+
+
+
+
 
 export function initializeSearchssEvent() {
   const searchForm = document.querySelector(".searchKeywordsForm");
