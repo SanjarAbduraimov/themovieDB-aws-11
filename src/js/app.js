@@ -37,7 +37,6 @@ import {
   displayRecomaditions,
   displayTvSearch,
   initializeTvEvent,
-  paginations,
 } from "./movie";
 import { displayPeople } from "./people";
 import {
@@ -47,6 +46,8 @@ import {
   initializeMEvent,
   initializeStatusEvent,
   initializeSearchssEvent,
+  initializeCardsEvent,
+  initializeWatchlistsEvent,
 } from "./home";
 import {
   eventKeywords,
@@ -82,7 +83,11 @@ import {
   displaySearchResultsSee,
 } from "./search";
 import { displaySearchMovies } from "./movies";
-import { initializePagination, initializePaginationPeople } from "./pagination";
+import {
+  initializePagination,
+  initializePaginationPeople,
+  initializePaginationMovies,
+} from "./pagination";
 const _ = require(`lodash`);
 
 document.addEventListener("DOMContentLoaded", async (e) => {
@@ -123,11 +128,12 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         loader.remove();
         initializeMoveEvent();
         initializeStatusEvent();
+        initializeCardsEvent();
+        initializeWatchlistsEvent();
 
         let showTv = document.querySelector(".show__tv");
         showTv.addEventListener("click", () => {
           fetch(Type.tv, status.popular).then(({ data }) => {
-            console.log(data);
             displayTv(data.results);
             initializeTvEvent();
           });
@@ -139,12 +145,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         });
       })
       .catch((err) => console.log(err));
-
-    // fetch(Type.movie, status.topRated).then(({data})=>{
-    //   console.log(data);
-    //   displayMoviesTreanding(data.results);
-    //   initializeMoveEvent();
-    // })
 
     initializeSearchssEvent();
 
@@ -163,16 +163,17 @@ document.addEventListener("DOMContentLoaded", async (e) => {
 
     disMoviesDetails({ ...promise[0].data, ...promise[1].data });
     displayMovieStatus(promise[0].data);
-    fetchMovieCredits(Type.movie, history.state.id, credits.movieCredits).then(
-      (data) => {
-        displayCast(data.data.cast);
-        loaderMovie.remove();
-      }
-    );
+    fetchMovieCredits(
+      Type.movie,
+      promise[0].data.id,
+      credits.movieCredits
+    ).then(({ data }) => {
+      displayCast(data.cast);
+      loaderMovie.remove();
+    });
     let faHeart = document.querySelector(".fa-heart");
     let faBookmark = document.querySelector(".fa-bookmark");
     faHeart.addEventListener("click", (e) => {
-      console.log(e.target.dataset.favorite);
       fetchMovieFavority(
         Type.account,
         promise[0].data.id,
@@ -183,11 +184,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
           e.target.dataset.favorite =
             e.target.dataset.favorite === "true" ? false : true;
         }
-        console.log(data);
       });
     });
     faBookmark.addEventListener("click", (e) => {
-      console.log(e.target.dataset.watchlist);
       fetchMovieWatchList(
         Type.account,
         promise[0].data.id,
@@ -217,7 +216,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
           (data) => {
             if (data.success) {
               e.target.dataset.rated = e.target.dataset.rated === value;
-              console.log(data);
             }
           }
         );
@@ -233,11 +231,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       displayNetwork(data);
     });
     fetchKeywordMovie(Type.movie, history.state.id).then(({ data }) => {
-      console.log(data);
       displayKeyword(data.keywords);
     });
     fetchRecommendation(Type.movie, history.state.id).then((data) => {
-      console.log(data);
       displayRecomaditions(data.data.results);
       initializeMEvent();
     });
@@ -248,17 +244,18 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   if (page === "/people.html" || page === "/people") {
     const query = new URLSearchParams(location.search);
     const pageNumber = query.get("page");
-    fetch(Type.person, status.popular, Number(pageNumber) || 1).then(({ data }) => {
-      displayPeople(data?.results);
-      loaderOthers.remove();
-      initializeActorEvent();
-      initializePaginationPeople(data)
-    });
+    fetch(Type.person, status.popular, Number(pageNumber) || 1).then(
+      ({ data }) => {
+        displayPeople(data?.results);
+        loaderOthers.remove();
+        initializeActorEvent();
+        initializePaginationPeople(data);
+      }
+    );
   }
   if (page === "/search.html" || page === "/search") {
     const query = new URLSearchParams(location.search);
     const pageNumber = query.get("page");
-    // console.log(Array.from(query), "salom");
     fetchMovieSearch(history.state.title, Number(pageNumber) || 1).then(
       ({ data }) => {
         if (data.results.length !== 0) {
@@ -278,14 +275,14 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     );
   }
   if (page === "/actor.html" || page === "/actor") {
-    fetchDetails(Type.person, history.state.id).then((data) => {
-      displayActor(data.data);
+    fetchDetails(Type.person, history.state.id).then(({ data }) => {
+      displayActor(data);
       loaderOthers.remove();
     });
     fetchMovieCredits(Type.person, history.state.id, credits.movieCredits).then(
-      (data) => {
-        displayCastActor(data.data.cast);
-        displayCrewActor(data.data.crew);
+      ({ data }) => {
+        displayCastActor(data.cast);
+        displayCrewActor(data.crew);
         initializeActorMenuEvent();
         initializeActingEvent();
       }
@@ -293,9 +290,11 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   }
 
   if (page === "/movies.html" || page === "/movies") {
+    const query = new URLSearchParams(location.search);
+    const pageNumber = query.get("page");
+
     let genreWrapper = document.querySelector("#with_genres");
     let sortSelect = document.querySelector("#activitySelector");
-    // let languageSelect = document.querySelector("#languageSelector");
     let sortTemplate = "";
     Object.entries(sortBy).forEach((option) => {
       sortTemplate += `<option value="${option[1]}">${option[0]}</option>`;
@@ -323,14 +322,16 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         }
       }
 
-      let data = await fetchSearch(Type.movie, queryStringObj);
-      console.log(data, "tamom");
+      let data = await fetchSearch(
+        Type.movie,
+        queryStringObj,
+        Number(pageNumber) || 1
+      );
       displaySearchMovies(data.data.results);
-
+      initializePaginationMovies(data.data);
       initializeMEvent();
     });
     fetch(Type.movie, status.popular).then(({ data }) => {
-      console.log(data.results);
       displaySearchMovies(data.results);
       loaderOthers.remove();
       initializeMEvent();
@@ -339,7 +340,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   if (page === "/tvsearch.html" || page === "/tvsearch") {
     let genreWrapper = document.querySelector("#with_genres");
     let sortSelect = document.querySelector("#activitySelector");
-    // let languageSelect = document.querySelector("#languageSelector");
     let sortTemplate = "";
     Object.entries(sortByTv).forEach((option) => {
       sortTemplate += `<option value="${option[1]}">${option[0]}</option>`;
@@ -368,13 +368,11 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       }
 
       let data = await fetchSearch(Type.tv, queryStringObj);
-      // })
       formSearchAll.reset();
       displayTvSearch(data.data.results);
       initializeTvEvent();
     });
     fetch(Type.tv, status.popular).then(({ data }) => {
-      console.log(data.results);
       displayTvSearch(data.results);
       loaderOthers.remove();
       initializeTvEvent();
@@ -397,7 +395,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     let faHeart = document.querySelector(".fa-heart");
     let faBookmark = document.querySelector(".fa-bookmark");
     faHeart.addEventListener("click", (e) => {
-      console.log(e.target.dataset.favorite);
       fetchMovieFavority(
         Type.account,
         promise[0].data.id,
@@ -408,11 +405,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
           e.target.dataset.favorite =
             e.target.dataset.favorite === "true" ? false : true;
         }
-        console.log(data);
       });
     });
     faBookmark.addEventListener("click", (e) => {
-      console.log(e.target.dataset.watchlist);
       fetchMovieWatchList(
         Type.account,
         promise[0].data.id,
@@ -434,11 +429,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       displayNetwork(data);
     });
     fetchKeywordMovie(Type.tv, history.state.id).then(({ data }) => {
-      console.log(data);
       displayKeyword(data.keywords);
     });
     fetchRecommendation(Type.tv, history.state.id).then((data) => {
-      console.log(data);
       displayRecomaditions(data.data.results);
       initializeTvEvent();
     });
@@ -467,14 +460,13 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       ).then((data) => {
         data.data.results.forEach((data) => {
           fetchMovieFavorityGet(Type.movie, data.id).then(({ data }) => {
-            console.log(data);
             let faHeart = document.querySelectorAll(".fa-heart");
             faHeart.forEach((data) => {
               data.style.color = "rgb(239, 71, 182)";
             });
           });
         });
-        console.log(data);
+
         displayFavoriteMov(data.data.results);
         initializeAccouEvent();
         initializeAccountEvent();
@@ -484,7 +476,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     favoritetvShows.addEventListener("click", () => {
       fetchAccountStatus(Type.account, status.favorite, typeAccount.tv).then(
         (data) => {
-          console.log(data);
           displayFavoriteTiv(data.data.results);
           initializeAccountEventtvs();
         }

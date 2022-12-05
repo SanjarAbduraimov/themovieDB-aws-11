@@ -89,11 +89,11 @@ export function fetchMovieSearch(
   return axios.get(url);
 }
 
-export function fetchSearch(type, query) {
+export function fetchSearch(type, query ,page) {
   if (!type) {
     throw "Please insert type parametr";
   }
-  let url = `discover/${type}?api_key=${apiKey}`;
+  let url = `discover/${type}?api_key=${apiKey}&page=${page}`;
   for (const key in query) {
     if (query[key]) {
       url += `&${key}=${query[key]}`;

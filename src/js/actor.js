@@ -6,11 +6,12 @@ export function displayActor(actor = []) {
   const actorDetails = document.querySelector(".actor__img__wrapper");
   const actorDetailsCol = document.querySelector(".actor__title");
   const { profile_path, name, biography } = actor;
+  let temp = `<span id="dots">...</span><span class="more"></span>`;
   const img = profile_path
     ? configs.baseImgURL + profile_path
     : configs.defaultImg + "500";
   configs.baseImgURL;
-  const text = biography ? biography.slice(0, 450) : configs.defaultText;
+  const text = biography ? biography.slice(0, 450) : configs.defaultText + name;
 
   result += `
           <div class="actor__imgs">
@@ -31,7 +32,6 @@ export function displayActor(actor = []) {
   let resultCol = "";
   const actorDetailText = document.querySelector(".actor__text");
   let textTT = biography ? biography : configs.defaultText;
-  let temp = `<span id="dots">...</span><span class="more"></span>`;
   let tempss = biography ? temp : "";
   resultCol += `
               
@@ -41,7 +41,7 @@ export function displayActor(actor = []) {
               <h4 class="biography__actor">Biography</h4>
               <p class="details__description">
               ${text}
-              ${tempss}
+              ${temp}
               <button class="read__more" id="myBtn">Read more <i class="fa-solid fa-angle-right"></i></button>
               </p>
               `;
