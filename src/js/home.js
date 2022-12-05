@@ -30,7 +30,7 @@ export function cardTemplate(item) {
       </li>
       <li class="dropdown__item">
         <a class="faHeart" data-id="${id}">
-          <i class="fas fa-heart"     > </i> Favourite
+          <i class="fas fa-heart"> </i> Favourite
         </a>
       </li>
       <li class="dropdown__item">
@@ -106,7 +106,7 @@ export function displayTv(data = []) {
     const imgs = backdrop_path
       ? configs.baseImgURL + backdrop_path
       : configs.defaultImg + "500";
-    result += ` <div class="col"> <article class="card card__hero" data-id="${id}">
+    result += `<div class="col"> <article class="card card__hero" data-id="${id}">
     <div class="card__header dropdown">
       <svg
         id="glyphicons-basic"
@@ -123,7 +123,7 @@ export function displayTv(data = []) {
       <ul class="card__menu dropdown__content">
         <li class="dropdown__item">
           <a class="#">
-            <i class="fas fa-heart"></i> Add to list
+            <i class="fas fa-house-chimney"></i> Add to list
           </a>
         </li>
         <li class="dropdown__item">
@@ -133,12 +133,12 @@ export function displayTv(data = []) {
         </li>
         <li class="dropdown__item">
           <a class="#">
-            <i class="fas fa-heart"></i> Watchlist
+            <i class="fas fa-bookmark"></i> Watchlist
           </a>
         </li>
         <li class="dropdown__item">
           <a class="#">
-            <i class="fas fa-heart"></i> Your raiting
+            <i class="fas fa-star"></i> Raiting
           </a>
         </li>
       </ul>
